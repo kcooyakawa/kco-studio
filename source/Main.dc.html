@@ -122,7 +122,7 @@ p{text-wrap:pretty}
 [data-kfx-cine]{height:auto !important}
 [data-kfx-cine] .kfx-c-stage{position:relative !important;height:auto !important;display:flex;flex-direction:column;gap:2px;padding-top:56px}
 [data-kfx-cine] .kfx-c-slide{position:relative !important;inset:auto !important;height:72vh !important;clip-path:none !important;transform:none !important}
-[data-kfx-cine] .kfx-c-name{transform:none !important}
+[data-kfx-cine] .kfx-c-name{transform:translate(clamp(16px,5.5vw,80px),-50%) !important;opacity:1 !important;font-size:clamp(48px,9vw,150px) !important;white-space:normal !important;right:clamp(16px,5.5vw,80px)}
 [data-kfx-cine] .kfx-c-cap{opacity:1 !important}
 [data-kfx-cine] .kfx-c-badge{display:none}
 }
@@ -137,7 +137,7 @@ p{text-wrap:pretty}
 <div style="max-width: 1440px; margin: 0 auto; padding: 0 clamp(16px, 5.5vw, 80px)">
 
 <!-- ===== NAV (flutuante) ===== -->
-<header class="kfx-header" data-menu="{{menuExp}}" style="position: sticky; top: 0; z-index: 40; background: #F3F1EC; border-bottom: 1px solid #D3CFC6; display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding: 14px 0">
+<header class="kfx-header" data-menu="{{menuExp}}" style="position: sticky; top: 0; z-index: 40; box-sizing: border-box; width: 100vw; margin-left: calc(50% - 50vw); padding-left: max(clamp(16px, 5.5vw, 80px), calc((100vw - 1440px) / 2 + clamp(16px, 5.5vw, 80px))) ; padding-right: max(clamp(16px, 5.5vw, 80px), calc((100vw - 1440px) / 2 + clamp(16px, 5.5vw, 80px))); background: rgba(243, 241, 236, 0.86); -webkit-backdrop-filter: saturate(1.4) blur(18px); backdrop-filter: saturate(1.4) blur(18px); border-bottom: 1px solid rgba(17, 17, 17, 0.12); display: flex; flex-wrap: wrap; gap: 8px 24px; align-items: center; justify-content: space-between; padding-top: 14px; padding-bottom: 14px">
 <button type="button" class="kco-nav" onClick="{{goTop}}" aria-label="KCO Creative Studio — voltar ao topo" style="display: block"><img class="kfx-navlogo" src="/_blob/fb3de1901d556d279f29db2949a8926b" alt="KCO Studio" style="height: 30px; width: auto; display: block"></button>
 <nav aria-label="Principal" style="display: flex; flex-wrap: wrap; gap: 0 28px; align-items: center; font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase">
 <span class="kco-navlinks">
@@ -448,14 +448,16 @@ p{text-wrap:pretty}
 <sc-if value="{{c.isImg}}" hint-placeholder-val="{{false}}"><img src="{{c.src}}" alt="" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block"></sc-if>
 <span style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(17,17,17,0.25) 0%, rgba(17,17,17,0) 28%, rgba(17,17,17,0) 45%, rgba(17,17,17,0.7) 100%)"></span>
 </span>
-<span class="kfx-c-namewrap" aria-hidden="true" style="position: absolute; left: clamp(16px, 5.5vw, 80px); right: clamp(16px, 5.5vw, 80px); bottom: calc(clamp(24px, 4vw, 48px) + clamp(84px, 9vw, 120px)); display: block; overflow: hidden; padding-top: 0.06em"><span class="kfx-c-name" style="display: block; font-family: 'KCO Grotesk', sans-serif; font-weight: 600; font-size: clamp(56px, 12vw, 216px); line-height: 0.86; letter-spacing: -0.035em; text-transform: uppercase; color: #F3F1EC; overflow-wrap: anywhere; transform: translate3d(0, 105%, 0); will-change: transform">{{c.brand}}</span></span>
+<span class="kfx-c-name" aria-hidden="true" style="position: absolute; left: 0; top: 50%; white-space: nowrap; font-family: 'KCO Grotesk', sans-serif; font-weight: 600; font-size: clamp(88px, 17vw, 320px); line-height: 0.8; letter-spacing: -0.04em; text-transform: uppercase; color: #F3F1EC; transform: translate3d(100vw, -50%, 0); opacity: 0; backface-visibility: hidden">{{c.brand}}</span>
 <span class="kfx-c-cap" style="position: absolute; left: clamp(16px, 5.5vw, 80px); right: clamp(16px, 5.5vw, 80px); bottom: clamp(24px, 4vw, 48px); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-end; gap: 12px 24px; opacity: 0">
 <span style="display: flex; flex-direction: column; gap: 8px; max-width: 36em"><span style="font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: rgba(243,241,236,0.7)">{{c.num}} — {{c.cat}}</span><span style="font-family: 'KCO Grotesk', sans-serif; font-weight: 500; font-size: clamp(20px, 2vw, 30px); line-height: 1.1; text-transform: uppercase">{{c.line}}</span></span>
 <span style="font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; padding: 12px 18px; border: 1px solid #F3F1EC">Ver case →</span>
 </span>
 </button>
 </sc-for>
-
+<div class="kfx-c-badge" aria-hidden="true" style="position: absolute; z-index: 40; left: 50%; top: 50%; width: clamp(120px, 13vw, 200px); height: clamp(120px, 13vw, 200px); margin: calc(clamp(120px, 13vw, 200px) / -2) 0 0 calc(clamp(120px, 13vw, 200px) / -2); mix-blend-mode: difference; pointer-events: none">
+<svg viewBox="0 0 200 200" width="100%" height="100%" style="display: block; overflow: visible"><defs><path id="kfxCirc" d="M100,100 m-78,0 a78,78 0 1,1 156,0 a78,78 0 1,1 -156,0"></path></defs><g class="kfx-c-ring" style="transform-origin: 100px 100px"><text style="font-family: 'KCO Label', sans-serif; font-size: 13.5px; font-weight: 500; letter-spacing: 3.2px; fill: #FFFFFF; text-transform: uppercase"><textPath href="#kfxCirc">KCO STUDIO • HEAD OF ART • CASES • KCO STUDIO • HEAD OF ART • CASES •</textPath></text></g><circle cx="100" cy="100" r="6" fill="#E1251B"></circle></svg>
+</div>
 </div>
 </section>
 
@@ -977,7 +979,7 @@ function kfxStart() {
         const med = sl.querySelector('.kfx-c-media');
         if (med) med.style.transform = 'scale(' + (1.25 - grow * 0.25 + clamp(u - i - 1) * 0.06).toFixed(4) + ')';
         const nm = sl.querySelector('.kfx-c-name');
-        if (nm) { const rv = ease(seg(a, 0.55, 0.95)) * (1 - ease(seg(u - i, 1.05, 1.45))); nm.style.transform = 'translate3d(0,' + ((1 - rv) * 105).toFixed(2) + '%,0)'; }
+        if (nm) { const b = clamp((u - i - 0.25) / 1.5); nm.style.transform = 'translate3d(' + (vw - b * (vw + nm.offsetWidth)).toFixed(1) + 'px,-50%,0)'; nm.style.opacity = (seg(a, 0.3, 0.6) * (1 - seg(u - i, 1.0, 1.3))).toFixed(3); }
         const cap = sl.querySelector('.kfx-c-cap');
         if (cap) cap.style.opacity = (seg(a, 0.8, 1) * (1 - seg(u - i, 1.2, 1.5))).toFixed(3);
       });
