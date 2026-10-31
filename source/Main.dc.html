@@ -131,6 +131,7 @@ p{text-wrap:pretty}
 .kfx-w{transition:opacity .25s linear}
 .kfx-big{transform-origin:0 100%;transform:scale(calc(0.86 + var(--e, 1) * 0.14));opacity:calc(0.2 + var(--e, 1) * 0.8)}
 @media (prefers-reduced-motion: reduce){.kfx-big{transform:none;opacity:1}}
+@media (max-width: 760px){.kco-fronts{grid-template-columns:1fr !important}}
 </style>
 </helmet>
 <div style="width: 100%; overflow-x: clip; background: #F3F1EC; color: #111111; font-family: 'KCO Text', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; line-height: 1.55">
@@ -304,7 +305,7 @@ p{text-wrap:pretty}
 </div>
 </div>
 
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); gap: 24px; align-items: start">
+<div class="kco-fronts" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start">
 <sc-for list="{{fronts}}" as="f" hint-placeholder-count="4">
 <article style="border: 1px solid #111111; background: {{f.bg}}; color: {{f.fg}}; transition: background .25s ease, color .25s ease">
 <button type="button" onClick="{{f.toggle}}" aria-expanded="{{f.exp}}" style="display: flex; flex-direction: column; justify-content: space-between; gap: 32px; width: 100%; min-height: 300px; box-sizing: border-box; padding: clamp(20px, 2.4vw, 32px); border: 0; background: none; color: inherit; font: inherit; text-align: left; cursor: pointer">
@@ -398,7 +399,7 @@ p{text-wrap:pretty}
 <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-bottom: clamp(48px, 5vw, 72px)">
 <div style="flex: 0 0 calc(25% - 18px); min-width: 200px; font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase">03 — Como trabalho</div>
 <div style="flex: 999 1 560px; min-width: 0">
-<h2 class="kco-rise" style="margin: 0 0 20px; max-width: 15em; font-family: 'KCO Grotesk', sans-serif; font-weight: 500; font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.03em">Parceria com agência ou projeto freelancer.</h2>
+<h2 class="kco-rise" style="margin: 0 0 20px; max-width: 15em; font-family: 'KCO Grotesk', sans-serif; font-weight: 500; font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.03em">Parcerias com agências e projetos diretos.</h2>
 <p data-kfx-words style="margin: 0; max-width: 30em; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.35; letter-spacing: -0.01em; color: #111111">Qualquer demanda de arte — de uma peça avulsa a um projeto completo.</p>
 </div>
 </div>
@@ -1232,9 +1233,9 @@ fronts: [
 { n: '04', tag: 'Continuidade', title: 'Digital e produção', desc: 'Do layout ao arquivo final: digital, editorial, motion e produção gráfica.', items: ['Landing pages e sites', 'Redes sociais e conteúdo', 'E-mail marketing', 'Editorial, catálogos e e-books', 'Edição, motion e tratamento de imagem'] }
 ].map(mod('f')),
 models: [
-{ n: 'A', tag: 'Parceria', title: 'Agências', desc: 'Diretor de arte sênior para reforçar o time da agência, por job ou em volume recorrente.', items: ['Briefing e escopo definidos pela agência', 'Conceito, direção de arte ou execução', 'Concorrências e apresentações', 'Condições para volume recorrente', 'Prazos e revisões acordados antes'] },
-{ n: 'B', tag: 'Freelancer', title: 'Projeto direto', desc: 'Para empresas, marcas, produtoras, eventos ou pessoas — qualquer demanda de arte.', items: ['Uma peça avulsa ou um projeto completo', 'Entendimento do problema e dos objetivos', 'Conceito, linguagem visual e entrega', 'Coordenação de fornecedores, quando contratada', 'Orçamento fechado por escopo'] },
-{ n: 'C', tag: 'Consultoria', title: 'Direção de arte por hora', desc: 'Sessões pontuais para destravar um desafio visual, revisar materiais ou orientar um time.', items: ['Sprint de direção criativa', 'Revisão de peças e apresentações', 'Acompanhamento de produção', 'Mentoria para times de design', 'Valor por hora ou pacote de horas'] }
+{ n: 'A', tag: 'Parceria', title: 'Parceria com agências', desc: 'Diretor de arte sênior para reforçar o time da agência, por job ou em volume recorrente.', items: ['Briefing e escopo definidos pela agência', 'Conceito, direção de arte ou execução', 'Concorrências e apresentações', 'Condições para volume recorrente', 'Prazos e revisões acordados antes'] },
+{ n: 'B', tag: 'Direto', title: 'Projetos diretos', desc: 'Para empresas, marcas, produtoras, eventos ou pessoas — qualquer demanda de arte.', items: ['Uma peça avulsa ou um projeto completo', 'Entendimento do problema e dos objetivos', 'Conceito, linguagem visual e entrega', 'Coordenação de fornecedores, quando contratada', 'Orçamento fechado por escopo'] },
+{ n: 'C', tag: 'Consultoria', title: 'Consultoria criativa', desc: 'Repertório e visão de direção de arte para destravar desafios criativos, revisar projetos e orientar times.', items: ['Sprint de direção de arte', 'Revisão de projetos', 'Orientação para equipes', 'Mentoria para designers', 'Acompanhamento de produção'] }
 ].map(mod('m')),
 clients: [['Coca-Cola','Bebidas'],['Heineken','Bebidas'],['Itaú','Banco'],['Banco do Brasil','Banco'],['Visa','Pagamentos'],['Mastercard','Pagamentos'],['Redecard','Pagamentos'],['Yahoo!','Tecnologia'],['Samsung','Tecnologia'],['Sony','Tecnologia'],['Oi','Telecom'],['Nextel','Telecom'],['GVT','Telecom'],['Vivo','Telecom'],['Petrobras','Energia'],['Unilever','Consumo'],['P&G','Consumo'],['Gillette','Consumo'],['Nivea','Consumo'],['Pampers','Consumo'],['Lifebuoy','Consumo'],['Duracell','Consumo'],['Trident','Consumo'],['Sadia','Alimentos'],['Ninho','Alimentos'],['Toddynho','Alimentos'],['Adidas','Esporte'],['Billabong','Esporte'],['Under Armour','Esporte'],['Netshoes','Esporte'],['Monster Energy','Bebidas'],['Peugeot','Automotivo'],['Ford','Automotivo'],['Volkswagen','Automotivo'],['Jaguar Land Rover','Automotivo'],['GOL','Aviação'],['TAM','Aviação'],['Porto Seguro','Seguros'],['Camargo Corrêa','Construção'],['JHSF','Imobiliário'],['BR Malls','Varejo'],['Calvin Klein Jeans','Moda'],['Riotur','Turismo'],['Cartoon Network','Entretenimento'],['Lollapalooza','Entretenimento'],['FIFA™ 2014','Esporte'],['Rio 2016','Esporte'],['Match Hospitality','Esporte']].map(([name, seg]) => ({ name, seg })),
 
