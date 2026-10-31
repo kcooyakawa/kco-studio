@@ -66,7 +66,7 @@ section[id]{scroll-margin-top:96px}
 @keyframes kcoMarq{from{transform:translateX(0)}to{transform:translateX(calc(-50% - 6px))}}
 @media (prefers-reduced-motion: reduce){.kco-marq-track{animation:none}.kco-marq{overflow-x:auto}}
 /* ===== KFX — animações de scroll ===== */
-.kfx-helix-wrap{position:absolute;left:74%;top:48%;width:0;height:0;perspective:1400px;z-index:1;pointer-events:none}
+.kfx-helix-wrap{position:absolute;left:74%;top:57%;width:0;height:0;perspective:1400px;z-index:1;pointer-events:none}
 .kfx-helix{position:absolute;left:0;top:0;transform-style:preserve-3d;transform:rotateX(-16deg) rotateZ(-18deg) rotateY(calc(var(--rot, 0) * 1deg))}
 .kfx-slat{position:absolute;display:block;left:calc(min(36vmin, 340px) / -2);top:0;width:min(36vmin, 340px);height:min(1.5vmin, 13px);border-radius:1px;background:linear-gradient(90deg,#FFFFFF 0%,#E9E6DF 45%,#B8B4AB 100%);box-shadow:0 0 0 0.5px rgba(17,17,17,0.06);transform:translateY(calc((var(--i) - 24) * min(1.55vmin, 14px))) rotateY(calc(var(--i) * 8.5deg)) translateZ(min(12vmin, 110px)) rotateX(68deg)}
 .kfx-word .kfx-l{display:block;height:100%;width:auto;transform-origin:0 0;will-change:transform}
@@ -86,12 +86,12 @@ section[id]{scroll-margin-top:96px}
 @media (prefers-reduced-motion: no-preference){
 @keyframes kcoPx{from{transform:translateY(-9%)}to{transform:translateY(9%)}}
 @keyframes kcoPxSoft{from{transform:translateY(40px)}to{transform:translateY(-40px)}}
-@keyframes kcoRise{from{opacity:0;transform:translateY(48px)}to{opacity:1;transform:none}}
+@keyframes kcoRise{from{clip-path:inset(0 0 100% 0);transform:translateY(0.45em)}to{clip-path:inset(0 0 -12% 0);transform:none}}
 @keyframes kcoHero{from{transform:translateY(0)}to{transform:translateY(-120px);opacity:.15}}
 @keyframes kcoHeroVid{from{transform:translateY(0) scale(1.04)}to{transform:translateY(28%) scale(1.04)}}
 
 .kco-px img,.kco-px-img{animation:kcoPxSoft linear both;animation-timeline:view()}
-.kco-rise{animation:kcoRise linear both;animation-timeline:view();animation-range:entry 0% entry 70%}
+.kco-rise{animation:kcoRise cubic-bezier(0.23, 1, 0.32, 1) both;animation-timeline:view();animation-range:entry 5% entry 85%}
 
 .kco-sq img{animation:kcoPxSoft linear both;animation-timeline:view();scale:1.12}
 }}
@@ -113,7 +113,7 @@ p{text-wrap:pretty}
 .kfx-header[data-menu="true"] ~ #topo .kfx-word{visibility:hidden !important}
 .kfx-intro-ui{z-index:2}
 @media (max-width:760px){.kfx-helix-wrap{left:72%;top:30%;scale:.55}}
-.kfx-hero-promise{position:relative;font-family:'KCO Grotesk',sans-serif;font-weight:500;font-size:clamp(20px,2.1vw,32px);line-height:1.12;letter-spacing:-0.015em;color:#111111;max-width:24em;margin:0 0 14px}
+.kfx-hero-promise{position:relative;font-family:'KCO Grotesk',sans-serif;font-weight:300;font-size:clamp(20px,2.1vw,32px);line-height:1.18;letter-spacing:-0.01em;color:#4A4844;max-width:24em;margin:0 0 14px}
 @media (prefers-reduced-motion: reduce){
 [data-kfx-hscroll]{height:auto !important}
 [data-kfx-hscroll] .kfx-h-stage{position:relative !important;top:auto !important;height:auto !important;overflow:visible !important;padding:24px 0 8px}
@@ -126,6 +126,11 @@ p{text-wrap:pretty}
 [data-kfx-cine] .kfx-c-cap{opacity:1 !important}
 [data-kfx-cine] .kfx-c-badge{display:none}
 }
+
+/* ===== motion v2: máscara nos títulos, palavras, cabeçalho, contato ===== */
+.kfx-w{transition:opacity .25s linear}
+.kfx-big{transform-origin:0 100%;transform:scale(calc(0.86 + var(--e, 1) * 0.14));opacity:calc(0.2 + var(--e, 1) * 0.8)}
+@media (prefers-reduced-motion: reduce){.kfx-big{transform:none;opacity:1}}
 </style>
 </helmet>
 <div style="width: 100%; overflow-x: clip; background: #F3F1EC; color: #111111; font-family: 'KCO Text', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-size: 17px; line-height: 1.55">
@@ -173,7 +178,7 @@ p{text-wrap:pretty}
 <div class="kfx-hint" style="position: absolute; left: clamp(16px, 5.5vw, 80px); bottom: calc(min(190px, 22vw) + 6vh + 36px);  right: clamp(16px, 5.5vw, 80px)"><p class="kfx-hero-promise">Head of Art in São Paulo. Art direction for brands, events and campaigns — FIFA™ 2014, Rio 2016, NBA, Coca‑Cola and Itaú.</p><span style="font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #5C5A55">Scroll to explore ↓</span></div>
 </div>
 
-<div class="kfx-word" aria-hidden="true" style="position: fixed; left: max(clamp(16px, 5.5vw, 80px), calc((100vw - 1440px) / 2 + 80px)); right: max(clamp(16px, 5.5vw, 80px), calc((100vw - 1440px) / 2 + 80px)); bottom: 6vh; height: min(190px, 22vw); display: flex; justify-content: space-between; align-items: flex-end; z-index: 45; pointer-events: none">
+<div class="kfx-word" aria-hidden="true" style="position: fixed; left: clamp(12px, 2vw, 32px); right: clamp(12px, 2vw, 32px); bottom: 6vh; height: min(190px, 22vw); display: flex; justify-content: space-between; align-items: flex-end; z-index: 45; pointer-events: none">
 <svg class="kfx-l" data-l="k" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="320.1 206.4 257.9 241.8"><path fill="#111111" d="M465.47,346.58l112.5,101.6h-66.79l-92.84-83.37h-53.52v83.37h-44.76v-241.81h44.76v122.92h53.52l70.34-63.24h66.31l-89.52,80.53Z"/></svg><svg class="kfx-l" data-l="c" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="558.1 206.4 239.4 241.8"><path fill="#111111" d="M678.62,411.95c18.47,0,34.26-3.19,47.37-9.59,13.1-6.4,22.03-15.12,26.76-26.17h44.52c-4.42,24.48-16.93,42.55-37.54,54.24-20.6,11.69-47.64,17.52-81.11,17.52-37.74,0-67.26-7.38-88.58-22.14-21.32-14.76-31.97-37.62-31.97-68.57s10.66-54.08,31.97-68.92c21.31-14.84,50.84-22.26,88.58-22.26,33.78,0,61.02,5.92,81.71,17.76,20.68,11.84,33.08,30.24,37.18,55.18h-44.76c-4.42-11.52-13.19-20.6-26.29-27.23-13.11-6.63-29.05-9.95-47.84-9.95-23.84,0-42.43,4.74-55.77,14.21-13.35,9.47-20.01,23.21-20.01,41.21s6.67,31.42,20.01,40.74c13.34,9.32,31.93,13.97,55.77,13.97Z"/></svg><svg class="kfx-l" data-l="o" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="805.3 206.4 240.6 241.8"><path fill="#111111" d="M925.64,266.06c24.63,0,45.71,3.04,63.24,9.12,17.52,6.08,31.42,16.02,41.68,29.84,10.26,13.82,15.39,31.22,15.39,52.22,0,30.95-10.66,53.8-31.97,68.57-21.31,14.76-50.77,22.14-88.34,22.14s-67.22-7.38-88.46-22.14c-21.24-14.76-31.85-37.62-31.85-68.57s10.62-54.08,31.85-68.92c21.23-14.84,50.72-22.26,88.46-22.26ZM869.98,398.09c13.26,9.24,31.81,13.85,55.66,13.85s42.39-4.65,55.66-13.97c13.26-9.31,19.89-22.89,19.89-40.74s-6.67-31.74-20.01-41.21c-13.35-9.47-31.85-14.21-55.54-14.21s-42.39,4.74-55.66,14.21c-13.26,9.47-19.89,23.21-19.89,41.21s6.63,31.62,19.89,40.86Z"/></svg>
 </div>
 
@@ -206,7 +211,7 @@ p{text-wrap:pretty}
 <img src="/_blob/923f9fe265ee16bdad9ed455a23c4320" alt="Black and white portrait of Kco Oyakawa wearing a blazer and black t-shirt" data-kfx class="kfx-wipe" style="flex: 1 1 280px; max-width: 420px; aspect-ratio: 4 / 5; object-fit: cover; object-position: 50% 25%; display: block; min-width: 0; mix-blend-mode: multiply">
 <div style="flex: 1.4 1 360px; min-width: 0">
 <h2 class="kco-rise" style="margin: 0 0 28px; font-family: 'KCO Grotesk', sans-serif; font-weight: 500; font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.03em">Kco Oyakawa</h2>
-<p style="margin: 0 0 20px; font-size: clamp(19px, 1.6vw, 22px); line-height: 1.4; letter-spacing: -0.01em">Head of Art based in São Paulo, with 20+ years in branding, visual identity and design for events and brand activations.</p>
+<p data-kfx-words style="margin: 0 0 20px; font-size: clamp(19px, 1.6vw, 22px); line-height: 1.4; letter-spacing: -0.01em">Head of Art based in São Paulo, with 20+ years in branding, visual identity and design for events and brand activations.</p>
 <p style="margin: 0 0 16px; color: #5C5A55">I worked on the 2014 FIFA World Cup™, the Rio 2016 Olympic Games, Lollapalooza, Wimbledon and Circuito Agro, for brands such as Heineken, Itaú, Coca-Cola, C3 Presents, Yahoo!, Trident, Volkswagen, Ford, Jaguar Land Rover, Match Hospitality, Cartoon Network and Sony.</p>
 <p style="margin: 0; color: #5C5A55">Past teams include Agência TUDO, GEO Eventos, Traffic Sports, TracyLocke and Stap Feelings.</p>
 <a class="kco-dl" href="/_blob/7790535c4dbe3fa19d41be8b9dad16bd" download="Kco_Oyakawa_Resume_2026.pdf" target="_blank" rel="noopener" style="margin-top: 28px">Download résumé — PDF ↓</a>
@@ -295,7 +300,7 @@ p{text-wrap:pretty}
 <div style="flex: 0 0 calc(25% - 18px); min-width: 200px; font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase">02 — Areas of practice</div>
 <div style="flex: 999 1 560px; min-width: 0">
 <h2 class="kco-rise" style="margin: 0 0 20px; max-width: 15em; font-family: 'KCO Grotesk', sans-serif; font-weight: 500; font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.03em">From concept to production, with the same eye.</h2>
-<p style="margin: 0; max-width: 30em; font-size: 20px; line-height: 1.4; color: #5C5A55">Click each area to see the deliverables.</p>
+<p data-kfx-words style="margin: 0; max-width: 30em; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.35; letter-spacing: -0.01em; color: #111111">Click each area to see the deliverables.</p>
 </div>
 </div>
 
@@ -394,7 +399,7 @@ p{text-wrap:pretty}
 <div style="flex: 0 0 calc(25% - 18px); min-width: 200px; font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase">03 — How I work</div>
 <div style="flex: 999 1 560px; min-width: 0">
 <h2 class="kco-rise" style="margin: 0 0 20px; max-width: 15em; font-family: 'KCO Grotesk', sans-serif; font-weight: 500; font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.03em">Agency partnership or freelance project.</h2>
-<p style="margin: 0; max-width: 30em; font-size: 20px; line-height: 1.4; color: #5C5A55">Any art need — from a single piece to a full project.</p>
+<p data-kfx-words style="margin: 0; max-width: 30em; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.35; letter-spacing: -0.01em; color: #111111">Any art need — from a single piece to a full project.</p>
 </div>
 </div>
 
@@ -462,7 +467,7 @@ p{text-wrap:pretty}
 <div style="flex: 0 0 calc(25% - 18px); min-width: 200px; font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase">05 — Work</div>
 <div style="flex: 999 1 560px; min-width: 0">
 <h2 class="kco-rise" style="margin: 0 0 20px; max-width: 15em; font-family: 'KCO Grotesk', sans-serif; font-weight: 500; font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.03em">Cases and projects.</h2>
-<p style="margin: 0; max-width: 30em; font-size: 20px; line-height: 1.4; color: #5C5A55">Video cases, events, campaigns, theater, identities and presentations — {{totalImgs}} images and {{totalVids}} videos. Open a project to see the full work.</p>
+<p data-kfx-words style="margin: 0; max-width: 30em; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.35; letter-spacing: -0.01em; color: #111111">Video cases, events, campaigns, theater, identities and presentations — {{totalImgs}} images and {{totalVids}} videos. Open a project to see the full work.</p>
 </div>
 </div>
 <div role="group" aria-label="Filter projects by category" style="display: flex; flex-wrap: wrap; gap: 8px; padding: 16px 0 32px; border-top: 1px solid #D3CFC6">
@@ -507,7 +512,7 @@ p{text-wrap:pretty}
 <div style="flex: 0 0 calc(25% - 18px); min-width: 200px; font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase">07 — Projects by KCO</div>
 <div style="flex: 999 1 560px; min-width: 0">
 <h2 class="kco-rise" style="margin: 0 0 20px; max-width: 15em; font-family: 'KCO Grotesk', sans-serif; font-weight: 500; font-size: clamp(36px, 4.4vw, 64px); line-height: 1; letter-spacing: -0.03em">Projects by KCO.</h2>
-<p style="margin: 0; max-width: 30em; font-size: 20px; line-height: 1.4; color: #5C5A55">Personal ventures I'm bringing back.</p>
+<p data-kfx-words style="margin: 0; max-width: 30em; font-size: clamp(20px, 1.8vw, 26px); line-height: 1.35; letter-spacing: -0.01em; color: #111111">Personal ventures I'm bringing back.</p>
 </div>
 </div>
 
@@ -529,7 +534,7 @@ p{text-wrap:pretty}
 <!-- ===== 08 CONTATO ===== -->
 <section id="contato" style="margin-top: clamp(120px, 11vw, 160px); border-top: 1px solid #111111; padding: 16px 0 clamp(120px, 15vw, 240px)">
 <div style="font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase">08 — Contact</div>
-<h2 style="margin: clamp(72px, 9vw, 140px) 0 clamp(56px, 6vw, 96px); font-family: 'KCO Grotesk', sans-serif; font-weight: 300; font-size: clamp(56px, 9vw, 150px); line-height: 0.95; letter-spacing: -0.04em">Let's talk<span style="color: {{accent}}">.</span></h2>
+<h2 data-kfx class="kfx-big" style="margin: clamp(72px, 9vw, 140px) 0 clamp(56px, 6vw, 96px); font-family: 'KCO Grotesk', sans-serif; font-weight: 300; font-size: clamp(56px, 9vw, 150px); line-height: 0.95; letter-spacing: -0.04em">Let's talk<span style="color: {{accent}}">.</span></h2>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); column-gap: 24px">
 <div style="border-top: 1px solid #111111; padding: 16px 0 28px"><div style="font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #5C5A55; margin-bottom: 10px">E-mail</div><a href="mailto:kcodigital@gmail.com" style="font-family: 'KCO Grotesk', sans-serif; font-weight: 500; font-size: 24px; letter-spacing: -0.015em; text-decoration: none; overflow-wrap: anywhere">kcodigital@gmail.com</a></div>
 <div style="border-top: 1px solid #111111; padding: 16px 0 28px"><div style="font-family: 'KCO Label', sans-serif; font-size: 12px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; color: #5C5A55; margin-bottom: 10px">WhatsApp</div><a href="https://wa.me/5511995777475" target="_blank" rel="noopener" style="font-family: 'KCO Grotesk', sans-serif; font-weight: 500; font-size: 24px; letter-spacing: -0.015em; text-decoration: none">+55 11 99577-7475</a></div>
@@ -833,6 +838,19 @@ function kfxStart() {
     if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   });
+  // ===== motion v2 =====
+  const EO = 'cubic-bezier(0.23, 1, 0.32, 1)';
+  const REVEAL = '.kco-card, .kco-logo-tile, .kco-acc, section[aria-label="In numbers"] > div, #contato .kco-dl, .kfx-h-word';
+  const seenR = new WeakSet();
+  const rIO = (!reduce && 'IntersectionObserver' in window && Element.prototype.animate) ? new IntersectionObserver((ents) => {
+    const els = ents.filter((e) => e.isIntersecting).map((e) => e.target);
+    els.sort((a, b) => { const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect(); return (ra.top - rb.top) || (ra.left - rb.left); });
+    els.forEach((el, i) => {
+      rIO.unobserve(el);
+      const num = el.matches('section[aria-label="In numbers"] > div');
+      el.animate([{ opacity: 0, transform: 'translate3d(0, 36px, 0)', filter: num ? 'blur(10px)' : 'blur(0px)' }, { opacity: 1, transform: 'translate3d(0, 0, 0)', filter: 'blur(0px)' }], { duration: 900, delay: Math.min(i, 8) * 70, easing: EO, fill: 'backwards' });
+    });
+  }, { rootMargin: '0px 0px -4% 0px' }) : null;
   function frame(now) {
     document.querySelectorAll('video[data-kfx-auto]').forEach((v) => { if (!seenV.has(v)) { seenV.add(v); if (vio) vio.observe(v); else if (!reduce) { const pr = v.play(); if (pr && pr.catch) pr.catch(() => {}); } } });
     const dlg = topDlg();
@@ -971,6 +989,20 @@ function kfxStart() {
       if (ring) ring.style.transform = 'rotate(' + (u * 140 + (reduce ? 0 : (now - t0) * 0.012)).toFixed(2) + 'deg)';
       const badge = sec.querySelector('.kfx-c-badge');
       if (badge) { const g = clamp(u - Math.floor(u)); badge.style.transform = 'scale(' + (1 + Math.sin(g * Math.PI) * 0.12).toFixed(3) + ')'; }
+    });
+    // revelações com stagger (cards, logos, números, acordeões)
+    if (rIO) document.querySelectorAll(REVEAL).forEach((el) => { if (!seenR.has(el)) { seenR.add(el); rIO.observe(el); } });
+    // texto que acende palavra a palavra
+    document.querySelectorAll('[data-kfx-words]').forEach((el) => {
+      if (!el.querySelector('.kfx-w')) {
+        const txt = el.textContent; el.textContent = '';
+        txt.split(/(\s+)/).forEach((t) => { if (!t) return; if (/^\s+$/.test(t)) { el.appendChild(document.createTextNode(t)); return; } const w = document.createElement('span'); w.className = 'kfx-w'; w.textContent = t; el.appendChild(w); });
+      }
+      const r = el.getBoundingClientRect();
+      if (r.bottom < -vh * 0.5 || r.top > vh * 1.5) return;
+      const ws = el.querySelectorAll('.kfx-w'), n = ws.length;
+      const p = reduce ? 1 : clamp((vh * 0.9 - r.top) / (vh * 0.5 + r.height * 0.5));
+      ws.forEach((w, i) => { const k = clamp(p * (n + 2) - i); const o = (0.14 + 0.86 * k).toFixed(3); if (w.style.opacity !== o) w.style.opacity = o; });
     });
     if (nav) nav.style.opacity = String(navOn);
     // efeitos genéricos: --q (passagem pela tela) e --e (entrada)
