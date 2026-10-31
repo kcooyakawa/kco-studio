@@ -738,4 +738,12 @@ EN = {
 'Galeria': 'Gallery',
 'Curitiba - encerramento em alto estilo': 'Curitiba — closing in style',
 'Vídeo': 'Video',
+'Head of Art em São Paulo. Direção de arte para marcas, eventos e campanhas — FIFA™ 2014, Rio 2016, NBA, Coca‑Cola e Itaú.': 'Head of Art in São Paulo. Art direction for brands, events and campaigns — FIFA™ 2014, Rio 2016, NBA, Coca‑Cola and Itaú.',
+'Role para ver ↓': 'Scroll to explore ↓',
+'Ver todos os ': 'See all ',
+' projetos ↓': ' projects ↓',
+'A solução': 'The solution',
+'Confira o e-mail: falta o @ ou o domínio (ex.: nome@empresa.com).': "Check the e-mail: it's missing the @ or the domain (e.g. name@company.com).",
+'vídeos. Abra um projeto para ver o trabalho completo.': 'videos. Open a project to see the full work.',
+'Abra um projeto para ver o trabalho completo.': 'Open a project to see the full work.',
 }
