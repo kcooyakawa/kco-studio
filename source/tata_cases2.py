@@ -264,8 +264,8 @@ case("lolla-2012", "Lollapalooza Brasil 2012 — Campanha integrada", "Lollapalo
       "Nothing better than the cinema screen to tell the story of Lollapalooza's 20 years, its concept and its arrival in Brazil. A partnership with Cinemark brought a mini-doc to its digital screens."),
     y("8zZbTQC1YzM")]),
   (("Interativo como um aplicativo", "As interactive as an app"), [
-    p("Para divulgar o festival e o aplicativo oficial, um anúncio interativo na Rolling Stone. E, na linha amarela do metrô, a 600 metros do Jockey Club, um QR code para montar e compartilhar o line-up.",
-      "To promote the festival and the official app, an interactive ad in Rolling Stone. And on the yellow metro line, 600 metres from the Jockey Club, a QR code to build and share the line-up."),
+    p("Para divulgar o festival e o aplicativo oficial, um anúncio interativo na Rolling Stone, com mais de 50 mil interações. E, na linha amarela do metrô, a 600 metros do Jockey Club, um QR code para montar e compartilhar o line-up.",
+      "To promote the festival and the official app, an interactive ad in Rolling Stone, with over 50,000 interactions. And on the yellow metro line, 600 metres from the Jockey Club, a QR code to build and share the line-up."),
     "4285967/ad_lolla_interativo.jpg.scaled1000_o.jpg", "4286006/PORTA_SEGURANCA_METRO.jpg.scaled1000.jpg", "4286006/estacao-butanta.jpg.scaled1000_o.jpg"]),
   (("Social media e digital", "Social media and digital"), [
     p("O grande foco da campanha foram as redes sociais: de 0 a 600 mil seguidores em dois anos, mais de 80 mil cadastrados e um público que não só consome o conteúdo, mas gera o seu próprio. 150 mil likes no Facebook no primeiro mês, 1 milhão de visitas ao site, 3 mil downloads do aplicativo e 12 vezes nos trending topics.",

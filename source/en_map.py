@@ -916,7 +916,7 @@ EN = {
 'Lolla Brasil no cinema': 'Lolla Brasil at the cinema',
 'Nada melhor que a tela do cinema para contar os 20 anos do Lollapalooza, seu conceito e sua chegada ao Brasil. Uma parceria com o Cinemark levou um mini-doc às sessões das salas digitais.': "Nothing better than the cinema screen to tell the story of Lollapalooza's 20 years, its concept and its arrival in Brazil. A partnership with Cinemark brought a mini-doc to its digital screens.",
 'Interativo como um aplicativo': 'As interactive as an app',
-'Para divulgar o festival e o aplicativo oficial, um anúncio interativo na Rolling Stone. E, na linha amarela do metrô, a 600 metros do Jockey Club, um QR code para montar e compartilhar o line-up.': 'To promote the festival and the official app, an interactive ad in Rolling Stone. And on the yellow metro line, 600 metres from the Jockey Club, a QR code to build and share the line-up.',
+'Para divulgar o festival e o aplicativo oficial, um anúncio interativo na Rolling Stone, com mais de 50 mil interações. E, na linha amarela do metrô, a 600 metros do Jockey Club, um QR code para montar e compartilhar o line-up.': 'To promote the festival and the official app, an interactive ad in Rolling Stone, with over 50,000 interactions. And on the yellow metro line, 600 metres from the Jockey Club, a QR code to build and share the line-up.',
 'Social media e digital': 'Social media and digital',
 'O grande foco da campanha foram as redes sociais: de 0 a 600 mil seguidores em dois anos, mais de 80 mil cadastrados e um público que não só consome o conteúdo, mas gera o seu próprio. 150 mil likes no Facebook no primeiro mês, 1 milhão de visitas ao site, 3 mil downloads do aplicativo e 12 vezes nos trending topics.': "Social media was the campaign's main focus: from 0 to 600,000 followers in two years, over 80,000 sign-ups and an audience that not only consumes content but creates its own. 150,000 Facebook likes in the first month, 1 million site visits, 3,000 app downloads and 12 times in trending topics.",
 'Ao vivo, onde você estiver': 'Live, wherever you are',
@@ -947,4 +947,10 @@ EN = {
 'Um evento sustentável': 'A sustainable event',
 'Um evento que depende da natureza não podia esquecer a sustentabilidade. Um inventário das emissões de gases de efeito estufa do evento virou plano de neutralização, com plantio de mudas nativas da Mata Atlântica no Rio. Lonas de banners viraram capas de prancha em ONGs, e houve palestras para crianças, mutirões de reciclagem e ações nas duas arenas.': "An event that depends on nature couldn't ignore sustainability. An inventory of the event's greenhouse gas emissions became an offset plan, planting native Atlantic Forest seedlings in Rio. Banner vinyl became surfboard bags at NGOs, alongside talks for children, recycling drives and actions in both arenas.",
 'Rio Pro 2012': 'Rio Pro 2012',
+# --- lightbox
+'Ver em tela cheia ↗': 'View full screen ↗',
+'Imagem anterior': 'Previous image',
+'Ampliar imagem ': 'Enlarge image ',
+'Ver as outras ': 'See the other ',
+' imagens em tela cheia': ' images full screen',
 }
