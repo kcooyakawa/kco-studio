@@ -74,7 +74,7 @@ models = [(t('Parceria com agências', 'Agency partnerships'), t('Reforço sêni
           (t('Projetos diretos', 'Direct projects'), t('Para empresas, marcas, produtoras e eventos — de uma peça a um projeto completo.', 'For companies, brands, producers and events — from one piece to a full project.')),
           (t('Consultoria criativa', 'Creative consulting'), t('Sprint, revisão de projetos, orientação de equipes e mentoria.', 'Sprints, project reviews, team guidance and mentoring.'))]
 mh = ''.join(f'<div style="grid-column:span 4;border-top:0.2mm solid #D3CFC6;padding-top:2mm"><h3 style="font-size:11pt">{a}</h3><p class="sm mut" style="margin:1.5mm 0 0">{b}</p></div>' for a, b in models)
-pages.append(f'''<section class="pg">{grid()}{bar('01 — ' + t('Como contratar', 'How to hire'), t('Quatro formas de trabalhar juntos', 'Four ways to work together'), '', 'P.02')}
+pages.append(f'''<section class="pg">{bar('01 — ' + t('Como contratar', 'How to hire'), t('Quatro formas de trabalhar juntos', 'Four ways to work together'), '', 'P.02')}
 <div class="giant vert" style="right:10mm;top:24mm;font-size:200pt">01</div>
 <div class="g12" style="margin-top:16mm"><div style="grid-column:1/9"><h2>{t('Como contratar', 'How to hire')}</h2><p class="lead mut" style="margin:5mm 0 0;max-width:110mm">{t('A diferença está no que você recebe: uma solução completa, a direção de um desafio, uma consultoria ou uma entrega pontual.', 'The difference is what you receive: a complete solution, direction on a challenge, consulting, or a one-off deliverable.')}</p></div></div>
 <div class="g12" style="margin-top:14mm;grid-column-end:auto;max-width:150mm">{dh}</div>
@@ -98,7 +98,7 @@ pk = [
 ]
 ph = ''.join(f'''<div style="grid-column:span 4"><div class="def"><span class="tag">{t('Pacote', 'Package')} {n}</span><h3 style="margin:1.5mm 0 4mm">{h}</h3><div class="pr">{p}</div></div>
 <p style="margin:4mm 0 2mm">{d}</p><div class="tag" style="margin-top:3mm">{t('Inclui', 'Includes')}</div><ul class="inc">{''.join(f'<li>{x}</li>' for x in inc)}</ul><p class="sm mut" style="margin:3mm 0 0">{note}</p></div>''' for n, h, p, d, inc, note in pk)
-pages.append(f'''<section class="pg">{grid()}{bar('02 — ' + t('Pacotes', 'Packages'), t('Soluções completas, escopo claro', 'Complete solutions, clear scope'), '', 'P.03')}
+pages.append(f'''<section class="pg">{bar('02 — ' + t('Pacotes', 'Packages'), t('Soluções completas, escopo claro', 'Complete solutions, clear scope'), '', 'P.03')}
 <div class="giant vert" style="right:10mm;top:24mm;font-size:200pt">02</div>
 <div class="g12" style="margin-top:16mm"><div style="grid-column:1/9"><h2>{t('Pacotes', 'Packages')}</h2><p class="lead mut" style="margin:5mm 0 0;max-width:110mm">{t('Três tipos de projeto em que a direção de arte faz mais diferença — com entregas definidas e um único responsável.', 'Three kinds of project where art direction makes the biggest difference — defined deliverables, one person in charge.')}</p></div></div>
 <div class="g12" style="margin-top:30mm;max-width:152mm;column-gap:6mm">{ph}</div>
@@ -120,7 +120,7 @@ cons = [
 ]
 ch = ''.join(f'''<div style="grid-column:span 6"><div class="def"><span class="tag">{t('Consultoria', 'Consulting')}</span><h3 style="margin:1.5mm 0 3mm">{h}</h3><div class="pr" style="font-size:15pt">{p}</div></div><p style="margin:3mm 0 2mm">{d}</p>
 {''.join(f'<div style="display:grid;grid-template-columns:22mm 1fr;gap:3mm;padding:1.4mm 0;border-top:0.2mm solid #D3CFC6"><span class="tag" style="padding-top:.4mm">{a}</span><span class="sm">{b}</span></div>' for a, b in rows)}</div>''' for h, p, d, rows in cons)
-pages.append(f'''<section class="pg">{grid()}{bar('03 — ' + t('Serviços estratégicos', 'Strategic services'), t('Direção de um desafio específico', 'Direction on a specific challenge'), '', 'P.04')}
+pages.append(f'''<section class="pg">{bar('03 — ' + t('Serviços estratégicos', 'Strategic services'), t('Direção de um desafio específico', 'Direction on a specific challenge'), '', 'P.04')}
 <div class="giant vert" style="right:10mm;top:24mm;font-size:200pt">03</div>
 <div style="margin-top:16mm;max-width:126mm"><h2>{t('Quando o desafio é estratégico', 'When the challenge is strategic')}</h2>
 <div class="rule" style="margin-top:9mm"></div>{svh}
@@ -145,9 +145,9 @@ cats2 = [
  cat('H', t('Brindes e merchandising', 'Merchandise'), [(t('Camiseta ou uniforme — estampa', 'T-shirt or uniform — print'), 'R$ 600–1.200'), (t('Kit de brindes simples', 'Simple gift kit'), 'R$ 800–1.500'), (t('Embalagem ou rótulo', 'Packaging or label'), 'R$ 2.000–6.000')], t('Embalagens com estrutura e faca técnica podem exigir valores maiores.', 'Structural packaging and technical die-cuts may cost more.')),
  cat('I', t('Sinalização e grandes formatos', 'Signage and large formats'), [(t('Banner ou roll-up', 'Banner or roll-up'), 'R$ 600–1.000'), (t('Outdoor ou busdoor', 'Billboard or bus ad'), 'R$ 1.000–2.000'), (t('Adesivagem de tapume', 'Hoarding graphics'), 'R$ 3.000–6.000')], t('Tapumes e grandes áreas consideram metragem, módulos e arquivos técnicos.', 'Hoardings and large areas consider size, modules and technical files.')),
 ]
-pages.append(f'''<section class="pg">{grid()}{bar('05 — ' + t('Tabela de referência', 'Reference table'), t('Faixas de partida por entrega', 'Starting ranges per deliverable'), '', 'P.05')}
+pages.append(f'''<section class="pg">{bar('05 — ' + t('Tabela de referência', 'Reference table'), t('Faixas de partida por entrega', 'Starting ranges per deliverable'), '', 'P.05')}
 <div style="margin-top:12mm;max-width:182mm"><div class="cats">{''.join(cats1)}</div></div>{foot(5)}</section>''')
-pages.append(f'''<section class="pg">{grid()}{bar('05 — ' + t('Tabela de referência', 'Reference table'), t('Continuação', 'Continued'), '', 'P.06')}
+pages.append(f'''<section class="pg">{bar('05 — ' + t('Tabela de referência', 'Reference table'), t('Continuação', 'Continued'), '', 'P.06')}
 <div style="margin-top:12mm;max-width:182mm"><div class="cats">{''.join(cats2)}</div></div>
 <div class="giant" style="left:12mm;bottom:24mm;font-size:150pt">A—I<span style="color:#E1251B">.</span></div>
 {foot(6)}</section>''')
@@ -167,7 +167,7 @@ coh = ''.join(f'<div class="row" style="padding:2.2mm 0"><span class="lab" style
 glos = [(t('O que é uma rodada de revisão', 'What a revision round is'), t('Um conjunto único e consolidado de ajustes, enviado de uma vez por um responsável, sobre a etapa entregue e dentro do briefing aprovado. Ajustes enviados em partes contam como rodadas separadas.', 'A single, consolidated set of changes, sent at once by one person, on the delivered stage and within the approved brief. Changes sent in parts count as separate rounds.')),
         (t('O que muda o escopo', 'What changes the scope'), t('Nova peça, formato ou versão; novo conteúdo; troca de um conceito já aprovado; mudança de objetivo ou público; ajustes além das rodadas previstas.', 'A new piece, format or version; new content; replacing an approved concept; a change of goal or audience; changes beyond the agreed rounds.'))]
 gh = ''.join(f'<div class="def" style="grid-column:span 6"><h3 style="font-size:11pt">{a}</h3><p class="sm" style="margin:0">{b}</p></div>' for a, b in glos)
-pages.append(f'''<section class="pg">{grid()}{bar('06 — ' + t('Condições comerciais', 'Commercial terms'), t('Como cada projeto anda', 'How each project runs'), '', 'P.07')}
+pages.append(f'''<section class="pg">{bar('06 — ' + t('Condições comerciais', 'Commercial terms'), t('Como cada projeto anda', 'How each project runs'), '', 'P.07')}
 <div class="giant vert" style="right:10mm;top:24mm;font-size:200pt">06</div>
 <div style="margin-top:16mm;max-width:126mm"><h2>{t('Condições comerciais', 'Commercial terms')}</h2><div class="rule" style="margin-top:9mm"></div>{coh}
 <div class="g12" style="margin-top:12mm;column-gap:6mm">{gh}</div>
