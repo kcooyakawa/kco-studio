@@ -1,0 +1,283 @@
+# -*- coding: utf-8 -*-
+# Textos de cada case: statement (caixa alta) + linhas (rótulo, texto). PT -> EN.
+D_PT, P_PT, F_PT, J_PT, E_PT = "O desafio", "O que propusemos", "O que fiz", "O projeto", "Entregas"
+LBL = {D_PT: "The challenge", P_PT: "What we proposed", F_PT: "What I did", J_PT: "The project", E_PT: "Deliverables"}
+
+S = {}
+def add(cid, st, st_en, rows):
+    S[cid] = {"st": (st, st_en), "rows": rows}
+
+# ---------- NBA
+add("nba-deck",
+ "Um deck para vender a NBA no Brasil: dados, fãs e propriedades contados como um jogo grande.",
+ "A deck to sell the NBA in Brazil: data, fans and properties told like a big game.",
+ [(J_PT, "A NBA Brasil precisava de uma apresentação comercial para a temporada 2021/22, a 75ª da liga, capaz de mostrar a marcas e patrocinadores o tamanho da base de fãs no país e tudo o que a liga oferece por aqui.",
+         "NBA Brasil needed a sales presentation for the 2021/22 season, the league's 75th, showing brands and sponsors the size of its fan base in Brazil and everything the league offers here."),
+  (F_PT, "Direção de arte do deck inteiro: narrativa visual, diagramação dos dados de audiência e uma linguagem própria para cada plataforma — Eventos, NBA House, Jr. NBA, Her Time to Play, NBA Basketball School e Mídia.",
+         "Art direction for the whole deck: visual narrative, layout of audience data and a distinct language for each platform — Events, NBA House, Jr. NBA, Her Time to Play, NBA Basketball School and Media."),
+  (E_PT, "Deck comercial · Infográficos · Aberturas de capítulo · Tratamento de imagens",
+         "Sales deck · Infographics · Chapter openers · Image treatment")])
+
+# ---------- STAP (O desafio / O que propusemos / Entregas)
+def stap(cid, st, st_en, d, d_en, p, p_en, e, e_en):
+    add(cid, st, st_en, [(D_PT, d, d_en), (P_PT, p, p_en), (E_PT, e, e_en)])
+
+stap("stap-syngenta",
+ "Um encontro para quem decide o campo junto com a Syngenta.",
+ "A meeting for the people who shape the field alongside Syngenta.",
+ "Reunir os parceiros dos conselhos técnicos da Syngenta em um encontro que fosse ao mesmo tempo estratégico e memorável.",
+ "Bring together the partners on Syngenta's technical councils in a meeting that was both strategic and memorable.",
+ "Uma identidade para o encontro e uma cenografia que organiza o conteúdo técnico e dá peso de palco a cada momento do programa.",
+ "An identity for the meeting and a set design that organizes the technical content and gives each moment of the program a stage of its own.",
+ "Identidade do evento · Cenografia · Telas de palco · Sinalização",
+ "Event identity · Set design · Stage screens · Signage")
+stap("stap-vwfest",
+ "Um festival feito para conectar a Volkswagen com quem vive a marca.",
+ "A festival built to connect Volkswagen with the people who live the brand.",
+ "O evento precisava ser um momento de pura conexão entre a marca e o seu público.",
+ "The event had to be a moment of pure connection between the brand and its audience.",
+ "Um festival com clima de experiência, não de feira: ambientação, palco e pontos de interação pensados para o público ficar, participar e compartilhar.",
+ "A festival that felt like an experience, not a trade show: environments, stage and interaction points designed for people to stay, take part and share.",
+ "Conceito · Ambientação · Palco · Peças do evento",
+ "Concept · Environments · Stage · Event pieces")
+stap("stap-seara-diac",
+ "A nova era dos congelados apresentada para quem coloca a Seara na prateleira.",
+ "The new era of frozen food, presented to the people who put Seara on the shelf.",
+ "Reunir empresários de redes de supermercados no Espaço L’Atelier, em São Paulo, para apresentar a nova fase da linha de congelados.",
+ "Bring supermarket chain owners together at Espaço L’Atelier, São Paulo, to present the new phase of the frozen food line.",
+ "Uma identidade de evento própria, o Dia C, e uma cenografia que coloca o produto no centro da experiência.",
+ "A dedicated event identity, Dia C, and a set design that puts the product at the center of the experience.",
+ "Identidade do evento · Cenografia · Telas · Peças de comunicação",
+ "Event identity · Set design · Screens · Communication pieces")
+stap("stap-loyant",
+ "Lançar um herbicida como se lança uma marca.",
+ "Launching a herbicide the way you launch a brand.",
+ "Para a Corteva, lançar o Loyant, novo herbicida para a cultura do arroz, exigia mais do que um evento.",
+ "For Corteva, launching Loyant, a new herbicide for rice crops, called for more than an event.",
+ "Tratar o lançamento como experiência de marca, com uma identidade visual própria e um ambiente que traduz a tecnologia do produto para o produtor.",
+ "Treat the launch as a brand experience, with its own visual identity and an environment that translates the product's technology for growers.",
+ "Identidade do lançamento · Cenografia · Peças de comunicação",
+ "Launch identity · Set design · Communication pieces")
+stap("stap-prospera",
+ "Um cenário para o conteúdo do agro ganhar cara de programa.",
+ "A set that gives agribusiness content the look of a real show.",
+ "O Prospera, programa de conteúdo da Corteva, precisava de um cenário com a cara da marca e que funcionasse bem na câmera.",
+ "Prospera, Corteva's content show, needed a set that looked like the brand and worked well on camera.",
+ "Um cenário modular, limpo e com a identidade do Prospera em destaque, pensado para gravação.",
+ "A clean, modular set with Prospera's identity front and center, designed for filming.",
+ "Cenário · Identidade do programa · Aplicações em vídeo",
+ "Set · Show identity · On-screen graphics")
+stap("stap-petronas",
+ "Três momentos de marca durante o fim de semana mais rápido do ano.",
+ "Three brand moments during the fastest weekend of the year.",
+ "Durante o Grande Prêmio de F1 em São Paulo, a Petronas precisava destacar três momentos-chave da sua presença.",
+ "During the F1 Grand Prix in São Paulo, Petronas needed to highlight three key moments of its presence.",
+ "Uma ativação com linguagem de pista, que conecta a marca à velocidade e à tecnologia da Fórmula 1.",
+ "An activation in the language of the track, connecting the brand to the speed and technology of Formula 1.",
+ "Ativação · Ambientação · Peças de comunicação",
+ "Activation · Environments · Communication pieces")
+stap("stap-gazoo",
+ "O dia em que a Toyota abre a garagem do automobilismo para o público.",
+ "The day Toyota opens its motorsport garage to the public.",
+ "O Gazoo Racing Day é a principal plataforma global da Toyota para conectar automobilismo e público.",
+ "Gazoo Racing Day is Toyota's main global platform for connecting motorsport and fans.",
+ "Uma experiência com a energia da GR: ambientação, sinalização e pontos de contato que aproximam o público dos carros e da cultura de pista.",
+ "An experience with GR's energy: environments, signage and touchpoints that bring fans closer to the cars and track culture.",
+ "Ambientação · Sinalização · Peças do evento",
+ "Environments · Signage · Event pieces")
+stap("stap-hilux",
+ "Robustez não se explica. Se vive.",
+ "Toughness isn't explained. It's lived.",
+ "A Toyota buscava reforçar o posicionamento da Hilux como um veículo robusto.",
+ "Toyota wanted to reinforce the Hilux's position as a rugged vehicle.",
+ "Uma experiência em que o público sente na prática a robustez da picape, com uma identidade de expedição para todo o evento.",
+ "An experience where people feel the pickup's toughness first-hand, with an expedition identity across the whole event.",
+ "Conceito · Identidade da expedição · Ambientação",
+ "Concept · Expedition identity · Environments")
+stap("stap-ox",
+ "Um estande que virou ponto de parada da Beauty Fair.",
+ "A booth that became a must-stop at Beauty Fair.",
+ "Fazer a OX Cosméticos se destacar na Beauty Fair 2025, uma das maiores feiras de beleza do país.",
+ "Make OX Cosméticos stand out at Beauty Fair 2025, one of the country's largest beauty fairs.",
+ "Um estande com a cara da marca, pensado para atrair, receber e gerar conteúdo — e que acabou entre os atrativos da feira.",
+ "A booth that looked like the brand, designed to attract, welcome and generate content — and it ended up among the fair's highlights.",
+ "Projeto de estande · Comunicação visual · Ambientação",
+ "Booth design · Visual communication · Environments")
+stap("stap-seara-bahia",
+ "A Seara em destaque na maior feira do varejo baiano.",
+ "Seara in the spotlight at Bahia's largest retail fair.",
+ "Garantir uma participação de destaque da Seara na SuperBahia 2025.",
+ "Secure a standout presence for Seara at SuperBahia 2025.",
+ "Um estande com o produto em evidência e espaços para relacionamento com o varejo.",
+ "A booth with the product front and center and spaces for building relationships with retailers.",
+ "Projeto de estande · Comunicação visual",
+ "Booth design · Visual communication")
+stap("stap-grunner",
+ "Na Agrishow, o visitante da Grunner precisava se sentir em casa.",
+ "At Agrishow, Grunner's visitors had to feel at home.",
+ "Criar um estande na Agrishow 2026 em que o visitante se sentisse em casa.",
+ "Create a booth at Agrishow 2026 where visitors would feel at home.",
+ "Um espaço acolhedor, com materiais e ambientação que convidam a ficar e conversar.",
+ "A welcoming space, with materials and atmosphere that invite people to stay and talk.",
+ "Projeto de estande · Ambientação · Comunicação visual",
+ "Booth design · Environments · Visual communication")
+stap("stap-fmc",
+ "Parceria que segue estrada no Circuito Agro.",
+ "A partnership that keeps on rolling across the Circuito Agro.",
+ "Levar a FMC para mais uma temporada do Circuito Agro, em feiras de diferentes regiões.",
+ "Take FMC through another season of the Circuito Agro, at fairs in different regions.",
+ "Um estande consistente com a marca e adaptável a cada evento do circuito.",
+ "A booth consistent with the brand and adaptable to each event on the circuit.",
+ "Projeto de estande · Comunicação visual",
+ "Booth design · Visual communication")
+stap("stap-vwagro",
+ "A Volkswagen falando a língua do campo.",
+ "Volkswagen speaking the language of the field.",
+ "Fortalecer a presença da Volkswagen no setor agro com um estande que representasse a marca.",
+ "Strengthen Volkswagen's presence in agribusiness with a booth that represented the brand.",
+ "Um estande que coloca os veículos em destaque e traz a linguagem do agro para a comunicação da marca.",
+ "A booth that showcases the vehicles and brings the language of agribusiness into the brand's communication.",
+ "Projeto de estande · Comunicação visual",
+ "Booth design · Visual communication")
+stap("stap-ford",
+ "Do render à montagem: a Ford no Circuito Agro 2026.",
+ "From render to build: Ford at Circuito Agro 2026.",
+ "Na temporada 2026, a Ford mantém o foco nos eventos do circuito agro.",
+ "In the 2026 season, Ford stays focused on the agribusiness circuit events.",
+ "Um estande que funciona em vários eventos e entrega na montagem o que foi apresentado no render.",
+ "A booth that works across several events and delivers on site what was shown in the render.",
+ "Projeto de estande · Renders · Comunicação visual",
+ "Booth design · Renders · Visual communication")
+stap("stap-gafff",
+ "A Corteva no maior encontro global do agronegócio.",
+ "Corteva at the largest global agribusiness gathering.",
+ "Marcar a presença da Corteva no GAFFFF, o Global Agribusiness Festival.",
+ "Make Corteva's presence felt at GAFFFF, the Global Agribusiness Festival.",
+ "Um espaço que traduz a marca e abre lugar para conversas sobre o futuro do agro.",
+ "A space that expresses the brand and makes room for conversations about the future of agribusiness.",
+ "Projeto de espaço · Comunicação visual",
+ "Space design · Visual communication")
+stap("stap-lorenzetti",
+ "A Lorenzetti em um dos maiores palcos do design de interiores.",
+ "Lorenzetti on one of interior design's biggest stages.",
+ "Participar da Revestir, um dos maiores eventos de construção, arquitetura e design de interiores.",
+ "Take part in Revestir, one of the largest construction, architecture and interior design shows.",
+ "Um estande com linguagem de design, que apresenta os produtos como parte do ambiente.",
+ "A booth with a design-led language that presents the products as part of the space.",
+ "Projeto de estande · Comunicação visual",
+ "Booth design · Visual communication")
+stap("stap-japao",
+ "A Toyota celebrando suas raízes no Festival do Japão.",
+ "Toyota celebrating its roots at the Japan Festival.",
+ "Reforçar a relação da Toyota com a cultura japonesa, prestando homenagem às suas origens.",
+ "Reinforce Toyota's ties to Japanese culture, paying tribute to its origins.",
+ "Um estande que mistura a marca e referências da cultura japonesa.",
+ "A booth that blends the brand with references from Japanese culture.",
+ "Projeto de estande · Comunicação visual",
+ "Booth design · Visual communication")
+stap("stap-nupay",
+ "NuPay no maior evento de comércio digital da América Latina.",
+ "NuPay at Latin America's largest digital commerce event.",
+ "O Nubank precisava de um estande no VTEX Day para fortalecer o conhecimento da marca NuPay.",
+ "Nubank needed a booth at VTEX Day to build awareness of the NuPay brand.",
+ "Um estande com a identidade do Nubank, claro e direto, que explica o produto e abre espaço para conversa.",
+ "A booth in Nubank's identity, clear and direct, that explains the product and makes room for conversation.",
+ "Projeto de estande · Comunicação visual",
+ "Booth design · Visual communication")
+
+# ---------- Cases próprios
+add("cvnv",
+ "Um musical da Broadway com Gregorio Duvivier e Luiz Fernando Guimarães. Da marca ao playbill.",
+ "A Broadway musical starring Gregorio Duvivier and Luiz Fernando Guimarães. From brand to playbill.",
+ [(J_PT, "Comédia musical de Charles Möeller & Cláudio Botelho, realizada pela GEO, em cartaz de março a junho de 2013 no Teatro Oi Casa Grande, no Rio de Janeiro.",
+         "A musical comedy by Charles Möeller & Cláudio Botelho, produced by GEO, running from March to June 2013 at Teatro Oi Casa Grande, Rio de Janeiro."),
+  (F_PT, "Construção da marca e de toda a comunicação do espetáculo, do tratamento das fotos ao programa de luxo.",
+         "Built the brand and all of the show's communication, from photo retouching to the deluxe playbill."),
+  (E_PT, "Marca · Material de divulgação · Vinheta e vídeos · Playbill · Site · Hotsite · Digital · Apresentação comercial",
+         "Brand · Promotional materials · Opener and videos · Playbill · Website · Landing page · Digital · Sales deck")])
+add("billabong",
+ "A etapa brasileira do maior campeonato de surf do mundo.",
+ "The Brazilian leg of the world's biggest surf championship.",
+ [(J_PT, "A terceira edição do Billabong Rio Pro reuniu mais de 100 mil pessoas em oito dias de evento e gerou mais de R$ 51 milhões em mídia espontânea.",
+         "The third Billabong Rio Pro drew more than 100,000 people over eight days and generated over R$ 51 million in earned media."),
+  (F_PT, "Conceito e key visual a partir do pôster oficial, plano de comunicação e cenografia do evento.",
+         "Concept and key visual based on the official poster, communication plan and event set design."),
+  (E_PT, "Conceito · Key visual · Cenografia · Anúncios", "Concept · Key visual · Set design · Ads")])
+add("dblock",
+ "Um festival de música dentro de um quarteirão no coração de São Paulo.",
+ "A music festival inside a city block in the heart of São Paulo.",
+ [(J_PT, "Em vez de tendas e lama numa fazenda, o dBlock ocupa um quarteirão inteiro, perto dos principais polos de transporte da cidade.",
+         "Instead of tents and mud on a farm, dBlock takes over an entire city block, close to the city's main transport hubs."),
+  (F_PT, "Conceito e book de apresentação do projeto: ocupação territorial, fusão e diversidade musical.",
+         "Concept and presentation book: occupying the territory, musical fusion and diversity."),
+  (E_PT, "Conceito · Book de apresentação", "Concept · Presentation book")])
+add("apresentacoes",
+ "Apresentações que vendem projetos antes de eles existirem.",
+ "Presentations that sell projects before they exist.",
+ [(J_PT, "Projetos e concorrências para Turma da Mônica, Peugeot, Rio Summer, Miss Universe, Brastemp, Nando Reis 30 anos e outros.",
+         "Projects and pitches for Turma da Mônica, Peugeot, Rio Summer, Miss Universe, Brastemp, Nando Reis 30 years and more."),
+  (F_PT, "Direção de arte de cada apresentação, com design thinking para organizar a ideia e transformar o projeto em narrativa visual.",
+         "Art direction for each presentation, using design thinking to organize the idea and turn the project into a visual story."),
+  (E_PT, "Apresentações de projeto · Concorrências · Propostas de patrocínio", "Project presentations · Pitches · Sponsorship proposals")])
+add("identidades",
+ "Marcas para estúdios, festivais, corridas e eventos esportivos.",
+ "Brands for studios, festivals, races and sports events.",
+ [(J_PT, "Malva Rosa, Pega Geral, Run&Roll, NFL Fan Party, Amém Marcos, Geração de Ouro e Desafio das Nações.",
+         "Malva Rosa, Pega Geral, Run&Roll, NFL Fan Party, Amém Marcos, Geração de Ouro and Desafio das Nações."),
+  (F_PT, "Da exploração de caminhos à aplicação: estudos, opções de marca e papelaria.",
+         "From exploring directions to application: studies, brand options and stationery."),
+  (E_PT, "Logotipos · Identidade visual · Papelaria", "Logos · Visual identity · Stationery")])
+add("teatronet",
+ "A identidade de um teatro, do key visual às peças da plateia.",
+ "A theater's identity, from key visual to in-house pieces.",
+ [(J_PT, "Estudos de identidade para o Teatro NET São Paulo e desdobramento do key visual aprovado pela NET.",
+         "Identity studies for Teatro NET São Paulo and roll-out of the key visual approved by NET."),
+  (F_PT, "Key visual, anúncio, redes sociais, site e peças internas do teatro.",
+         "Key visual, ad, social media, website and in-theater pieces."),
+  (E_PT, "Identidade · Key visual · Anúncio · Social · Site · Sinalização interna", "Identity · Key visual · Ad · Social · Website · Interior signage")])
+add("lolla",
+ "As duas primeiras edições brasileiras de um dos maiores festivais do mundo.",
+ "The first two Brazilian editions of one of the world's biggest festivals.",
+ [(J_PT, "Lollapalooza Brasil no Jockey Club de São Paulo: cinco palcos, mais de setenta atrações e o conceito “Ocupe SP com música”.",
+         "Lollapalooza Brasil at the Jockey Club in São Paulo: five stages, more than seventy acts and the concept “Occupy SP with music”."),
+  (F_PT, "Vídeos de line-up e pós-venda, mídia em aeroporto, anúncios, ingresso e digital.",
+         "Line-up and post-sale videos, airport media, ads, tickets and digital."),
+  (E_PT, "Vídeos · Mídia out-of-home · Anúncios · Ingresso · Digital", "Videos · Out-of-home media · Ads · Tickets · Digital")])
+add("futebolrun",
+ "O time do coração e a corrida de rua na mesma largada.",
+ "Your favorite club and street running on the same starting line.",
+ [(J_PT, "Corridas de 4 e 8 km em que cada prova leva a bandeira de um time de futebol.",
+         "4 km and 8 km races where each event carries the flag of a football club."),
+  (F_PT, "Key visual e todo o universo de marca da corrida, de 2012 a 2013.", "Key visual and the race's whole brand world, from 2012 to 2013."),
+  (E_PT, "Key visual · Medalhas · Camisas · Troféu · Projeto comercial · Vídeos · Digital", "Key visual · Medals · Jerseys · Trophy · Sales deck · Videos · Digital")])
+add("montagens",
+ "Da imagem-base à arte final, com o making of de cada composição.",
+ "From base image to final artwork, with the making of each composition.",
+ [(J_PT, "Desafios de Photoshop em comunidades e fóruns: um participante escolhe a imagem-base e cada um cria sua montagem a partir dela.",
+         "Photoshop challenges in online communities: one member picks a base image and everyone builds their own composite from it."),
+  (F_PT, "Montagem, tratamento e pós-produção, com os making ofs de cada peça.", "Compositing, retouching and post-production, with the making of each piece."),
+  (E_PT, "Montagens · Tratamento de imagem · Making of", "Composites · Image retouching · Making of")])
+
+# ---------- Vídeo cases (Traffic)
+for cid, st, st_en, j, j_en in [
+ ("coca-hospitality-fifa", "A hospitalidade da Coca-Cola no universo FIFA™.", "Coca-Cola's hospitality in the FIFA™ world.",
+  "Programa de hospitality da Coca-Cola, patrocinadora FIFA™, realizado com a Traffic Sports Activation.", "Coca-Cola's hospitality program as a FIFA™ sponsor, delivered with Traffic Sports Activation."),
+ ("coca-hospitality-2014", "A Copa do Mundo de 2014 vivida de dentro, pelos convidados da Coca-Cola.", "The 2014 World Cup seen from the inside, through Coca-Cola's guests.",
+  "Experiência de hospitality da Coca-Cola durante a Copa do Mundo FIFA™ 2014 no Brasil.", "Coca-Cola's hospitality experience during the 2014 FIFA™ World Cup in Brazil."),
+ ("copatoon", "Os personagens do Cartoon Network entrando no clima da Copa.", "Cartoon Network's characters getting into the World Cup spirit.",
+  "O Copatoon, evento do Cartoon Network no clima da Copa do Mundo 2014.", "Copatoon, Cartoon Network's event in the spirit of the 2014 World Cup."),
+ ("traffic-2014", "Um ano de ativações esportivas em um só vídeo.", "A year of sports activations in a single video.",
+  "Compilado de projetos e ativações da Traffic Sports Activation em 2014.", "A compilation of Traffic Sports Activation's projects and activations in 2014."),
+]:
+    add(cid, st, st_en, [(J_PT, j, j_en), (F_PT, "Direção de arte e peças do projeto pela Traffic Sports Activation.", "Art direction and project pieces at Traffic Sports Activation.")])
+
+# ---------- Projetos by KCO
+add("oniguiri", "Okinawa em personagens, ilustrações e produtos.", "Okinawa in characters, illustrations and products.",
+ [(J_PT, "Marca própria de produtos inspirados na cultura de Okinawa, com personagens criados por mim.", "My own brand of products inspired by Okinawan culture, with characters I created."),
+  (E_PT, "Ilustração · Personagens · Canecas · Camisetas · Calendários", "Illustration · Characters · Mugs · T-shirts · Calendars")])
+add("chanpuru", "Vestuário com estampas exclusivas inspiradas em Okinawa.", "Apparel with exclusive prints inspired by Okinawa.",
+ [(J_PT, "Marca de roupas em algodão Pima peruano e tinta biodegradável. A loja está em pausa e volta em breve.", "An apparel brand in Peruvian Pima cotton with biodegradable ink. The store is on pause and coming back soon."),
+  (E_PT, "Marca · Estampas · Produto", "Brand · Prints · Product")])
+add("canekochan", "Canecas personalizadas para qualquer ocasião.", "Custom mugs for any occasion.",
+ [(J_PT, "Canecas e produtos personalizados para presentear, decorar ou colecionar.", "Custom mugs and products to give, decorate or collect."),
+  (E_PT, "Marca · Produto personalizado", "Brand · Custom products")])

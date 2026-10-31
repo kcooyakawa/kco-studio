@@ -1,0 +1,48 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "Main.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Landing page — PT",
+      "w": 1440,
+      "x": 0,
+      "y": 0
+    },
+    "Main_en.dc.html": {
+      "expand": "fill",
+      "h": 8000,
+      "is_interactive": true,
+      "title": "Landing page — EN",
+      "w": 1440,
+      "x": 1600,
+      "y": 0
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-10-17T18:52:00Z",
+    "v": 1
+  },
+  "designSystems": [
+    {
+      "artifact": "https://claude.ai/artifact/HZhMeJkyX8bGBYZUUw9SuB",
+      "copiedAt": "2026-10-17T19:50:00Z",
+      "namespace": "kco",
+      "title": "KCO Studio",
+      "version": "1792265668-5eaf"
+    }
+  ],
+  "launch": {
+    "file": "Main.dc.html",
+    "view": "focused"
+  },
+  "notes": {},
+  "order": [
+    "Main.dc.html",
+    "Main_en.dc.html"
+  ],
+  "pages": [],
+  "title": "KCO Creative Studio — Landing Page"
+}
