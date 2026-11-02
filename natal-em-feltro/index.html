@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Natal em Feltro</title>
+<meta name="description" content="Guirlandas, enfeites de corda e enfeites de árvore em feltro, feitos à mão, ponto a ponto.">
+<meta property="og:title" content="Natal em Feltro — feito à mão, ponto a ponto">
+<meta property="og:image" content="img/gift.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,600;1,500&family=Montserrat:wght@500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --cream:#fdf8ee; --cream2:#f0e2cc; --ink:#33241c; --red:#c91c27; --deep:#6b1217;
+  --gold:#bd944c; --pine:#1f5a3c; --navy:#33456b;
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--ink);font-family:"Montserrat",system-ui,sans-serif;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;height:calc(min(112vw,780px) * 725 / 819 + clamp(60px,12vw,110px));overflow:hidden;background:#cfe0bf}
+.hero-bg{position:absolute;inset:-10% 0 0 0;background:url(img/bg.jpg) center top/cover;will-change:transform}
+.bokeh{position:absolute;inset:0;pointer-events:none;will-change:transform}
+.bokeh i{position:absolute;border-radius:50%;background:radial-gradient(circle,rgba(255,255,240,.55),rgba(255,255,240,.15) 60%,transparent 70%);animation:glow 6s ease-in-out infinite alternate}
+@keyframes glow{from{opacity:.35;transform:scale(.92)}to{opacity:.9;transform:scale(1.06)}}
+.stage{position:absolute;left:50%;bottom:0;width:min(112vw,780px);aspect-ratio:819/725;transform:translateX(-50%)}
+.stage-inner{position:absolute;inset:0;will-change:transform}
+.tag{position:absolute;left:30.5%;top:-2%;width:33%;transform-origin:52% 0;animation:swing 4.2s ease-in-out infinite;filter:drop-shadow(0 8px 10px rgba(40,60,30,.18))}
+@keyframes swing{0%,100%{transform:rotate(-2.6deg)}50%{transform:rotate(2.6deg)}}
+.chars{position:absolute;left:2.4%;top:19.3%;width:97.6%;transform-origin:50% 100%;animation:sing 2.4s ease-in-out infinite;filter:drop-shadow(0 18px 18px rgba(40,60,30,.16))}
+@keyframes sing{0%,100%{transform:translateY(0) rotate(-.8deg) scaleY(1)}25%{transform:translateY(-1.4%) rotate(0deg) scaleY(1.012)}50%{transform:translateY(0) rotate(.8deg) scaleY(.995)}75%{transform:translateY(-1%) rotate(0) scaleY(1.008)}}
+.notes{position:absolute;inset:0;pointer-events:none}
+.notes span{position:absolute;font-size:clamp(18px,3.4vw,30px);color:var(--red);opacity:0;animation:note 4.8s ease-out infinite}
+@keyframes note{0%{opacity:0;transform:translate(0,0) rotate(-10deg)}15%{opacity:.85}100%{opacity:0;transform:translate(26px,-120px) rotate(14deg)}}
+#snow{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.scroll-cue{display:none;position:absolute;left:50%;bottom:18px;transform:translateX(-50%);color:#fff;font-size:11px;letter-spacing:.24em;text-transform:uppercase;text-shadow:0 1px 6px rgba(0,0,0,.35);animation:cue 2s ease-in-out infinite;z-index:3}
+@keyframes cue{0%,100%{opacity:.6;transform:translate(-50%,0)}50%{opacity:1;transform:translate(-50%,6px)}}
+
+/* ---------- RIBBON ---------- */
+.ribbon{position:relative;z-index:2;background:var(--red);color:#fff;text-align:center;padding:clamp(26px,5vw,44px) 16px clamp(24px,4.5vw,40px);box-shadow:0 -10px 30px rgba(120,10,15,.18)}
+.ribbon h1{font-family:"Great Vibes",cursive;font-weight:400;font-size:clamp(46px,10vw,92px);line-height:1;letter-spacing:.01em}
+.ribbon p{margin-top:14px;font-size:clamp(9.5px,2.5vw,14px);font-weight:600;letter-spacing:clamp(.06em,.8vw,.2em)}
+.ribbon p b{color:#ffd9a6;font-weight:600;padding:0 .4em}
+
+/* ---------- PARALLAX PHOTO ---------- */
+.gift{position:relative;height:clamp(320px,62vw,620px);overflow:hidden}
+.gift img{position:absolute;left:0;top:-15%;width:100%;height:130%;object-fit:cover;object-position:12% 50%;will-change:transform}
+.gift::after{content:"";position:absolute;inset:0;background:linear-gradient(transparent 60%,var(--cream))}
+
+/* ---------- SECTIONS ---------- */
+.paper{background:radial-gradient(120% 80% at 50% 0%,var(--cream),var(--cream2));position:relative}
+section.cat{padding:clamp(56px,10vw,110px) 16px clamp(40px,7vw,80px);max-width:1080px;margin:0 auto}
+.head{text-align:center;margin-bottom:clamp(30px,6vw,56px)}
+.kicker{font-size:12px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--red)}
+.head h2{font-family:"Great Vibes",cursive;font-weight:400;font-size:clamp(54px,12vw,96px);line-height:1.05;margin-top:6px}
+.orn{display:flex;align-items:center;justify-content:center;gap:12px;margin:8px auto 10px;color:var(--gold)}
+.orn::before,.orn::after{content:"";height:1px;width:clamp(60px,18vw,140px);background:currentColor;opacity:.8}
+.head .sub{font-family:"Cormorant Garamond",serif;font-style:italic;font-weight:500;font-size:clamp(19px,4.2vw,25px)}
+
+.grid{display:grid;gap:clamp(16px,3.4vw,34px)}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:640px){.g4{grid-template-columns:repeat(2,1fr)}}
+.card{background:#fffdf8;padding:clamp(6px,1.2vw,11px);border-radius:14px;box-shadow:0 2px 4px rgba(80,40,20,.06),0 18px 34px -14px rgba(80,40,20,.35);transition:transform .5s var(--ease-out),box-shadow .5s var(--ease-out)}
+.card img{width:100%;border-radius:8px;aspect-ratio:3/4;object-fit:cover}
+.g4 .card img{aspect-ratio:1/2}
+@media (hover:hover){.card:hover{transform:translateY(-6px) rotate(-.6deg);box-shadow:0 2px 4px rgba(80,40,20,.06),0 28px 44px -16px rgba(80,40,20,.42)}}
+.wide{max-width:760px;margin:0 auto}
+.wide img{aspect-ratio:auto}
+
+.reveal{opacity:0;transform:translateY(34px) scale(.98);transition:opacity .9s var(--ease-out),transform .9s var(--ease-out);transition-delay:var(--d,0s)}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- CONTACT ---------- */
+.contact{text-align:center;padding:clamp(60px,10vw,110px) 16px 120px}
+.contact h2{font-family:"Great Vibes",cursive;font-weight:400;font-size:clamp(60px,13vw,104px)}
+.contact .sub{font-family:"Cormorant Garamond",serif;font-style:italic;font-size:clamp(20px,4.4vw,27px);margin-bottom:34px}
+.btn{display:flex;flex-direction:column;align-items:center;gap:4px;width:min(100%,440px);margin:0 auto 16px;padding:18px 24px;border-radius:999px;color:#fff8ec;text-decoration:none;transition:transform .25s var(--ease-out),filter .25s}
+.btn small{font-size:11px;font-weight:600;letter-spacing:.22em}
+.btn span{font-size:clamp(17px,4.4vw,21px);font-weight:500}
+.btn.wa{background:var(--pine)} .btn.site{background:var(--navy)}
+.btn:active{transform:scale(.97)}
+@media (hover:hover){.btn:hover{transform:translateY(-2px);filter:brightness(1.08)}}
+.feliz{font-family:"Great Vibes",cursive;color:var(--gold);font-size:clamp(40px,9vw,60px);margin-top:36px}
+
+/* ---------- SOUND ---------- */
+.sound{position:fixed;right:16px;bottom:16px;z-index:20;display:flex;align-items:center;gap:8px;border:0;cursor:pointer;background:rgba(255,253,248,.94);color:var(--deep);font:600 12px "Montserrat",sans-serif;letter-spacing:.06em;padding:11px 16px 11px 13px;border-radius:999px;box-shadow:0 8px 24px -8px rgba(60,20,10,.4);backdrop-filter:blur(6px);transition:transform .2s var(--ease-out)}
+.sound:active{transform:scale(.95)}
+.sound svg{width:20px;height:20px}
+.sound .eq{display:flex;gap:2px;align-items:flex-end;height:14px}
+.sound .eq i{width:3px;background:var(--red);border-radius:2px;height:4px}
+.sound.on .eq i{animation:eq .9s ease-in-out infinite}
+.sound.on .eq i:nth-child(2){animation-delay:-.3s}.sound.on .eq i:nth-child(3){animation-delay:-.6s}
+@keyframes eq{0%,100%{height:4px}50%{height:14px}}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<header class="hero" id="hero">
+  <div class="hero-bg" data-speed="0.35"></div>
+  <div class="bokeh" data-speed="0.2" id="bokeh"></div>
+  <div class="stage">
+    <div class="stage-inner" data-speed="-0.12">
+      <img class="tag" src="img/tag.webp" alt="Catálogo Guirlandas de Natal">
+      <img class="chars" src="img/chars.webp" alt="Boneco de neve, Papai Noel e rena cantando">
+      <div class="notes"><span style="left:30%;top:42%">♪</span><span style="left:55%;top:40%;animation-delay:1.6s">♫</span><span style="left:76%;top:46%;animation-delay:3.2s">♪</span></div>
+    </div>
+  </div>
+  <canvas id="snow"></canvas>
+  <div class="scroll-cue">role para ver ↓</div>
+</header>
+
+<div class="ribbon">
+  <h1>Feito à mão,<br>ponto a ponto</h1>
+  <p>GUIRLANDAS<b>·</b>ENFEITES DE CORDA<b>·</b>ENFEITES DE ÁRVORE</p>
+</div>
+
+<div class="gift"><img src="img/gift.webp" alt="Detalhe de enfeites de feltro com laço e pinha" data-speed="0.18"></div>
+
+<main class="paper">
+  <section class="cat">
+    <div class="head reveal">
+      <div class="kicker">Coleção de Natal</div>
+      <h2>Guirlandas</h2>
+      <div class="orn">✦</div>
+      <p class="sub">feltro, juta, laço, corda e guizo — cada uma é única</p>
+    </div>
+    <div class="grid g2" data-items="g" data-count="8"></div>
+  </section>
+
+  <section class="cat">
+    <div class="head reveal">
+      <div class="kicker">Grande · 40 × 11 cm</div>
+      <h2>Enfeites de Corda</h2>
+      <div class="orn">✦</div>
+      <p class="sub">para portas, janelas e maçanetas</p>
+    </div>
+    <div class="grid g4" data-items="cg" data-count="12"></div>
+  </section>
+
+  <section class="cat">
+    <div class="head reveal">
+      <div class="kicker">Pequeno · 28 × 11 cm</div>
+      <h2>Enfeites de Corda</h2>
+      <div class="orn">✦</div>
+      <p class="sub">Papai Noel, rena e boneco de neve</p>
+    </div>
+    <div class="grid g4" data-items="cp" data-count="7"></div>
+  </section>
+
+  <section class="cat">
+    <div class="head reveal">
+      <div class="kicker">Feltro e juta · 11 × 11 cm</div>
+      <h2>Enfeites de Árvore</h2>
+      <div class="orn">✦</div>
+      <p class="sub">embalados um a um, prontos para presentear</p>
+    </div>
+    <div class="card wide reveal"><img src="img/arvore.webp" alt="Enfeites de árvore em feltro: Papai Noel, rena e boneco de neve" loading="lazy"></div>
+  </section>
+
+  <section class="contact" id="contato">
+    <h2 class="reveal">Encomendas</h2>
+    <div class="orn reveal">✦</div>
+    <p class="sub reveal">Fale comigo para escolher o seu modelo<br>ou criar uma peça especial.</p>
+    <a class="btn wa reveal" href="https://wa.me/5511995777475?text=Ol%C3%A1!%20Vi%20o%20cat%C3%A1logo%20de%20Natal%20e%20quero%20fazer%20uma%20encomenda." target="_blank" rel="noopener"><small>WHATSAPP</small><span>+55 11 99577-7475</span></a>
+    <a class="btn site reveal" href="https://kcooyakawa.github.io/kco-studio/" target="_blank" rel="noopener"><small>SITE</small><span>kcooyakawa.github.io/kco-studio</span></a>
+    <p class="feliz reveal">Feliz Natal!</p>
+  </section>
+</main>
+
+<button class="sound" id="sound" aria-pressed="false" aria-label="Ligar música">
+  <span class="eq"><i></i><i></i><i></i></span><span id="soundLabel">Ligar música</span>
+</button>
+
+<script>
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* galleries */
+document.querySelectorAll('[data-items]').forEach(g=>{
+  const p=g.dataset.items,n=+g.dataset.count;
+  for(let i=1;i<=n;i++){
+    const d=document.createElement('div');d.className='card reveal';
+    d.style.setProperty('--d',((i-1)%(p==='g'?2:4))*0.09+'s');
+    d.innerHTML=`<img src="img/${p}${i}.webp" alt="" loading="lazy">`;g.appendChild(d);
+  }
+});
+
+/* reveal */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -8% 0px'});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* bokeh */
+const bk=document.getElementById('bokeh');
+for(let i=0;i<16;i++){const b=document.createElement('i'),s=20+Math.random()*90;
+  Object.assign(b.style,{width:s+'px',height:s+'px',left:Math.random()*100+'%',top:Math.random()*70+'%',animationDelay:(-Math.random()*6)+'s',animationDuration:(4+Math.random()*5)+'s'});bk.appendChild(b);}
+
+/* parallax */
+const px=[...document.querySelectorAll('[data-speed]')];
+let ticking=false;
+function onScroll(){
+  if(ticking||reduce)return;ticking=true;
+  requestAnimationFrame(()=>{const y=scrollY;
+    px.forEach(el=>{const r=el.closest('.gift');
+      const base=r?(y-r.offsetTop+innerHeight):y;
+      el.style.transform=`translate3d(0,${base*el.dataset.speed}px,0)`;});
+    ticking=false;});
+}
+addEventListener('scroll',onScroll,{passive:true});
+
+/* snow */
+const cv=document.getElementById('snow'),cx=cv.getContext('2d');let flakes=[],W,H;
+function size(){W=cv.width=cv.offsetWidth*devicePixelRatio;H=cv.height=cv.offsetHeight*devicePixelRatio;
+  flakes=Array.from({length:Math.round(W*H/26000)},()=>({x:Math.random()*W,y:Math.random()*H,r:(.8+Math.random()*2.6)*devicePixelRatio,s:.3+Math.random()*.8,o:Math.random()*6}));}
+function snow(){cx.clearRect(0,0,W,H);cx.fillStyle='rgba(255,255,255,.85)';
+  for(const f of flakes){f.y+=f.s*devicePixelRatio;f.o+=.01;f.x+=Math.sin(f.o)*.4;if(f.y>H){f.y=-5;f.x=Math.random()*W}
+    cx.beginPath();cx.arc(f.x,f.y,f.r,0,7);cx.fill();}
+  if(scrollY<innerHeight*1.2)requestAnimationFrame(snow);else{stopped=true}}
+let stopped=false;
+if(!reduce){size();addEventListener('resize',size);snow();addEventListener('scroll',()=>{if(stopped&&scrollY<innerHeight){stopped=false;snow()}},{passive:true});}
+
+/* music — Jingle Bells (domínio público), caixinha de música bem baixinha */
+const btn=document.getElementById('sound'),lbl=document.getElementById('soundLabel');
+let ac,master,playing=false,timer,userOff=false;
+const N={C4:261.63,D4:293.66,E4:329.63,F4:349.23,G4:392,A4:440,B4:493.88,C5:523.25,D5:587.33,E5:659.25,F5:698.46,G5:783.99,A5:880};
+const mel=[['E5',1],['E5',1],['E5',2],['E5',1],['E5',1],['E5',2],['E5',1],['G5',1],['C5',1.5],['D5',.5],['E5',4],
+ ['F5',1],['F5',1],['F5',1.5],['F5',.5],['F5',1],['E5',1],['E5',1],['E5',.5],['E5',.5],['E5',1],['D5',1],['D5',1],['E5',1],['D5',2],['G5',2],
+ ['E5',1],['E5',1],['E5',2],['E5',1],['E5',1],['E5',2],['E5',1],['G5',1],['C5',1.5],['D5',.5],['E5',4],
+ ['F5',1],['F5',1],['F5',1.5],['F5',.5],['F5',1],['E5',1],['E5',1],['E5',.5],['E5',.5],['G5',1],['G5',1],['F5',1],['D5',1],['C5',4]];
+const bass=['C4','C4','C4','C4','F4','C4','D4','G4','C4','C4','C4','C4','F4','C4','G4','C4'];
+const beat=.34;
+function bell(t,f,v,d){const o=ac.createOscillator(),o2=ac.createOscillator(),g=ac.createGain();
+  o.type='sine';o2.type='sine';o.frequency.value=f;o2.frequency.value=f*2.01;
+  g.gain.setValueAtTime(0,t);g.gain.linearRampToValueAtTime(v,t+.01);g.gain.exponentialRampToValueAtTime(.0001,t+d);
+  const g2=ac.createGain();g2.gain.value=.25;o.connect(g);o2.connect(g2);g2.connect(g);g.connect(master);
+  o.start(t);o2.start(t);o.stop(t+d+.05);o2.stop(t+d+.05);}
+function loop(){const t0=ac.currentTime+.1;let t=t0;
+  mel.forEach(([n,b])=>{bell(t,N[n],.5,Math.max(.6,b*beat*1.6));t+=b*beat;});
+  bass.forEach((n,i)=>bell(t0+i*4*beat,N[n]/2,.28,1.4));
+  timer=setTimeout(loop,(t-t0+beat*4)*1000);}
+function start(){if(!ac){ac=new (window.AudioContext||window.webkitAudioContext)();master=ac.createGain();master.gain.value=0;master.connect(ac.destination);}
+  ac.resume();master.gain.cancelScheduledValues(ac.currentTime);master.gain.linearRampToValueAtTime(.07,ac.currentTime+1.2);
+  if(!playing){playing=true;loop();}set(true);}
+function stop(){if(!ac)return;master.gain.linearRampToValueAtTime(0,ac.currentTime+.4);clearTimeout(timer);playing=false;set(false);}
+function set(on){btn.classList.toggle('on',on);btn.setAttribute('aria-pressed',on);lbl.textContent=on?'Desligar som':'Ligar música';btn.setAttribute('aria-label',lbl.textContent);}
+btn.addEventListener('click',e=>{e.stopPropagation();if(playing){userOff=true;stop()}else{userOff=false;start()}});
+/* começa baixinho no primeiro toque na página (navegadores não deixam tocar sozinho) */
+addEventListener('pointerdown',function first(){removeEventListener('pointerdown',first);if(!userOff&&!playing)start();},{once:true});
+</script>
+</body>
+</html>
