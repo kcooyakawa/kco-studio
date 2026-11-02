@@ -148,6 +148,20 @@ body:not(.open) .tag-wrap{transform:translateY(-60%);opacity:0}
 .lb.on .count{opacity:.8}
 @media (max-width:640px){.lb .pv,.lb .nx{display:none}}
 
+
+.sound{overflow:visible}
+.sound .spk{position:relative;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--red);color:#fff}
+.sound .spk svg{width:17px;height:17px}
+.sound .w{display:none}.sound.on .w{display:inline}.sound.on .m{display:none}
+.sound:not(.on) .spk svg{animation:wig 2.6s ease-in-out infinite}
+@keyframes wig{0%,70%,100%{transform:rotate(0)}76%{transform:rotate(-12deg)}82%{transform:rotate(10deg)}88%{transform:rotate(-6deg)}94%{transform:rotate(0)}}
+.sound .ring{position:absolute;inset:0;border-radius:50%;border:2px solid var(--red);opacity:0}
+.sound:not(.on) .ring{animation:ring 2.2s cubic-bezier(.23,1,.32,1) infinite}
+@keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(1.9);opacity:0}}
+.sound:not(.on) .eq{display:none}
+.sound .hint{position:absolute;right:0;bottom:calc(100% + 12px);white-space:nowrap;background:var(--deep);color:#fff8ec;font:500 12px "Montserrat";letter-spacing:.04em;padding:9px 13px;border-radius:12px;opacity:0;transform:translateY(6px) scale(.96);transform-origin:90% 100%;transition:opacity .3s ease,transform .4s cubic-bezier(.23,1,.32,1);pointer-events:none}
+.sound .hint::after{content:"";position:absolute;right:22px;top:100%;border:6px solid transparent;border-top-color:var(--deep)}
+.sound .hint.show{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){
   .head h2,.contact h2,.card .ph{clip-path:none!important}.card .ph img{transform:none!important}body:not(.open) .chars-wrap,body:not(.open) .tag-wrap{transform:none;opacity:1}
   *,*::before,*::after{animation:none!important;transition:none!important}
@@ -231,8 +245,10 @@ body:not(.open) .tag-wrap{transform:translateY(-60%);opacity:0}
 </main>
 
 <div class="lb" id="lb" aria-hidden="true"><div class="lb-bg"></div><img class="lb-img" id="lbImg" alt=""><button class="x" aria-label="Fechar">✕</button><button class="pv" aria-label="Anterior">‹</button><button class="nx" aria-label="Próxima">›</button><div class="count" id="lbCount"></div></div>
-<button class="sound" id="sound" aria-pressed="false" aria-label="Ligar música">
+<button class="sound" id="sound" aria-pressed="false" aria-label="Ligar trilha de Natal">
+  <span class="spk"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><g class="w"><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></g><g class="m"><path d="M16 9.5l5 5M21 9.5l-5 5"/></g></svg><i class="ring"></i></span>
   <span class="eq"><i></i><i></i><i></i></span><span id="soundLabel">Ligar música</span>
+  <span class="hint" id="hint">♪ Tem trilha de Natal!</span>
 </button>
 
 <script>
@@ -334,11 +350,12 @@ function start(){if(!ac){ac=new (window.AudioContext||window.webkitAudioContext)
   ac.resume();master.gain.cancelScheduledValues(ac.currentTime);master.gain.linearRampToValueAtTime(.17,ac.currentTime+1.2);
   if(!playing){playing=true;loop();}set(true);}
 function stop(){if(!ac)return;master.gain.linearRampToValueAtTime(0,ac.currentTime+.4);clearTimeout(timer);playing=false;set(false);}
-function set(on){btn.classList.toggle('on',on);btn.setAttribute('aria-pressed',on);lbl.textContent=on?'Desligar som':'Ligar música';btn.setAttribute('aria-label',lbl.textContent);}
+function set(on){btn.classList.toggle('on',on);btn.setAttribute('aria-pressed',on);lbl.textContent=on?'Desligar som':'Ligar música';document.getElementById('hint').classList.remove('show');btn.setAttribute('aria-label',lbl.textContent);}
 btn.addEventListener('click',e=>{e.stopPropagation();if(playing){userOff=true;stop()}else{userOff=false;start()}});
 /* começa baixinho no primeiro toque na página (navegadores não deixam tocar sozinho) */
 
 requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add('open')));
+const hint=document.getElementById('hint');setTimeout(()=>{if(!playing){hint.classList.add('show');setTimeout(()=>hint.classList.remove('show'),5000)}},2500);
 
 </script>
 </body>
