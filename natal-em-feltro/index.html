@@ -122,8 +122,8 @@ body:not(.open) .tag-wrap{transform:translateY(-60%);opacity:0}
 .in .orn::before,.in .orn::after,.orn.in::before,.orn.in::after{transform:scaleX(1)}
 /* card image reveal */
 .card{overflow:hidden;cursor:zoom-in}
-.card .ph{overflow:hidden;border-radius:8px;clip-path:inset(100% 0 0 0 round 8px);transition:clip-path 1.1s cubic-bezier(.77,0,.175,1);transition-delay:calc(var(--d,0s) + .1s)}
-.card .ph img{transform:scale(1.18);transition:transform 1.6s cubic-bezier(.23,1,.32,1);transition-delay:calc(var(--d,0s) + .1s);border-radius:0}
+.card .ph{overflow:hidden;border-radius:8px}
+.card .ph img{border-radius:0}
 .card.in .ph{clip-path:inset(0 0 0 0 round 8px)}
 .card.in .ph img{transform:scale(1)}
 .card:active{transform:scale(.98)}
@@ -157,9 +157,6 @@ body:not(.open) .tag-wrap{transform:translateY(-60%);opacity:0}
 </head>
 <body>
 
-<div class="gate" id="gate" role="dialog" aria-label="Abrir catálogo">
-  <div class="gate-in"><img src="img/tag.webp" alt=""><br><button id="enter">ABRIR O CATÁLOGO ♪</button><p>com trilha de Natal</p></div>
-</div>
 <header class="hero" id="hero">
   <div class="hero-bg" data-speed="0.35"></div>
   <div class="bokeh" data-speed="0.2" id="bokeh"></div>
@@ -220,7 +217,7 @@ body:not(.open) .tag-wrap{transform:translateY(-60%);opacity:0}
       <div class="orn">✦</div>
       <p class="sub">embalados um a um, prontos para presentear</p>
     </div>
-    <div class="card wide reveal"><div class="ph"><img src="img/arvore.webp" alt="Enfeites de árvore em feltro: Papai Noel, rena e boneco de neve" loading="lazy"></div></div>
+    <div class="card wide"><div class="ph"><img src="img/arvore.webp" alt="Enfeites de árvore em feltro: Papai Noel, rena e boneco de neve" loading="lazy"></div></div>
   </section>
 
   <section class="contact" id="contato">
@@ -245,7 +242,7 @@ const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
 document.querySelectorAll('[data-items]').forEach(g=>{
   const p=g.dataset.items,n=+g.dataset.count;
   for(let i=1;i<=n;i++){
-    const d=document.createElement('div');d.className='card reveal';
+    const d=document.createElement('div');d.className='card';
     d.style.setProperty('--d',((i-1)%(p==='g'?2:4))*0.09+'s');
     d.innerHTML=`<div class="ph"><img src="img/${p}${i}.webp" alt="" loading="lazy"></div>`;d.classList.add("drift");d.dataset.col=(i-1)%(p==='g'?2:4);g.appendChild(d);
   }
@@ -341,9 +338,10 @@ function set(on){btn.classList.toggle('on',on);btn.setAttribute('aria-pressed',o
 btn.addEventListener('click',e=>{e.stopPropagation();if(playing){userOff=true;stop()}else{userOff=false;start()}});
 /* começa baixinho no primeiro toque na página (navegadores não deixam tocar sozinho) */
 
-const gate=document.getElementById('gate');document.documentElement.style.overflow='hidden';
-function openGate(){start();gate.classList.add('out');document.body.classList.add('open');document.documentElement.style.overflow='';setTimeout(()=>gate.remove(),1000);}
-gate.addEventListener('click',openGate);
+/* abre direto; personagens entram; a trilha liga no primeiro toque/tecla (regra dos navegadores) */
+requestAnimationFrame(()=>requestAnimationFrame(()=>document.body.classList.add('open')));
+function firstTouch(){['pointerdown','touchstart','keydown'].forEach(t=>removeEventListener(t,firstTouch,true));if(!userOff&&!playing)start();}
+['pointerdown','touchstart','keydown'].forEach(t=>addEventListener(t,firstTouch,true));
 
 </script>
 </body>
