@@ -12,8 +12,8 @@ CSS = r'''
 @font-face{font-family:T;src:url(../text.woff)}@font-face{font-family:L;src:url(../label.woff)}
 @page{size:A4;margin:0}
 *{box-sizing:border-box}
-body{margin:0;font-family:T,Helvetica,sans-serif;font-size:9pt;line-height:1.45;color:#111;background:#F3F1EC}
-.pg{width:210mm;height:297mm;padding:14mm 14mm 12mm;position:relative;page-break-after:always;background:#F3F1EC;overflow:hidden}
+body{margin:0;font-family:T,Helvetica,sans-serif;font-size:9pt;line-height:1.45;color:#111;background:#FAFAFA}
+.pg{width:210mm;height:297mm;padding:14mm 14mm 12mm;position:relative;page-break-after:always;background:#FAFAFA;overflow:hidden}
 /* grid de 12 colunas à mostra */
 .grid{position:absolute;inset:0 14mm;display:grid;grid-template-columns:repeat(12,1fr);column-gap:4mm;pointer-events:none;z-index:0}
 .grid i{border-left:0.2mm solid #E4E0D8;border-right:0.2mm solid #E4E0D8}
