@@ -988,4 +988,5 @@ EN = {
 'Duas edições para provar que a festa da música veio para ficar.': 'Two editions to prove the music party is here to stay.',
 'As duas primeiras edições do Lollapalooza Brasil no Jockey Club de São Paulo. Em 2012, uma campanha integrada para apresentar o festival ao país; em 2013, 167 mil pessoas e o conceito “Ocupe SP com música”.': "The first two editions of Lollapalooza Brasil at São Paulo's Jockey Club. In 2012, an integrated campaign introducing the festival to the country; in 2013, 167,000 people and the concept “Occupy SP with music”.",
 'Eventos, estandes, campanhas, teatro, identidades, apresentações e vídeo cases. Abra um projeto para ver o trabalho completo.': 'Events, booths, campaigns, theatre, identities, presentations and video cases. Open a project to see the full work.',
+'Vídeos': 'Videos',
 }
