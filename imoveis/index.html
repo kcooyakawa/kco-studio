@@ -66,9 +66,9 @@ nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1
 .slide .sl{flex:1;height:100%;overflow:hidden;position:relative;transform-origin:left center;will-change:transform}
 .slide .sl div{position:absolute;top:0;height:100%;background-size:cover;background-position:var(--pos,50% 50%)}
 .slide::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,21,38,.35) 0,rgba(13,21,38,0) 30%,rgba(13,21,38,0) 55%,rgba(13,21,38,.7) 100%);pointer-events:none}
-.cap{position:absolute;left:clamp(16px,4vw,56px);right:clamp(16px,4vw,56px);bottom:clamp(24px,5vh,56px);z-index:5;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
+.cap{position:absolute;left:clamp(16px,4vw,56px);right:clamp(16px,4vw,56px);bottom:clamp(56px,11vh,120px);z-index:5;color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:24px}
 .cap h3{font-size:clamp(44px,8vw,140px)}
-.cap h3 span{display:block;overflow:hidden}
+.cap h3 span{display:block;overflow:hidden;padding-bottom:.08em}
 .cap h3 i{display:block;font-style:normal;transition:transform .9s var(--ease)}
 .cap p{max-width:30ch;text-align:right;opacity:.85}
 .count{position:absolute;top:84px;right:clamp(16px,4vw,56px);z-index:5;color:#fff;font-family:"KCO Grotesk";font-size:15px}
@@ -231,7 +231,7 @@ const P=[
  ['Síntese SP','Moema · W3W · reels e carrosséis','cov-sintese.webp','50% 50%'],
  ['Ara Faria Lima','Pinheiros · W3W · reels por público','cov-ara.webp','50% 50%'],
  ['Itá Conceição','Conceição · 5 campanhas','cov-ita.webp','50% 35%'],
- ['Bagamoio','Jabaquara · marca, book e campanha','bag-eb-05.webp','60% 50%']
+ ['Bagamoio','Jabaquara · marca, book e campanha','bag-fachada.webp','50% 45%']
 ];
 const proj=document.getElementById('projetos'),pst=proj.querySelector('.stage');
 proj.style.height=(P.length*100+60)+'vh';
