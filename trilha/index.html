@@ -203,8 +203,32 @@ canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:80}
 .gtabs{display:flex;background:var(--s1);border:1px solid var(--hair);border-radius:99px;padding:3px;margin-bottom:20px}
 .gtabs button{flex:1;height:38px;border-radius:99px;margin:0;background:none;color:var(--t2);font-weight:600;font-size:14px}
 .gtabs button.on{background:var(--s3);color:var(--t1)}
+.aula{position:fixed;inset:0;z-index:75;background:var(--bg);overflow-y:auto;opacity:0;pointer-events:none;transition:opacity .35s var(--ease)}
+.aula.show{opacity:1;pointer-events:auto}
+.aula .in{max-width:680px;margin:0 auto;padding:calc(20px + env(safe-area-inset-top)) 22px calc(60px + env(safe-area-inset-bottom))}
+.aula .top{display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--bg);padding:10px 0;z-index:2}
+.aula .x{height:36px;padding:0 14px;border-radius:99px;background:var(--s3);color:var(--t1);font-weight:600;font-size:13.5px}
+.aula .prog{flex:1;height:3px;background:var(--s3);border-radius:9px;margin:0 16px;overflow:hidden}.aula .prog i{display:block;height:100%;background:var(--g);transition:width .5s var(--ease)}
+.aula .kk{font-size:12px;font-weight:600;color:var(--t3);letter-spacing:.04em;text-transform:uppercase;margin-top:28px}
+.aula h2{font-size:30px;font-weight:700;letter-spacing:-.03em;line-height:1.1;margin:6px 0 24px}
+.aula h3{font-size:20px;font-weight:650;letter-spacing:-.02em;margin-bottom:12px}
+.aula h4{font-size:15px;font-weight:600;margin:20px 0 8px}
+.aula .body{font-size:16px;line-height:1.65;color:var(--t2)}.aula .body b{color:var(--t1);font-weight:600}
+.aula .body p{margin:0 0 14px}.aula .body ul,.aula .body ol{margin:0 0 16px;padding-left:22px}.aula .body li{margin:6px 0}
+.aula .body table{width:100%;border-collapse:collapse;margin:8px 0 16px;font-size:14.5px}.aula .body td{padding:10px 12px;border-bottom:1px solid var(--hair)}.aula .body td:last-child{text-align:right;color:var(--t1);font-weight:600}
+.aula .tip{background:var(--s1);border:1px solid var(--hair2);border-radius:16px;padding:14px 16px;font-size:14.5px}
+.aula .nav{display:flex;gap:10px;margin-top:30px}
+.aula .nav button{flex:1;text-align:center;height:50px;border-radius:99px;font-weight:600;font-size:15px}
+.aula .nav .pri{background:var(--t1);color:#0a0a0c}.aula .nav .sec{background:var(--s3);color:var(--t1)}
+.aula .nav button:disabled{opacity:.4}
+.qz{border:1px solid var(--hair);border-radius:20px;padding:18px;margin-bottom:12px}
+.qz p{color:var(--t1);font-weight:600;margin:0 0 12px!important}
+.qz button{display:block;width:100%;text-align:left;padding:12px 14px;border-radius:12px;background:var(--s1);border:1px solid var(--hair);color:var(--t2);font-size:14.5px;margin-top:8px;transition:all .2s}
+.qz button.ok{border-color:var(--ok);color:var(--t1)}.qz button.no{border-color:#ff8a8a;color:#ff8a8a}
 </style>
+<div class="aula" id="aula" role="dialog" aria-modal="true"><div class="in"><div class="top"><button class="x" id="aX">Fechar</button><div class="prog"><i id="aP"></i></div><span class="sync" id="aN"></span></div><div class="kk" id="aK"></div><h2 id="aT"></h2><div class="body" id="aB"></div><div class="nav"><button class="sec" id="aPrev">Voltar</button><button class="pri" id="aNext">Próximo</button></div></div></div>
 <script src="config.js"></script>
+<script src="aulas.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
@@ -275,7 +299,7 @@ const MODS = [
   learn:'Mercado de <b>alto padrão</b>, perfil e comportamento do comprador, intenção de compra, segmentação e jornada.',
   tasks:[
    {g:'c',t:'Fundamentos do Marketing Digital Imobiliário',d:'Lano Academy · 5h',u:L.lano,x:40},
-   {g:'c',t:'Buyer Personas, Jornada do Comprador e Segmentação',d:'HubSpot Academy · procure as três aulas no catálogo',u:L.hub,x:30},
+   {g:'c',t:'Personas, jornada do comprador e segmentação',d:'Aula W3W · 25 min · 3 capítulos + quiz',a:'personas',x:30},
    {g:'p',t:'Mapear como o alto padrão é anunciado',d:'Salve 10 anúncios de imóveis acima de R$ 3 mi em portais e sites de imobiliárias boutique: fotos, texto, preço, chamada.',x:25,e:1},
    {g:'p',t:'Exercício: 5 empreendimentos, 3 perfis de comprador',d:'Analise cinco empreendimentos de alto padrão e crie três perfis de compradores.',x:60},
    {g:'p',t:'Entrega: diagnóstico de mercado e mapa de compradores',d:'Envie para revisão antes de abrir o Módulo 02.',x:50,k:1}
@@ -284,7 +308,7 @@ const MODS = [
   learn:'Funil de aquisição, posicionamento do imóvel, copywriting, argumentos de venda, canais, distribuição de verba e planejamento de mídia.',
   tasks:[
    {g:'c',t:'Ads para Marketing Imobiliário',d:'Lano Academy · 6h',u:L.lano,x:45},
-   {g:'c',t:'Fundamentos de Inbound Marketing',d:'HubSpot Academy',u:L.hub,x:30},
+   {g:'c',t:'Fundamentos de Inbound para imóveis',d:'Aula W3W · 20 min · 3 capítulos + quiz',a:'inbound',x:30},
    {g:'p',t:'Fazer a conta de trás para frente',d:'Parta de 1 venda e calcule quantas visitas, leads qualificados e leads totais você precisa, e qual o custo por lead máximo que a verba aguenta.',x:30,e:1},
    {g:'p',t:'Exercício: estratégia para um imóvel de R$ 5 milhões',d:'Público, mensagem, canais, verba e metas.',x:60},
    {g:'p',t:'Entrega: plano estratégico de mídia e aquisição',d:'Envie para revisão antes de abrir o Módulo 03.',x:50,k:1}
@@ -304,7 +328,7 @@ const MODS = [
   learn:'Copywriting, anúncios, vídeos, criativos, páginas de captação, formulários, Pixel, UTMs e Analytics.',
   tasks:[
    {g:'c',t:'Criativos e Gerenciador de Anúncios',d:'Meta Blueprint',u:L.meta,x:35},
-   {g:'c',t:'Formulários e Landing Pages',d:'HubSpot Academy',u:L.hub,x:30},
+   {g:'c',t:'Formulários e landing pages que convertem',d:'Aula W3W · 20 min · 3 capítulos + quiz',a:'landing',x:30},
    {g:'c',t:'Google Analytics 4',d:'Google Skillshop · trilha gratuita de GA4',u:L.ga,x:40},
    {g:'p',t:'Formulário que filtra curiosos',d:'Inclua perguntas de faixa de investimento, prazo e forma de pagamento, e o aviso de privacidade (LGPD).',x:30,e:1},
    {g:'p',t:'Ativar a API de Conversões da Meta',d:'Deixa o rastreamento confiável mesmo com bloqueadores e iOS.',x:30,e:1},
@@ -314,7 +338,7 @@ const MODS = [
  {t:'CRM e qualificação de leads',w:'Semanas 9 e 10',ic:'users',h:16,prio:1,
   learn:'CRM, pipeline comercial, lead scoring, qualificação, atendimento, follow-up e integração de dados. <b>É aqui que lead vira venda.</b>',
   tasks:[
-   {g:'c',t:'Gestão de contatos e CRM',d:'HubSpot Academy',u:L.hub,x:35},
+   {g:'c',t:'Gestão de contatos e CRM',d:'Aula W3W · 20 min · 3 capítulos + quiz',a:'crm',x:35},
    {g:'c',t:'Melhorar a qualidade dos leads com CRM',d:'Meta Blueprint · 20 min',u:L.meta,x:20},
    {g:'p',t:'Roteiro de primeiro contato no WhatsApp',d:'Responder em até 5 minutos, com 3 perguntas de qualificação e a passagem para o corretor.',x:35,e:1},
    {g:'p',t:'Devolver os leads bons para a Meta',d:'Marque no CRM quem virou visita e envie de volta (conversão offline). O algoritmo passa a buscar mais gente assim.',x:35,e:1},
@@ -369,7 +393,7 @@ const activeIdx=()=>{for(let i=0;i<MODS.length;i++)if(!modDone(i))return i;retur
 let open=Math.max(0,activeIdx());
 
 function taskHTML(i,t,j){const on=S.done[id(i,j)];
-  return `<div class="task${on?' on':''}" role="checkbox" tabindex="0" aria-checked="${!!on}" data-m="${i}" data-t="${j}"><span class="cb">${svg(I.check,3)}</span><div><div class="tt">${t.t}${t.e?'<span class="ex">Extra</span>':''}</div><div class="td">${t.d}${t.u?` · <a href="${t.u}" target="_blank" rel="noopener">Abrir</a>`:''}</div></div><span class="xp num">${on?'✓ ':'+'}${t.x} XP</span></div>`}
+  return `<div class="task${on?' on':''}" role="checkbox" tabindex="0" aria-checked="${!!on}" data-m="${i}" data-t="${j}"><span class="cb">${svg(I.check,3)}</span><div><div class="tt">${t.t}${t.e?'<span class="ex">Extra</span>':''}</div><div class="td">${t.d}${t.a?` · <a href="#" data-aula="${t.a}">${on?'Rever aula':'Assistir aula'}</a>`:''}${t.u?` · <a href="${t.u}" target="_blank" rel="noopener">Abrir</a>`:''}</div></div><span class="xp num">${on?'✓ ':'+'}${t.x} XP</span></div>`}
 function grp(i,g,label){const m=MODS[i],ts=m.tasks.map((t,j)=>({t,j})).filter(o=>o.t.g===g),n=ts.filter(o=>S.done[id(i,o.j)]).length;
   return `<div class="gl"><span>${label}</span><span class="num" data-c="${g}">${n}/${ts.length}</span></div>${ts.map(o=>taskHTML(i,o.t,o.j)).join('')}`}
 function renderMods(){
@@ -429,7 +453,7 @@ function toggle(row){const i=+row.dataset.m,j=+row.dataset.t,k=id(i,j),before=mo
   const mod=row.closest('.mod'),p=Math.round(modPct(i)*100);mod.querySelector('.bar i').style.width=p+'%';mod.querySelector('.mr .p').textContent=p+'%';
   ['c','p'].forEach(g=>{const ts=MODS[i].tasks.map((t,jj)=>({t,jj})).filter(o=>o.t.g===g);mod.querySelector(`[data-c="${g}"]`).textContent=ts.filter(o=>S.done[id(i,o.jj)]).length+'/'+ts.length});
   if(modDone(i)!==before){renderMods();if(modDone(i))setTimeout(()=>celebrate(i),420)}}
-$('mods').addEventListener('click',e=>{if(e.target.closest('a'))return;const r=e.target.closest('.task');if(r){toggle(r);return}
+$('mods').addEventListener('click',e=>{const al=e.target.closest('[data-aula]');if(al){e.preventDefault();openAula(al.closest('.task'));return}if(e.target.closest('a'))return;const r=e.target.closest('.task');if(r){const t=MODS[+r.dataset.m].tasks[+r.dataset.t];if(t.a&&!S.done[id(+r.dataset.m,+r.dataset.t)]){openAula(r);return}toggle(r);return}
   const h=e.target.closest('.mh');if(!h)return;const i=+h.dataset.h;if(!unlocked(i)){toast(svg(I.lock,2.4),'Conclua o Módulo '+pad(i)+' primeiro');return}openMod(open===i?-1:i)});
 $('mods').addEventListener('keydown',e=>{const r=e.target.closest('.task');if(r&&(e.key===' '||e.key==='Enter')){e.preventDefault();toggle(r)}});
 $('cta').onclick=()=>{const a=activeIdx();if(a===-1){$('lab').scrollIntoView({behavior:'smooth',block:'center'});return}openMod(a,true)};
@@ -466,6 +490,19 @@ async function boot(){
   open=Math.max(0,activeIdx());renderMods();requestAnimationFrame(renderStats);
 }
 boot();
+
+let AU=null;
+function openAula(row){const i=+row.dataset.m,j=+row.dataset.t,t=MODS[i].tasks[j],a=window.AULAS&&AULAS[t.a];if(!a)return;AU={row,i,j,a,p:0,ans:{}};$('aK').textContent='Módulo '+pad(i+1)+' · Aula W3W · '+a.min+' min';$('aT').textContent=a.t;renderAula();$('aula').classList.add('show');$('aula').scrollTop=0;document.body.style.overflow='hidden'}
+function closeAula(){$('aula').classList.remove('show');document.body.style.overflow='';AU=null}
+function renderAula(){const a=AU.a,n=a.caps.length,qz=AU.p===n;$('aP').style.width=((AU.p+1)/(n+1)*100)+'%';$('aN').textContent=(AU.p+1)+'/'+(n+1);
+  if(!qz){$('aB').innerHTML='<h3>'+a.caps[AU.p].h+'</h3>'+a.caps[AU.p].b;$('aNext').textContent='Próximo';$('aNext').disabled=false}
+  else{$('aB').innerHTML='<h3>Quiz</h3><p>Acerte todas para concluir a aula e ganhar o XP.</p>'+a.quiz.map((q,k)=>'<div class="qz" data-k="'+k+'"><p>'+q.q+'</p>'+q.o.map((o,m)=>'<button data-o="'+m+'" class="'+(AU.ans[k]===m?(m===q.c?'ok':'no'):'')+'">'+o+'</button>').join('')+'</div>').join('');
+    const ok=a.quiz.every((q,k)=>AU.ans[k]===q.c),done=S.done[id(AU.i,AU.j)];$('aNext').textContent=done?'Aula concluída':'Concluir aula · +'+MODS[AU.i].tasks[AU.j].x+' XP';$('aNext').disabled=!ok||done}
+  $('aPrev').disabled=AU.p===0}
+$('aB').addEventListener('click',e=>{const b=e.target.closest('.qz button');if(!b)return;AU.ans[+b.closest('.qz').dataset.k]=+b.dataset.o;renderAula()});
+$('aPrev').onclick=()=>{if(AU.p>0){AU.p--;renderAula();$('aula').scrollTop=0}};
+$('aNext').onclick=()=>{if(AU.p<AU.a.caps.length){AU.p++;renderAula();$('aula').scrollTop=0;return}const r=AU.row,k=id(AU.i,AU.j);closeAula();if(!S.done[k]){const cur=document.querySelector(`.task[data-m="${r.dataset.m}"][data-t="${r.dataset.t}"]`)||r;toggle(cur)}};
+$('aX').onclick=closeAula;addEventListener('keydown',e=>{if(e.key==='Escape'&&AU)closeAula()});
 </script>
 </body>
 </html>
