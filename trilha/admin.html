@@ -145,7 +145,7 @@ function shell(){
   app.innerHTML=head('<button class="hbtn" id="out">Sair</button>')+`<main class="wrap">
   <h1>Seus alunos</h1><p class="sub" id="upd">Carregando…</p>
   <div class="kpis"><div><div class="k">Alunos</div><div class="v num" id="k1">–</div></div><div><div class="k">Progresso médio</div><div class="v num" id="k2">–</div></div><div><div class="k">Ativos (7 dias)</div><div class="v num" id="k3">–</div></div><div><div class="k">Precisam de atenção</div><div class="v num" id="k4">–</div></div></div>
-  <div class="tools"><h2>Entregas</h2><div class="seg" id="eseg"><button data-f="enviado" class="on">Para revisar <span id="ecount"></span></button><button data-f="ajustar">Em ajuste</button><button data-f="aprovado">Aprovadas</button></div></div>
+  <div class="tools"><h2>Entregas</h2><div class="seg" id="eseg"><button data-f="enviado" class="on">Aguardando IA <span id="ecount"></span></button><button data-f="ajustar">Em ajuste</button><button data-f="aprovado">Aprovadas</button></div></div>
   <div class="list" id="elist"><div class="skel"></div></div>
   <div class="tools"><h2>Turma</h2><input class="search" id="q" placeholder="Buscar nome ou e-mail" type="search">
   <div class="seg" id="seg"><button data-f="all" class="on">Todos</button><button data-f="ok">Ativos</button><button data-f="att">Atenção</button><button data-f="done">Formados</button></div></div>
@@ -191,7 +191,7 @@ async function load(){loadEnt();const {data,error}=await sb.from('progress').sel
 })();
 
 let ENTS=[],efilter='enviado',eopen=null;
-const STL={enviado:'Para revisar',ajustar:'Em ajuste',aprovado:'Aprovada'};
+const STL={enviado:'Aguardando IA',ajustar:'Em ajuste',aprovado:'Aprovada'};
 async function loadEnt(){const {data,error}=await sb.from('entregas').select('*').order('updated_at',{ascending:false});if(error){$('elist').innerHTML='<div class="empty"><b>Entregas ainda não configuradas</b>Rode o arquivo setup-entregas.sql no Supabase.</div>';return}ENTS=data||[];renderEnt()}
 function renderEnt(){const n=ENTS.filter(e=>e.status==='enviado').length;$('ecount').textContent=n?'· '+n:'';
   const L=ENTS.filter(e=>e.status===efilter);
@@ -199,19 +199,20 @@ function renderEnt(){const n=ENTS.filter(e=>e.status==='enviado').length;$('ecou
   $('elist').innerHTML=L.map(e=>{const f=e.feedback||{},m=+e.task_key.split('-')[0];return `<div class="ent${eopen===e.id?' open':''}" data-id="${e.id}"><button data-t="${e.id}"><div><b>${esc(e.nome||e.email)} · ${esc(e.task_titulo||'')}</b><span>Módulo ${pad(m+1)} · enviada ${ago(e.updated_at)}</span></div><span class="chip ${e.status==='aprovado'?'done':e.status==='ajustar'?'warn':'ok'}"><i></i>${STL[e.status]}</span></button>
   <div class="bd">${e.texto?`<div class="tx">${esc(e.texto)}</div>`:''}${e.links?`<div class="tx">${esc(e.links).replace(/(https?:\/\/[^\s]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>')}</div>`:''}
   <div class="fs" data-files="${e.id}">${(e.arquivos||[]).length?'Carregando arquivos…':'<span class="hint">Sem arquivos anexados.</span>'}</div>
-  <label>Pontos fortes</label><textarea data-k="fortes" placeholder="O que ficou bom e por quê. Seja específico.">${esc(f.fortes||'')}</textarea>
+  ${e.corrigido_por==='ia'?'<div class="hint" style="margin-top:14px">Corrigido pelo professor-IA. Você pode editar e salvar se quiser ajustar.</div>':''}<label>Pontos fortes</label><textarea data-k="fortes" placeholder="O que ficou bom e por quê. Seja específico.">${esc(f.fortes||'')}</textarea>
   <label>O que melhorar</label><textarea data-k="melhorar" placeholder="1 a 3 ajustes concretos, com exemplo de como fazer.">${esc(f.melhorar||'')}</textarea>
   <div class="row2"><div><label>Próximo passo</label><input data-k="proximo" placeholder="Uma ação clara para a próxima entrega" value="${esc(f.proximo||'')}"></div><div><label>Nota (0–10)</label><input data-k="nota" type="number" min="0" max="10" value="${esc(f.nota||'')}"></div></div>
-  <div class="acts"><button class="btn" data-s="ajustar" style="background:var(--s3);color:var(--t1)">Pedir ajustes</button><button class="btn" data-s="aprovado">Aprovar</button></div><div class="hint" data-msg></div></div></div>`}).join('')}
+  <div class="acts"><button class="btn" data-ia="1" style="background:var(--s3);color:var(--t1)">Corrigir com IA</button><button class="btn" data-s="ajustar" style="background:var(--s3);color:var(--t1)">Pedir ajustes</button><button class="btn" data-s="aprovado">Aprovar</button></div><div class="hint" data-msg></div></div></div>`}).join('')}
 async function files(e){const box=document.querySelector(`[data-files="${e.id}"]`);if(!box||!(e.arquivos||[]).length)return;
   const out=[];for(const a of e.arquivos){const {data}=await sb.storage.from('entregas').createSignedUrl(a.path,3600);out.push(`<a href="${data?data.signedUrl:'#'}" target="_blank" rel="noopener">${esc(a.name)}</a>`)}box.innerHTML=out.join('')}
 document.addEventListener('click',async ev=>{const sg=ev.target.closest('#eseg button');if(sg){efilter=sg.dataset.f;[...$('eseg').children].forEach(x=>x.classList.toggle('on',x===sg));eopen=null;renderEnt();return}
   const t=ev.target.closest('.ent>button');if(t){eopen=eopen===t.dataset.t?null:t.dataset.t;renderEnt();const e=ENTS.find(x=>x.id===eopen);if(e)files(e);return}
+  const ia=ev.target.closest('.ent [data-ia]');if(ia){const card=ia.closest('.ent'),msg=card.querySelector('[data-msg]');ia.disabled=true;msg.textContent='Corrigindo…';const {error}=await sb.functions.invoke('corrigir',{body:{entrega_id:card.dataset.id}});msg.textContent=error?'A IA não respondeu. Confira a configuração da função.':'';await loadEnt();return}
   const b=ev.target.closest('.ent [data-s]');if(!b)return;const card=b.closest('.ent'),e=ENTS.find(x=>x.id===card.dataset.id),fb={};
   card.querySelectorAll('[data-k]').forEach(i=>fb[i.dataset.k]=i.value.trim());const msg=card.querySelector('[data-msg]');
   if(!fb.fortes||!fb.melhorar||!fb.proximo){msg.textContent='Preencha pontos fortes, o que melhorar e próximo passo: é isso que torna o feedback construtivo.';return}
   b.disabled=true;msg.textContent='Salvando…';
-  const {error}=await sb.from('entregas').update({status:b.dataset.s,feedback:fb,feedback_at:new Date().toISOString()}).eq('id',e.id);
+  const {error}=await sb.from('entregas').update({status:b.dataset.s,feedback:fb,feedback_at:new Date().toISOString(),corrigido_por:'admin'}).eq('id',e.id);
   if(error){msg.textContent='Não foi possível salvar.';b.disabled=false;return}
   eopen=null;await loadEnt()});
 }

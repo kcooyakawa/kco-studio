@@ -38,7 +38,7 @@ create policy "aluno reenvia ou admin avalia" on public.entregas for update
 -- impede o aluno de alterar o próprio feedback
 create or replace function public.entregas_guard() returns trigger language plpgsql as $$
 begin
-  if not public.is_admin() then
+  if not public.is_admin() and coalesce(auth.role(),'') <> 'service_role' then
     new.feedback := old.feedback; new.feedback_at := old.feedback_at;
   end if;
   new.updated_at := now();
@@ -64,3 +64,6 @@ create policy "entregas ler proprio ou admin" on storage.objects for select
 drop policy if exists "entregas apagar proprio" on storage.objects;
 create policy "entregas apagar proprio" on storage.objects for delete
   using (bucket_id = 'entregas' and (storage.foldername(name))[1] = auth.uid()::text);
+
+-- marca correções feitas pela IA
+alter table public.entregas add column if not exists corrigido_por text;
