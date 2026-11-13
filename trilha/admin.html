@@ -123,11 +123,11 @@ function status(r){if(r.modulo>6)return['done','Formada'];const d=days(r.updated
 function modStats(r){const done=(r.state&&r.state.done)||{};return TOTAL.map((n,i)=>{let c=0;for(let j=0;j<n;j++)if(done[i+'-'+j])c++;return c/n})}
 
 async function gate(){
-  app.innerHTML=`<div class="gate"><form id="f"><div class="logo"></div><h2>Painel de admin</h2><p>Entre com o e-mail de administrador. Enviamos um link de acesso.</p>
-  <input id="e" type="email" required autocomplete="email" placeholder="seu@email.com"><button class="btn" id="b">Receber link</button><div class="msg" id="m"></div></form></div>`;
+  app.innerHTML=`<div class="gate"><form id="f"><div class="logo"></div><h2>Painel de admin</h2><p>Entre com seu e-mail e senha de administrador.</p>
+  <input id="e" type="email" required autocomplete="email" placeholder="seu@email.com"><input id="p" type="password" required minlength="6" autocomplete="current-password" placeholder="Senha"><button class="btn" id="b">Entrar</button><div class="msg" id="m"></div></form></div>`;
   $('f').onsubmit=async e=>{e.preventDefault();$('b').disabled=true;$('m').className='msg';$('m').textContent='Enviando…';
-    const {error}=await sb.auth.signInWithOtp({email:$('e').value.trim(),options:{emailRedirectTo:location.origin+location.pathname}});
-    $('b').disabled=false;if(error){$('m').className='msg err';$('m').textContent='Não foi possível enviar. Tente de novo.'}else $('m').textContent='Abra o link que enviamos para o seu e-mail.'};
+    const {error}=await sb.auth.signInWithPassword({email:$('e').value.trim(),password:$('p').value});
+    $('b').disabled=false;if(error){$('m').className='msg err';$('m').textContent='E-mail ou senha incorretos. Crie sua senha antes em Primeiro acesso, na página do curso.'}else location.reload()};
 }
 function shell(){
   app.innerHTML=head('<button class="hbtn" id="out">Sair</button>')+`<main class="wrap">
@@ -136,7 +136,7 @@ function shell(){
   <div class="tools"><h2>Turma</h2><input class="search" id="q" placeholder="Buscar nome ou e-mail" type="search">
   <div class="seg" id="seg"><button data-f="all" class="on">Todos</button><button data-f="ok">Ativos</button><button data-f="att">Atenção</button><button data-f="done">Formados</button></div></div>
   <div class="list" id="list"><div class="skel"></div><div class="skel"></div><div class="skel"></div></div>
-  <div class="invite"><div><b>Convidar novo aluno</b><p>Envie este link. A pessoa entra com o próprio e-mail e aparece aqui automaticamente.</p></div><button class="btn" id="cp">Copiar link</button><code id="lk"></code></div>
+  <div class="invite"><div><b>Convidar novo aluno</b><p>Envie este link. A pessoa cria a senha em Primeiro acesso e aparece aqui automaticamente.</p></div><button class="btn" id="cp">Copiar link</button><code id="lk"></code></div>
   <footer>Atualiza sozinho a cada minuto.</footer></main>`;
   const link=location.origin+location.pathname.replace(/admin\.html$/,'');$('lk').textContent=link;
   $('cp').onclick=async()=>{try{await navigator.clipboard.writeText(link);$('cp').textContent='Copiado'}catch(e){$('cp').textContent='Copie abaixo'}setTimeout(()=>$('cp').textContent='Copiar link',2000)};
