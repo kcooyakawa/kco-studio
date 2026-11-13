@@ -37,14 +37,15 @@ personas: {
 <p>Faça a conta do <b>custo por lead qualificado</b>: R$ 18 ÷ 3% = <b>R$ 600</b> contra R$ 45 ÷ 22% = <b>R$ 205</b>. O lead "caro" sai três vezes mais barato. <i>(Números ilustrativos, mas a proporção é típica.)</i></p>
 <p class="tip">A métrica que importa nunca é o CPL sozinho. É o custo por lead qualificado, por visita e por proposta. A persona é o que move esses números.</p>`},
    {h:'2. Como pesquisar a persona (sem achismo)',f:FIGS.fontes,b:`
-<p>Persona boa nasce de dados e conversas. Use quatro fontes, nesta ordem:</p>
+<p>Persona boa nasce de dados e conversas. Como gestora de tráfego, você normalmente começa <b>de fora</b>: não conhece os clientes da imobiliária nem tem acesso ao sistema dela. Por isso, a pesquisa começa no <b>briefing com o cliente</b> que te contratou e é completada com dados públicos.</p>
 <ol>
-<li><b>Quem já comprou.</b> Puxe as últimas 10–20 vendas da W3W: idade, profissão, de onde veio, por que comprou, quanto tempo levou, quem decidiu.</li>
-<li><b>Os corretores.</b> Eles ouvem as objeções todo dia. Pergunte: "quais são as 3 frases que você mais escuta antes de alguém desistir?"</li>
-<li><b>Entrevistas com clientes.</b> 5 conversas de 20 minutos já mostram padrões.</li>
-<li><b>Dados digitais.</b> Comentários e directs no Instagram, termos buscados no Google (Planejador de palavras-chave), perguntas recorrentes nos portais.</li>
+<li><b>Briefing com o cliente (imobiliária, corretor ou incorporadora).</b> Na reunião de início, peça: "me conte sobre as últimas 10 vendas: quem comprou, de onde veio, por que comprou, quanto tempo levou, quem decidiu". Se ele tiver CRM ou planilha, peça um resumo, sem dados pessoais.</li>
+<li><b>Os corretores do cliente.</b> Peça 15 minutos com quem atende. Pergunte: "quais são as 3 frases que você mais escuta antes de alguém desistir?"</li>
+<li><b>Material do empreendimento.</b> Book, tabela e o público-alvo definido pela incorporadora já dizem muito sobre para quem o produto foi pensado.</li>
+<li><b>Dados públicos.</b> Comentários e directs nos perfis do cliente e dos concorrentes, termos buscados no Google (Planejador de palavras-chave, Google Trends), perguntas recorrentes em portais e grupos, e o perfil do bairro (IBGE, notícias, preço do m²).</li>
 </ol>
-<h4>Roteiro de entrevista (copie e use)</h4>
+<p class="tip">Ainda sem cliente? Pratique com um empreendimento real de alto padrão anunciado nos portais: estude o book, os anúncios e os comentários do público. É exatamente o que o exercício deste módulo pede.</p>
+<h4>Roteiro de entrevista com compradores (quando o cliente puder te apresentar alguns)</h4>
 <ol>
 <li>O que fez você começar a procurar um imóvel naquele momento?</li>
 <li>Onde pesquisou primeiro? E depois?</li>
@@ -151,11 +152,11 @@ inbound: {
 <tr><td><b>Bairro e estilo de vida</b></td><td>Descoberta. Guias, rotas a pé, restaurantes, escolas, parques.</td></tr>
 <tr><td><b>Mercado e investimento</b></td><td>Descoberta e consideração. Valorização, m², rentabilidade de locação, financiamento.</td></tr>
 <tr><td><b>Produto</b></td><td>Consideração. Tour, planta comentada, acabamentos, comparativos.</td></tr>
-<tr><td><b>Bastidores e prova</b></td><td>Decisão. Curadoria W3W, depoimentos, entregas, a equipe.</td></tr>
+<tr><td><b>Bastidores e prova</b></td><td>Decisão. Diferenciais da imobiliária, depoimentos, entregas, a equipe.</td></tr>
 </table>
 <h4>Um conteúdo, dez peças</h4>
 <p>Produza um conteúdo-pilar por mês (ex.: "Guia completo para morar em Moema") e desdobre: 1 reel, 2 carrosséis, 4 stories, 1 e-mail, 1 post no Google Meu Negócio e 1 criativo de anúncio. Coerência e economia de produção.</p>
-<p class="tip">Teste de qualidade: o conteúdo seria útil mesmo para quem não comprar com a W3W? Se sim, ele gera confiança. Se é só propaganda disfarçada, o público percebe.</p>`},
+<p class="tip">Teste de qualidade: o conteúdo seria útil mesmo para quem não comprar com o seu cliente? Se sim, ele gera confiança. Se é só propaganda disfarçada, o público percebe.</p>`},
    {h:'4. Ofertas de engajamento: o que trocar pelo contato',b:`
 <p>Ninguém deixa telefone em troca de "saiba mais". A oferta precisa ter valor claro e combinar com a fase do lead:</p>
 <table>
@@ -168,7 +169,7 @@ inbound: {
 <p>Rode pelo menos duas ofertas em paralelo: uma de meio de funil, para volume e remarketing, e uma de fundo, para leads prontos.</p>`,
     d:{q:'Para um investidor, qual oferta tende a gerar o lead mais qualificado?',o:['E-book "10 dicas para comprar imóvel"','Simulação de rentabilidade da unidade, enviada por um consultor','Sorteio de um vale-jantar'],c:1,why:'A simulação exige que ele informe dados reais e mostra intenção concreta. O e-book genérico e o sorteio atraem quem não compra.'}},
    {h:'5. Encantar: o pós-venda que vira canal de aquisição',b:`
-<p>Na W3W, cada cliente encantado deve gerar, em média, pelo menos uma indicação. Isso só acontece com método:</p>
+<p>Essa etapa é executada pela imobiliária, não por você. Mas o gestor de tráfego que sabe orientar o cliente nela vira parceiro estratégico, não só "o cara dos anúncios". Uma boa meta para propor: cada cliente encantado gerar pelo menos uma indicação. Isso só acontece com método:</p>
 <ol>
 <li><b>Entrega memorável</b>: chave entregue com um kit de boas-vindas e o guia do bairro.</li>
 <li><b>Contato aos 30, 90 e 365 dias</b>: como está a adaptação? precisa de indicação de arquiteto ou mudança?</li>
@@ -178,7 +179,7 @@ inbound: {
 <p class="tip">Para o tráfego, o cliente encantado ainda vale mais uma coisa: a lista de compradores vira a semente do público semelhante (lookalike) mais valioso da conta.</p>`},
    {h:'6. Metas SMART e o painel do inbound',f:FIGS.smart,b:`
 <p>"Gerar mais leads" não é meta. Meta boa é específica, mensurável, alcançável, relevante e com prazo:</p>
-<p class="tip">"Gerar 60 leads qualificados para o Síntese Moema até 15/12, com custo por lead qualificado abaixo de R$ 150 e pelo menos 8 visitas."</p>
+<p class="tip">"Gerar 60 leads qualificados para o lançamento X até 15/12, com custo por lead qualificado abaixo de R$ 150 e pelo menos 8 visitas."</p>
 <h4>Os 6 números do painel semanal</h4>
 <table>
 <tr><td>Investimento</td><td>quanto foi gasto</td></tr>
@@ -268,9 +269,10 @@ crm: {
 <tr><td>Resposta depois de 1 hora</td><td>o lead já falou com outra imobiliária</td></tr>
 <tr><td>Resposta no dia seguinte</td><td>"não lembro de ter pedido nada"</td></tr>
 </table>
+<p class="tip">Quem atende os leads é o time do seu cliente, não você. Mas é seu papel <b>combinar essas regras no início do contrato</b>: tempo de resposta, quem atende e como o resultado volta para você. Sem isso, a campanha leva a culpa por vendas que se perderam no atendimento.</p>
 <p class="tip">Para o gestor de tráfego, o CRM não é "coisa do comercial". É a única forma de saber quais campanhas geram visita e venda, e não só lead.</p>`},
    {h:'2. Temperatura e lead scoring',f:FIGS.temp,w:'score',b:`
-<p>Nem todo lead merece o corretor hoje. A temperatura organiza a prioridade e o lead scoring transforma a temperatura em número, para ninguém decidir no achismo. Teste a régua da W3W no simulador:</p>`,
+<p>Nem todo lead merece o corretor hoje. A temperatura organiza a prioridade e o lead scoring transforma a temperatura em número, para ninguém decidir no achismo. Teste no simulador uma régua de referência, que você vai adaptar com cada cliente:</p>`,
     d:{q:'Lead com faixa compatível, prazo de 2 meses e que pediu visita, mas respondeu só depois de 3 dias. Qual a prioridade?',o:['Frio: demorou para responder','Quente: passa para o corretor hoje','Descartar'],c:1,why:'Faixa compatível (+30), prazo curto (+25) e pedido de visita (+30) somam 85 pontos. A demora pesa menos que os sinais de intenção.'}},
    {h:'3. O pipeline e os motivos de perda',f:FIGS.pipeline,b:`
 <p>Todo lead está em exatamente uma etapa. Sem isso, não existe previsão de vendas:</p>
@@ -281,24 +283,24 @@ crm: {
    {h:'4. Primeiro contato: o roteiro de 5 minutos',b:`
 <p>O primeiro contato decide se o lead vira conversa ou silêncio. Estrutura que funciona no WhatsApp:</p>
 <ol>
-<li><b>Contexto</b>: "Oi, Helena! Aqui é a Adriana, da W3W. Você pediu a planta do Síntese Moema agora há pouco."</li>
+<li><b>Contexto</b>: "Oi, Helena! Aqui é a Carla, da Imobiliária Exemplo. Você pediu a planta do Residencial Aurora agora há pouco."</li>
 <li><b>Entrega imediata</b>: mande o que foi pedido logo de cara, sem pedir nada antes.</li>
 <li><b>Uma pergunta aberta</b>: "O que fez vocês começarem a procurar agora?"</li>
 <li><b>Qualificação conversada</b>: prazo, faixa e quem decide, ao longo da conversa e não como interrogatório.</li>
 <li><b>Próximo passo com data</b>: "Tenho horários no sábado de manhã para uma visita privativa. 10h ou 11h funciona?"</li>
 </ol>
 <p class="tip">Ofereça duas opções de horário em vez de "quando você pode?". Fica mais fácil dizer sim.</p>`,
-    d:{q:'Qual a melhor primeira mensagem para um lead que pediu o book?',o:['"Olá! Qual sua renda mensal?"','"Oi, Helena! Aqui é a Adriana, da W3W. Segue o book do Síntese que você pediu. O que fez vocês começarem a procurar agora?"','"Bom dia, podemos agendar uma visita?"'],c:1,why:'Contexto, entrega imediata e uma pergunta aberta geram conversa. Pedir renda logo de cara afasta, e pedir visita sem entregar o que foi pedido parece pressão.'}},
+    d:{q:'Qual a melhor primeira mensagem para um lead que pediu o book?',o:['"Olá! Qual sua renda mensal?"','"Oi, Helena! Aqui é a Carla, da Imobiliária Exemplo. Segue o book do Residencial Aurora que você pediu. O que fez vocês começarem a procurar agora?"','"Bom dia, podemos agendar uma visita?"'],c:1,why:'Contexto, entrega imediata e uma pergunta aberta geram conversa. Pedir renda logo de cara afasta, e pedir visita sem entregar o que foi pedido parece pressão.'}},
    {h:'5. Nutrição: 5 toques em 14 dias',f:FIGS.followup,b:`
-<p>A maioria dos leads de alto padrão não compra no primeiro mês. A sequência mantém a W3W presente sem ser chata:</p>
+<p>A maioria dos leads de alto padrão não compra no primeiro mês. A sequência mantém a imobiliária presente sem ser chata:</p>
 <table>
 <tr><td>Dia 0</td><td>Boas-vindas + material pedido</td></tr>
 <tr><td>Dia 2</td><td>Conteúdo do bairro ligado à persona (escolas para a família, valorização para o investidor)</td></tr>
-<tr><td>Dia 5</td><td>2 ou 3 imóveis semelhantes da curadoria</td></tr>
+<tr><td>Dia 5</td><td>2 ou 3 imóveis semelhantes da carteira do cliente</td></tr>
 <tr><td>Dia 9</td><td>Depoimento de cliente parecido com ele</td></tr>
 <tr><td>Dia 14</td><td>Convite para visita privativa com data</td></tr>
 </table>
-<p>Quem não responder entra numa nutrição mensal leve: novidades do mercado e oportunidades da curadoria.</p>`},
+<p>Quem não responder entra numa nutrição mensal leve: novidades do mercado e oportunidades da carteira.</p>`},
    {h:'6. Fechando o ciclo com o algoritmo',b:`
 <p>Aqui o CRM vira arma de tráfego. Quando você devolve para a Meta e para o Google a informação de <b>quais leads viraram visita e venda</b>, o algoritmo passa a procurar mais gente parecida com eles, e não só gente que preenche formulário.</p>
 <ul>
@@ -314,6 +316,6 @@ crm: {
    {q:'Qual é a melhor forma de propor uma visita?',o:['"Quando você pode?"','"Sábado às 10h ou às 11h funciona?"','"Me avisa quando quiser"'],c:1},
    {q:'Por que devolver conversões offline para a Meta?',o:['Para o algoritmo buscar pessoas parecidas com quem visita e compra','Porque é obrigatório pela LGPD','Para baixar o CPM'],c:0},
    {q:'Um lead que não respondeu à sequência de 14 dias deve…',o:['Ser apagado do CRM','Entrar na nutrição mensal leve','Receber ligações diárias'],c:1},
-   {q:'No lead scoring da W3W, quantos pontos fazem o lead ir para o corretor no mesmo dia?',o:['Acima de 30','Acima de 60','Acima de 90'],c:1}
+   {q:'Na régua de lead scoring da aula, quantos pontos fazem o lead ir para o corretor no mesmo dia?',o:['Acima de 30','Acima de 60','Acima de 90'],c:1}
   ]}
 };
