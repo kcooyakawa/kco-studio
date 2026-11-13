@@ -509,7 +509,7 @@ async function boot(){
 }
 let ENT={},EC=null;
 const isEnt=t=>t.g==='p'&&!t.e;
-const ST={enviado:'Corrigindo',ajustar:'Ajustar',aprovado:'Aprovado'};
+const ST={enviado:'Na fila de correção',ajustar:'Ajustar',aprovado:'Aprovado'};
 const entChip=k=>ENT[k]?`<span class="ech ${ENT[k].status}">${ST[ENT[k].status]}</span>`:'';
 const escH=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 async function loadEnt(){if(!sb||!USER)return;const {data,error}=await sb.from('entregas').select('*').eq('user_id',USER.id);if(error)return;ENT={};(data||[]).forEach(r=>ENT[r.task_key]=r)}
@@ -522,7 +522,7 @@ async function renderEnt(){const r=ENT[EC.k],fb=r&&r.feedback;
   let h=`<div class="brief"><b>O que entregar</b><br>${EC.t.d}</div>`;
   if(r){const cor={enviado:'#8fb0ff',ajustar:'#ffb287',aprovado:'#6fe6b0'}[r.status];
     h+=`<div class="fb"><div class="st" style="color:${cor}">${r.status==='enviado'?'Enviado · aguardando feedback':(r.status==='aprovado'?'Aprovado':'Precisa de ajustes')}</div>`+
-    (fb?`${r.corrigido_por==='ia'?'<h5>Corrigido pelo professor-IA</h5>':''}${fb.nota?`<h5>Nota</h5><p>${escH(fb.nota)}/10</p>`:''}<h5>Pontos fortes</h5><p>${escH(fb.fortes)}</p><h5>O que melhorar</h5><p>${escH(fb.melhorar)}</p><h5>Próximo passo</h5><p>${escH(fb.proximo)}</p>`:`<p style="color:var(--t2);margin-top:8px;font-size:14px">A correção ainda não terminou.</p><div class="nav" style="margin-top:14px"><button class="sec" type="button" id="eRe">Corrigir agora</button></div>`)+`</div>`}
+    (fb?`${r.corrigido_por==='ia'?'<h5>Corrigido pelo professor-IA</h5>':''}${fb.nota?`<h5>Nota</h5><p>${escH(fb.nota)}/10</p>`:''}<h5>Pontos fortes</h5><p>${escH(fb.fortes)}</p><h5>O que melhorar</h5><p>${escH(fb.melhorar)}</p><h5>Próximo passo</h5><p>${escH(fb.proximo)}</p>`:`<p style="color:var(--t2);margin-top:8px;font-size:14px">O professor-IA corrige as entregas de hora em hora. Seu feedback aparece aqui em até 1 hora.</p>`)+`</div>`}
   const can=!r||r.status!=='aprovado';
   h+=`<form class="ef" id="ef"><label for="eTx">Sua entrega</label><textarea id="eTx" placeholder="Explique o que fez, suas escolhas e o raciocínio. Quanto mais claro, melhor o feedback." ${can?'':'disabled'}>${escH(r&&r.texto)}</textarea>
   <label for="eLk">Links (Google Drive, Canva, Looker, Gerenciador…)</label><input type="text" id="eLk" placeholder="Cole um ou mais links" value="${escH(r&&r.links)}" ${can?'':'disabled'}>
@@ -545,12 +545,7 @@ async function sendEnt(e){e.preventDefault();const tx=$('eTx').value.trim(),lk=$
   ENT[EC.k]=data;const k=EC.k,i=EC.i,j=EC.j;
   const row2=document.querySelector(`.task[data-m="${i}"][data-t="${j}"]`);if(!S.done[k]&&row2)toggle(row2);
   EC.files=[];EC.keep=data.arquivos||[];await corrigir(data);}
-async function corrigir(e){if(!EC)return;$('eS').textContent='';
-  $('eB').innerHTML=`<div class="fb"><div class="st" style="color:#8fb0ff">Corrigindo sua entrega…</div><p style="color:var(--t2);margin-top:8px;font-size:14px">O professor-IA está lendo seu texto e seus arquivos e comparando com os critérios do módulo. Leva cerca de 30 segundos.</p><div class="lvbar" style="margin-top:16px"><i style="width:100%;animation:pulse 1.4s ease-in-out infinite"></i></div></div>`;
-  const {data,error}=await sb.functions.invoke('corrigir',{body:{entrega_id:e.id}});
-  if(!error&&data&&data.id){ENT[data.task_key]=data;toast(svg(I.check,2.6),data.status==='aprovado'?'Entrega aprovada':'Feedback pronto')}
-  else toast('!','Correção em fila: volte em alguns minutos');
-  renderMods();openMod(EC?EC.i:open);if(EC)renderEnt()}
+async function corrigir(e){if(!EC)return;toast(svg(I.check,2.6),'Entrega enviada');renderMods();openMod(EC.i);renderEnt()}
 $('eX').onclick=closeEnt;addEventListener('keydown',e=>{if(e.key==='Escape'&&EC)closeEnt()});
 boot();
 
