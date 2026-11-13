@@ -225,8 +225,24 @@ canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:80}
 .qz p{color:var(--t1);font-weight:600;margin:0 0 12px!important}
 .qz button{display:block;width:100%;text-align:left;padding:12px 14px;border-radius:12px;background:var(--s1);border:1px solid var(--hair);color:var(--t2);font-size:14.5px;margin-top:8px;transition:all .2s}
 .qz button.ok{border-color:var(--ok);color:var(--t1)}.qz button.no{border-color:#ff8a8a;color:#ff8a8a}
+.fig{margin:6px 0 22px;padding:18px 16px 12px;background:var(--s1);border:1px solid var(--hair);border-radius:20px}
+.fig .sc{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 -16px;padding:0 16px}.fig svg{width:100%;min-width:600px;height:auto;display:block}.fig figcaption{font-size:12.5px;color:var(--t3);margin-top:10px;text-align:center}
+.ech{font-size:10.5px;font-weight:600;padding:2px 7px;border-radius:99px;margin-left:6px;white-space:nowrap}
+.ech.enviado{background:rgba(91,140,255,.14);color:#8fb0ff}.ech.ajustar{background:rgba(255,154,98,.14);color:#ffb287}.ech.aprovado{background:rgba(61,220,151,.14);color:#6fe6b0}
+.ef label{display:block;font-size:12.5px;color:var(--t3);font-weight:500;margin:18px 0 6px}
+.ef textarea,.ef input[type=text]{width:100%;border-radius:14px;background:var(--s1);border:1px solid var(--hair2);color:var(--t1);font:inherit;font-size:15px;padding:12px 14px;outline:none}
+.ef textarea{min-height:150px;resize:vertical;line-height:1.5}.ef textarea:focus,.ef input:focus{border-color:var(--a1)}
+.drop{display:block;border:1.5px dashed var(--hair2);border-radius:16px;padding:22px;text-align:center;color:var(--t2);cursor:pointer;font-size:14px}
+.drop:hover{border-color:var(--t3)}.drop input{display:none}
+.fl{list-style:none;padding:0;margin:10px 0 0}.fl li{display:flex;justify-content:space-between;gap:10px;padding:10px 12px;border:1px solid var(--hair);border-radius:12px;margin-top:6px;font-size:13.5px;color:var(--t2)}
+.fl a{color:var(--t1)}.fl button{color:var(--t3)}
+.fb{border-radius:20px;padding:18px;margin:6px 0 10px;border:1px solid var(--hair2);background:var(--s1)}
+.fb .st{font-size:12px;font-weight:700;letter-spacing:.04em;text-transform:uppercase}
+.fb h5{font-size:13px;color:var(--t3);font-weight:600;margin:14px 0 4px}.fb p{margin:0;color:var(--t1);font-size:15px;line-height:1.55;white-space:pre-wrap}
+.brief{background:var(--s1);border:1px solid var(--hair);border-radius:16px;padding:14px 16px;font-size:14.5px;color:var(--t2)}
 </style>
 <div class="aula" id="aula" role="dialog" aria-modal="true"><div class="in"><div class="top"><button class="x" id="aX">Fechar</button><div class="prog"><i id="aP"></i></div><span class="sync" id="aN"></span></div><div class="kk" id="aK"></div><h2 id="aT"></h2><div class="body" id="aB"></div><div class="nav"><button class="sec" id="aPrev">Voltar</button><button class="pri" id="aNext">Próximo</button></div></div></div>
+<div class="aula" id="ent" role="dialog" aria-modal="true"><div class="in"><div class="top"><button class="x" id="eX">Fechar</button><span class="sync" id="eS"></span></div><div class="kk" id="eK"></div><h2 id="eT"></h2><div class="body" id="eB"></div></div></div>
 <script src="config.js"></script>
 <script src="aulas.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -393,7 +409,7 @@ const activeIdx=()=>{for(let i=0;i<MODS.length;i++)if(!modDone(i))return i;retur
 let open=Math.max(0,activeIdx());
 
 function taskHTML(i,t,j){const on=S.done[id(i,j)];
-  return `<div class="task${on?' on':''}" role="checkbox" tabindex="0" aria-checked="${!!on}" data-m="${i}" data-t="${j}"><span class="cb">${svg(I.check,3)}</span><div><div class="tt">${t.t}${t.e?'<span class="ex">Extra</span>':''}</div><div class="td">${t.d}${t.a?` · <a href="#" data-aula="${t.a}">${on?'Rever aula':'Assistir aula'}</a>`:''}${t.u?` · <a href="${t.u}" target="_blank" rel="noopener">Abrir</a>`:''}</div></div><span class="xp num">${on?'✓ ':'+'}${t.x} XP</span></div>`}
+  return `<div class="task${on?' on':''}" role="checkbox" tabindex="0" aria-checked="${!!on}" data-m="${i}" data-t="${j}"><span class="cb">${svg(I.check,3)}</span><div><div class="tt">${t.t}${t.e?'<span class="ex">Extra</span>':''}</div><div class="td">${t.d}${isEnt(t)?` · <a href="#" data-ent="1">${ENT[id(i,j)]?'Ver entrega':'Enviar entrega'}</a>`:''}${entChip(id(i,j))}${t.a?` · <a href="#" data-aula="${t.a}">${on?'Rever aula':'Assistir aula'}</a>`:''}${t.u?` · <a href="${t.u}" target="_blank" rel="noopener">Abrir</a>`:''}</div></div><span class="xp num">${on?'✓ ':'+'}${t.x} XP</span></div>`}
 function grp(i,g,label){const m=MODS[i],ts=m.tasks.map((t,j)=>({t,j})).filter(o=>o.t.g===g),n=ts.filter(o=>S.done[id(i,o.j)]).length;
   return `<div class="gl"><span>${label}</span><span class="num" data-c="${g}">${n}/${ts.length}</span></div>${ts.map(o=>taskHTML(i,o.t,o.j)).join('')}`}
 function renderMods(){
@@ -453,7 +469,7 @@ function toggle(row){const i=+row.dataset.m,j=+row.dataset.t,k=id(i,j),before=mo
   const mod=row.closest('.mod'),p=Math.round(modPct(i)*100);mod.querySelector('.bar i').style.width=p+'%';mod.querySelector('.mr .p').textContent=p+'%';
   ['c','p'].forEach(g=>{const ts=MODS[i].tasks.map((t,jj)=>({t,jj})).filter(o=>o.t.g===g);mod.querySelector(`[data-c="${g}"]`).textContent=ts.filter(o=>S.done[id(i,o.jj)]).length+'/'+ts.length});
   if(modDone(i)!==before){renderMods();if(modDone(i))setTimeout(()=>celebrate(i),420)}}
-$('mods').addEventListener('click',e=>{const al=e.target.closest('[data-aula]');if(al){e.preventDefault();openAula(al.closest('.task'));return}if(e.target.closest('a'))return;const r=e.target.closest('.task');if(r){const t=MODS[+r.dataset.m].tasks[+r.dataset.t];if(t.a&&!S.done[id(+r.dataset.m,+r.dataset.t)]){openAula(r);return}toggle(r);return}
+$('mods').addEventListener('click',e=>{const en=e.target.closest('[data-ent]');if(en){e.preventDefault();openEnt(en.closest('.task'));return}const al=e.target.closest('[data-aula]');if(al){e.preventDefault();openAula(al.closest('.task'));return}if(e.target.closest('a'))return;const r=e.target.closest('.task');if(r){const t=MODS[+r.dataset.m].tasks[+r.dataset.t];if(t.a&&!S.done[id(+r.dataset.m,+r.dataset.t)]){openAula(r);return}if(isEnt(t)&&sb&&USER){openEnt(r);return}toggle(r);return}
   const h=e.target.closest('.mh');if(!h)return;const i=+h.dataset.h;if(!unlocked(i)){toast(svg(I.lock,2.4),'Conclua o Módulo '+pad(i)+' primeiro');return}openMod(open===i?-1:i)});
 $('mods').addEventListener('keydown',e=>{const r=e.target.closest('.task');if(r&&(e.key===' '||e.key==='Enter')){e.preventDefault();toggle(r)}});
 $('cta').onclick=()=>{const a=activeIdx();if(a===-1){$('lab').scrollIntoView({behavior:'smooth',block:'center'});return}openMod(a,true)};
@@ -482,6 +498,7 @@ async function boot(){
     USER=session.user;NOME=(USER.user_metadata&&USER.user_metadata.nome)||USER.email.split('@')[0];
     const {data}=await sb.from('progress').select('state').eq('user_id',USER.id).maybeSingle();
     if(data&&data.state&&data.state.done)S=Object.assign({done:{},days:[]},data.state);
+    await loadEnt();
     $('logout').style.display='';$('logout').onclick=async()=>{await sb.auth.signOut();location.reload()};
     pushRemote();
   }
@@ -489,13 +506,52 @@ async function boot(){
   $('hello').textContent=(hr<12?'Bom dia':hr<18?'Boa tarde':'Boa noite')+', '+NOME;
   open=Math.max(0,activeIdx());renderMods();requestAnimationFrame(renderStats);
 }
+let ENT={},EC=null;
+const isEnt=t=>t.g==='p'&&!t.e;
+const ST={enviado:'Em revisão',ajustar:'Ajustar',aprovado:'Aprovado'};
+const entChip=k=>ENT[k]?`<span class="ech ${ENT[k].status}">${ST[ENT[k].status]}</span>`:'';
+const escH=s=>String(s||'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+async function loadEnt(){if(!sb||!USER)return;const {data,error}=await sb.from('entregas').select('*').eq('user_id',USER.id);if(error)return;ENT={};(data||[]).forEach(r=>ENT[r.task_key]=r)}
+function openEnt(row){if(!sb||!USER){toast(svg(I.lock,2.4),'Entre com sua conta para enviar');return}
+  const i=+row.dataset.m,j=+row.dataset.t,t=MODS[i].tasks[j],k=id(i,j);EC={i,j,t,k,files:[],keep:(ENT[k]&&ENT[k].arquivos)||[]};
+  $('eK').textContent='Módulo '+pad(i+1)+' · '+(t.k?'Entrega do módulo':'Aula prática');$('eT').textContent=t.t;renderEnt();$('ent').classList.add('show');$('ent').scrollTop=0;document.body.style.overflow='hidden'}
+function closeEnt(){$('ent').classList.remove('show');document.body.style.overflow='';EC=null}
+async function fileLinks(){for(const f of EC.keep){if(f.url)continue;const {data}=await sb.storage.from('entregas').createSignedUrl(f.path,3600);f.url=data&&data.signedUrl}}
+async function renderEnt(){const r=ENT[EC.k],fb=r&&r.feedback;
+  let h=`<div class="brief"><b>O que entregar</b><br>${EC.t.d}</div>`;
+  if(r){const cor={enviado:'#8fb0ff',ajustar:'#ffb287',aprovado:'#6fe6b0'}[r.status];
+    h+=`<div class="fb"><div class="st" style="color:${cor}">${r.status==='enviado'?'Enviado · aguardando feedback':(r.status==='aprovado'?'Aprovado':'Precisa de ajustes')}</div>`+
+    (fb?`${fb.nota?`<h5>Nota</h5><p>${escH(fb.nota)}/10</p>`:''}<h5>Pontos fortes</h5><p>${escH(fb.fortes)}</p><h5>O que melhorar</h5><p>${escH(fb.melhorar)}</p><h5>Próximo passo</h5><p>${escH(fb.proximo)}</p>`:`<p style="color:var(--t2);margin-top:8px;font-size:14px">Você recebe o feedback aqui assim que a revisão for feita.</p>`)+`</div>`}
+  const can=!r||r.status!=='aprovado';
+  h+=`<form class="ef" id="ef"><label for="eTx">Sua entrega</label><textarea id="eTx" placeholder="Explique o que fez, suas escolhas e o raciocínio. Quanto mais claro, melhor o feedback." ${can?'':'disabled'}>${escH(r&&r.texto)}</textarea>
+  <label for="eLk">Links (Google Drive, Canva, Looker, Gerenciador…)</label><input type="text" id="eLk" placeholder="Cole um ou mais links" value="${escH(r&&r.links)}" ${can?'':'disabled'}>
+  <label>Arquivos (PDF, imagens, planilhas · até 25 MB cada)</label>${can?`<label class="drop">Toque para escolher arquivos<input type="file" id="eF" multiple accept=".pdf,.png,.jpg,.jpeg,.webp,.xlsx,.xls,.csv,.docx,.pptx,.mp4,.mov"></label>`:''}<ul class="fl" id="eFl"></ul>
+  ${can?`<div class="nav"><button class="pri" id="eGo" type="submit">${r?'Reenviar para revisão':'Enviar para revisão · +'+EC.t.x+' XP'}</button></div>`:''}</form>`;
+  $('eB').innerHTML=h;await fileLinks();listFiles();
+  const f=$('eF');if(f)f.onchange=()=>{EC.files.push(...f.files);f.value='';listFiles()};
+  $('ef').onsubmit=sendEnt}
+function listFiles(){const el=$('eFl');if(!el)return;el.innerHTML=EC.keep.map((f,n)=>`<li><a href="${f.url||'#'}" target="_blank" rel="noopener">${escH(f.name)}</a>${ENT[EC.k]&&ENT[EC.k].status==='aprovado'?'':`<button type="button" data-rk="${n}">Remover</button>`}</li>`).join('')+EC.files.map((f,n)=>`<li><span>${escH(f.name)} · novo</span><button type="button" data-rn="${n}">Remover</button></li>`).join('');
+  el.onclick=e=>{const a=e.target.dataset.rk,b=e.target.dataset.rn;if(a!=null){EC.keep.splice(+a,1);listFiles()}if(b!=null){EC.files.splice(+b,1);listFiles()}}}
+async function sendEnt(e){e.preventDefault();const tx=$('eTx').value.trim(),lk=$('eLk').value.trim(),go=$('eGo');
+  if(!tx&&!lk&&!EC.files.length&&!EC.keep.length){$('eS').textContent='Escreva algo, cole um link ou anexe um arquivo.';return}
+  go.disabled=true;$('eS').textContent='Enviando…';const arq=EC.keep.map(({name,path,size})=>({name,path,size}));
+  for(const f of EC.files){if(f.size>26214400){$('eS').textContent=f.name+' passa de 25 MB.';go.disabled=false;return}
+    const path=`${USER.id}/${EC.k}/${Date.now()}-${f.name.normalize('NFD').replace(/[^\w.\-]/g,'_')}`;
+    const {error}=await sb.storage.from('entregas').upload(path,f);if(error){$('eS').textContent='Falha ao subir '+f.name;go.disabled=false;return}arq.push({name:f.name,path,size:f.size})}
+  const row={user_id:USER.id,email:USER.email,nome:NOME,task_key:EC.k,task_titulo:EC.t.t,texto:tx,links:lk,arquivos:arq,status:'enviado'};
+  const {data,error}=await sb.from('entregas').upsert(row,{onConflict:'user_id,task_key'}).select().single();
+  if(error){$('eS').textContent='Não foi possível enviar agora. Tente de novo.';go.disabled=false;return}
+  ENT[EC.k]=data;$('eS').textContent='';const k=EC.k,i=EC.i,j=EC.j;closeEnt();
+  const row2=document.querySelector(`.task[data-m="${i}"][data-t="${j}"]`);if(!S.done[k]&&row2)toggle(row2);else toast(svg(I.check,2.6),'Entrega reenviada');
+  renderMods();openMod(i)}
+$('eX').onclick=closeEnt;addEventListener('keydown',e=>{if(e.key==='Escape'&&EC)closeEnt()});
 boot();
 
 let AU=null;
 function openAula(row){const i=+row.dataset.m,j=+row.dataset.t,t=MODS[i].tasks[j],a=window.AULAS&&AULAS[t.a];if(!a)return;AU={row,i,j,a,p:0,ans:{}};$('aK').textContent='Módulo '+pad(i+1)+' · Aula W3W · '+a.min+' min';$('aT').textContent=a.t;renderAula();$('aula').classList.add('show');$('aula').scrollTop=0;document.body.style.overflow='hidden'}
 function closeAula(){$('aula').classList.remove('show');document.body.style.overflow='';AU=null}
 function renderAula(){const a=AU.a,n=a.caps.length,qz=AU.p===n;$('aP').style.width=((AU.p+1)/(n+1)*100)+'%';$('aN').textContent=(AU.p+1)+'/'+(n+1);
-  if(!qz){$('aB').innerHTML='<h3>'+a.caps[AU.p].h+'</h3>'+a.caps[AU.p].b;$('aNext').textContent='Próximo';$('aNext').disabled=false}
+  if(!qz){$('aB').innerHTML='<h3>'+a.caps[AU.p].h+'</h3>'+(a.caps[AU.p].f||'')+a.caps[AU.p].b;$('aNext').textContent='Próximo';$('aNext').disabled=false}
   else{$('aB').innerHTML='<h3>Quiz</h3><p>Acerte todas para concluir a aula e ganhar o XP.</p>'+a.quiz.map((q,k)=>'<div class="qz" data-k="'+k+'"><p>'+q.q+'</p>'+q.o.map((o,m)=>'<button data-o="'+m+'" class="'+(AU.ans[k]===m?(m===q.c?'ok':'no'):'')+'">'+o+'</button>').join('')+'</div>').join('');
     const ok=a.quiz.every((q,k)=>AU.ans[k]===q.c),done=S.done[id(AU.i,AU.j)];$('aNext').textContent=done?'Aula concluída':'Concluir aula · +'+MODS[AU.i].tasks[AU.j].x+' XP';$('aNext').disabled=!ok||done}
   $('aPrev').disabled=AU.p===0}
@@ -503,6 +559,7 @@ $('aB').addEventListener('click',e=>{const b=e.target.closest('.qz button');if(!
 $('aPrev').onclick=()=>{if(AU.p>0){AU.p--;renderAula();$('aula').scrollTop=0}};
 $('aNext').onclick=()=>{if(AU.p<AU.a.caps.length){AU.p++;renderAula();$('aula').scrollTop=0;return}const r=AU.row,k=id(AU.i,AU.j);closeAula();if(!S.done[k]){const cur=document.querySelector(`.task[data-m="${r.dataset.m}"][data-t="${r.dataset.t}"]`)||r;toggle(cur)}};
 $('aX').onclick=closeAula;addEventListener('keydown',e=>{if(e.key==='Escape'&&AU)closeAula()});
+
 </script>
 </body>
 </html>
