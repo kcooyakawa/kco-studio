@@ -200,6 +200,9 @@ canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:80}
 .gate .msg{font-size:13.5px;color:var(--t2);margin-top:16px;min-height:20px;text-align:center}
 .gate .msg.err{color:#ff8a8a}
 .sync{font-size:12px;color:var(--t3)}
+.gtabs{display:flex;background:var(--s1);border:1px solid var(--hair);border-radius:99px;padding:3px;margin-bottom:20px}
+.gtabs button{flex:1;height:38px;border-radius:99px;margin:0;background:none;color:var(--t2);font-weight:600;font-size:14px}
+.gtabs button.on{background:var(--s3);color:var(--t1)}
 </style>
 <script src="config.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -251,10 +254,12 @@ canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:80}
   <footer><span><span class="sync" id="sync"></span> Cursos, exercício e entrega liberam o próximo módulo. Extras valem XP.</span><span><button id="logout" style="display:none;margin-right:16px">Sair</button><button id="reset">Reiniciar</button></span></footer>
 </main>
 
-<div class="gate" id="gate"><form class="card" id="gform"><div class="logo"></div><h2>Entre na sua trilha</h2><p>Use seu e-mail. Enviamos um link de acesso, sem senha.</p>
-<label for="gn">Seu nome</label><input id="gn" autocomplete="given-name" required maxlength="30" placeholder="Como quer ser chamada">
+<div class="gate" id="gate"><form class="card" id="gform"><div class="logo"></div><h2 id="gt">Entre na sua trilha</h2><p id="gp">Use seu e-mail e senha.</p>
+<div class="gtabs"><button type="button" class="on" data-m="in">Entrar</button><button type="button" data-m="up">Primeiro acesso</button></div>
+<div id="gnw" style="display:none"><label for="gn">Seu nome</label><input id="gn" autocomplete="given-name" maxlength="30" placeholder="Como quer ser chamada"></div>
 <label for="ge">E-mail</label><input id="ge" type="email" autocomplete="email" required placeholder="voce@email.com">
-<button id="gb">Receber link de acesso</button><div class="msg" id="gm"></div></form></div>
+<label for="gs">Senha</label><input id="gs" type="password" autocomplete="current-password" required minlength="6" placeholder="Mínimo de 6 caracteres">
+<button id="gb">Entrar</button><div class="msg" id="gm"></div></form></div>
 <div class="toast" id="toast"></div>
 <div class="cel" id="cel" role="dialog" aria-modal="true" aria-labelledby="celT"><div class="sheet"><div class="medal" id="celIc"></div><div class="k" id="celK"></div><h3 id="celT"></h3><p id="celP"></p><button id="celBtn"></button></div></div>
 <canvas id="cf"></canvas>
@@ -433,9 +438,23 @@ let armed=false;$('reset').onclick=()=>{const b=$('reset');if(!armed){armed=true
 const hr=new Date().getHours();$('hello').textContent=(hr<12?'Bom dia':hr<18?'Boa tarde':'Boa noite')+', '+NOME;
 async function boot(){
   if(sb){const {data:{session}}=await sb.auth.getSession();
-    if(!session){$('gate').classList.add('show');$('gform').onsubmit=async e=>{e.preventDefault();const em=$('ge').value.trim(),nm=$('gn').value.trim();$('gb').disabled=true;$('gm').className='msg';$('gm').textContent='Enviando…';
-        const {error}=await sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:location.origin+location.pathname,data:{nome:nm}}});
-        $('gb').disabled=false;if(error){$('gm').className='msg err';$('gm').textContent='Não foi possível enviar. Confira o e-mail e tente de novo.'}else{$('gm').textContent='Pronto. Abra o link que enviamos para '+em+'.'}};return}
+    if(!session){$('gate').classList.add('show');let mode='in';
+      const setM=m=>{mode=m;document.querySelectorAll('.gtabs button').forEach(x=>x.classList.toggle('on',x.dataset.m===m));$('gnw').style.display=m==='up'?'':'none';$('gn').required=m==='up';$('gb').textContent=m==='up'?'Criar meu acesso':'Entrar';$('gp').textContent=m==='up'?'Crie sua senha para começar a trilha.':'Use seu e-mail e senha.';$('gs').autocomplete=m==='up'?'new-password':'current-password';$('gm').textContent=''};
+      document.querySelectorAll('.gtabs button').forEach(x=>x.onclick=()=>setM(x.dataset.m));
+      const err=t=>{$('gm').className='msg err';$('gm').textContent=t};
+      $('gform').onsubmit=async e=>{e.preventDefault();const em=$('ge').value.trim(),pw=$('gs').value,nm=$('gn').value.trim();$('gb').disabled=true;$('gm').className='msg';$('gm').textContent=mode==='up'?'Criando acesso…':'Entrando…';
+        let r;if(mode==='up'){r=await sb.auth.signUp({email:em,password:pw,options:{data:{nome:nm}}});
+          if(!r.error&&!r.data.session)r=await sb.auth.signInWithPassword({email:em,password:pw});}
+        else r=await sb.auth.signInWithPassword({email:em,password:pw});
+        $('gb').disabled=false;const er=r.error;
+        if(!er&&r.data&&r.data.session){location.reload();return}
+        const m=(er&&(er.code||er.message)||'').toLowerCase();
+        if(m.includes('already')||m.includes('registered')||m.includes('user_already_exists'))return err('Este e-mail já tem acesso. Use a aba Entrar.');
+        if(m.includes('invalid')&&mode==='in')return err('E-mail ou senha incorretos. Se é sua primeira vez, use Primeiro acesso.');
+        if(m.includes('not_confirmed')||m.includes('not confirmed'))return err('Acesso ainda não liberado. Fale com quem te enviou o curso.');
+        if(m.includes('weak')||m.includes('password'))return err('Senha muito curta. Use pelo menos 6 caracteres.');
+        if(m.includes('rate')||m.includes('429'))return err('Muitas tentativas seguidas. Aguarde alguns minutos.');
+        err('Não foi possível entrar agora. Tente de novo.')};return}
     USER=session.user;NOME=(USER.user_metadata&&USER.user_metadata.nome)||USER.email.split('@')[0];
     const {data}=await sb.from('progress').select('state').eq('user_id',USER.id).maybeSingle();
     if(data&&data.state&&data.state.done)S=Object.assign({done:{},days:[]},data.state);
