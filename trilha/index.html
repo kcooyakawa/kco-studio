@@ -241,6 +241,33 @@ canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:80}
 .fb h5{font-size:13px;color:var(--t3);font-weight:600;margin:14px 0 4px}.fb p{margin:0;color:var(--t1);font-size:15px;line-height:1.55;white-space:pre-wrap}
 .brief{background:var(--s1);border:1px solid var(--hair);border-radius:16px;padding:14px 16px;font-size:14.5px;color:var(--t2)}
 @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+/* animações dos diagramas */
+.aula .fig svg>*:not(defs):not(style){opacity:0;transform:translateY(10px);animation:figin .6s var(--ease) forwards}
+.aula .fig svg>*:nth-child(3){animation-delay:.05s}.aula .fig svg>*:nth-child(4){animation-delay:.1s}.aula .fig svg>*:nth-child(5){animation-delay:.15s}.aula .fig svg>*:nth-child(6){animation-delay:.2s}.aula .fig svg>*:nth-child(7){animation-delay:.25s}.aula .fig svg>*:nth-child(8){animation-delay:.3s}.aula .fig svg>*:nth-child(9){animation-delay:.35s}.aula .fig svg>*:nth-child(10){animation-delay:.4s}.aula .fig svg>*:nth-child(n+11){animation-delay:.45s}
+@keyframes figin{to{opacity:1;transform:none}}
+/* widgets */
+.wg{margin:8px 0 22px;border-radius:20px;padding:20px;background:linear-gradient(160deg,rgba(124,92,255,.10),rgba(232,93,156,.06) 60%,transparent);border:1px solid var(--hair2)}
+.wg .wk{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#b9a8ff}
+.wg h5{font-size:17px;font-weight:650;margin:4px 0 14px;color:var(--t1)}
+.wg .rw{display:grid;grid-template-columns:1fr 110px;gap:10px;align-items:center;margin:10px 0}
+.wg .rw span{font-size:14px;color:var(--t2)}
+.wg input[type=number],.wg select{width:100%;height:42px;border-radius:12px;background:var(--bg);border:1px solid var(--hair2);color:var(--t1);font:inherit;font-size:15px;padding:0 12px;text-align:right}
+.wg input[type=range]{width:100%;accent-color:#e85d9c}
+.wg .out{margin-top:16px;display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px}
+.wg .out div{background:var(--bg);border-radius:14px;padding:12px 14px}
+.wg .out b{display:block;font-size:22px;font-weight:700;letter-spacing:-.02em;color:var(--t1);transition:color .3s}
+.wg .out small{font-size:12px;color:var(--t3)}
+.wg .bars{margin-top:14px}.wg .bars div{height:30px;border-radius:9px;background:var(--g);margin:6px auto;display:flex;align-items:center;justify-content:center;font-size:12.5px;font-weight:600;color:#fff;transition:width .6s var(--ease);min-width:90px}
+.wg .verdict{margin-top:12px;font-size:14px;color:var(--t2)}
+.ck label{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-bottom:1px solid var(--hair);font-size:14.5px;color:var(--t2);cursor:pointer}.ck input{margin-top:3px;accent-color:#e85d9c}
+.dz{margin:8px 0 22px;border:1px solid var(--hair2);border-radius:20px;padding:20px;background:var(--s1)}
+.dz .wk{font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#ffb287}
+.dz p.q{color:var(--t1);font-weight:600;margin:6px 0 12px!important}
+.dz button.op{display:block;width:100%;text-align:left;padding:12px 14px;border-radius:12px;background:var(--bg);border:1px solid var(--hair);color:var(--t2);font-size:14.5px;margin-top:8px;transition:all .25s}
+.dz button.op:hover{border-color:var(--hair2)}
+.dz button.ok{border-color:var(--ok);color:var(--t1)}.dz button.no{border-color:#ff8a8a;color:#ff8a8a}
+.dz .why{margin-top:12px;font-size:14px;color:var(--t2);display:none}.dz.done .why{display:block}
 </style>
 <div class="aula" id="aula" role="dialog" aria-modal="true"><div class="in"><div class="top"><button class="x" id="aX">Fechar</button><div class="prog"><i id="aP"></i></div><span class="sync" id="aN"></span></div><div class="kk" id="aK"></div><h2 id="aT"></h2><div class="body" id="aB"></div><div class="nav"><button class="sec" id="aPrev">Voltar</button><button class="pri" id="aNext">Próximo</button></div></div></div>
 <div class="aula" id="ent" role="dialog" aria-modal="true"><div class="in"><div class="top"><button class="x" id="eX">Fechar</button><span class="sync" id="eS"></span></div><div class="kk" id="eK"></div><h2 id="eT"></h2><div class="body" id="eB"></div></div></div>
@@ -316,7 +343,7 @@ const MODS = [
   learn:'Mercado de <b>alto padrão</b>, perfil e comportamento do comprador, intenção de compra, segmentação e jornada.',
   tasks:[
    {g:'c',t:'Fundamentos do Marketing Digital Imobiliário',d:'Lano Academy · 5h',u:L.lano,x:40},
-   {g:'c',t:'Personas, jornada do comprador e segmentação',d:'Aula W3W · 25 min · 3 capítulos + quiz',a:'personas',x:30},
+   {g:'c',t:'Personas, jornada do comprador e segmentação',d:'Aula W3W · 55 min · 6 capítulos, simulador e desafios',a:'personas',x:30},
    {g:'p',t:'Mapear como o alto padrão é anunciado',d:'Salve 10 anúncios de imóveis acima de R$ 3 mi em portais e sites de imobiliárias boutique: fotos, texto, preço, chamada.',x:25,e:1},
    {g:'p',t:'Exercício: 5 empreendimentos, 3 perfis de comprador',d:'Analise cinco empreendimentos de alto padrão e crie três perfis de compradores.',x:60},
    {g:'p',t:'Entrega: diagnóstico de mercado e mapa de compradores',d:'Envie para revisão antes de abrir o Módulo 02.',x:50,k:1}
@@ -325,7 +352,7 @@ const MODS = [
   learn:'Funil de aquisição, posicionamento do imóvel, copywriting, argumentos de venda, canais, distribuição de verba e planejamento de mídia.',
   tasks:[
    {g:'c',t:'Ads para Marketing Imobiliário',d:'Lano Academy · 6h',u:L.lano,x:45},
-   {g:'c',t:'Fundamentos de Inbound para imóveis',d:'Aula W3W · 20 min · 3 capítulos + quiz',a:'inbound',x:30},
+   {g:'c',t:'Fundamentos de Inbound para imóveis',d:'Aula W3W · 50 min · 6 capítulos, simulador e desafios',a:'inbound',x:30},
    {g:'p',t:'Fazer a conta de trás para frente',d:'Parta de 1 venda e calcule quantas visitas, leads qualificados e leads totais você precisa, e qual o custo por lead máximo que a verba aguenta.',x:30,e:1},
    {g:'p',t:'Exercício: estratégia para um imóvel de R$ 5 milhões',d:'Público, mensagem, canais, verba e metas.',x:60},
    {g:'p',t:'Entrega: plano estratégico de mídia e aquisição',d:'Envie para revisão antes de abrir o Módulo 03.',x:50,k:1}
@@ -345,7 +372,7 @@ const MODS = [
   learn:'Copywriting, anúncios, vídeos, criativos, páginas de captação, formulários, Pixel, UTMs e Analytics.',
   tasks:[
    {g:'c',t:'Criativos e Gerenciador de Anúncios',d:'Meta Blueprint',u:L.meta,x:35},
-   {g:'c',t:'Formulários e landing pages que convertem',d:'Aula W3W · 20 min · 3 capítulos + quiz',a:'landing',x:30},
+   {g:'c',t:'Formulários e landing pages que convertem',d:'Aula W3W · 50 min · 6 capítulos, simulador e desafios',a:'landing',x:30},
    {g:'c',t:'Google Analytics 4',d:'Google Skillshop · trilha gratuita de GA4',u:L.ga,x:40},
    {g:'p',t:'Formulário que filtra curiosos',d:'Inclua perguntas de faixa de investimento, prazo e forma de pagamento, e o aviso de privacidade (LGPD).',x:30,e:1},
    {g:'p',t:'Ativar a API de Conversões da Meta',d:'Deixa o rastreamento confiável mesmo com bloqueadores e iOS.',x:30,e:1},
@@ -355,7 +382,7 @@ const MODS = [
  {t:'CRM e qualificação de leads',w:'Semanas 9 e 10',ic:'users',h:16,prio:1,
   learn:'CRM, pipeline comercial, lead scoring, qualificação, atendimento, follow-up e integração de dados. <b>É aqui que lead vira venda.</b>',
   tasks:[
-   {g:'c',t:'Gestão de contatos e CRM',d:'Aula W3W · 20 min · 3 capítulos + quiz',a:'crm',x:35},
+   {g:'c',t:'Gestão de contatos e CRM',d:'Aula W3W · 50 min · 6 capítulos, simulador e desafios',a:'crm',x:35},
    {g:'c',t:'Melhorar a qualidade dos leads com CRM',d:'Meta Blueprint · 20 min',u:L.meta,x:20},
    {g:'p',t:'Roteiro de primeiro contato no WhatsApp',d:'Responder em até 5 minutos, com 3 perguntas de qualificação e a passagem para o corretor.',x:35,e:1},
    {g:'p',t:'Devolver os leads bons para a Meta',d:'Marque no CRM quem virou visita e envie de volta (conversão offline). O algoritmo passa a buscar mais gente assim.',x:35,e:1},
@@ -394,7 +421,7 @@ try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r));}cat
 const CFG=window.HERP_CONFIG||{};const sb=(CFG.SUPABASE_URL&&CFG.SUPABASE_ANON_KEY&&window.supabase)?window.supabase.createClient(CFG.SUPABASE_URL,CFG.SUPABASE_ANON_KEY):null;
 let USER=null,syncT;
 function pushRemote(){if(!sb||!USER)return;clearTimeout(syncT);$('sync').textContent='Salvando…';syncT=setTimeout(async()=>{const a=activeIdx();
-  const {error}=await sb.from('progress').upsert({user_id:USER.id,email:USER.email,nome:NOME,state:S,pct:Math.round(xp()/totalXP*100),modulo:a===-1?7:a+1,xp:xp(),tarefas:Object.values(S.done).filter(Boolean).length,updated_at:new Date().toISOString()});
+  const {error}=await sb.from('progress').upsert({user_id:USER.id,email:USER.email,nome:NOME,state:S,pct:Math.min(100,Math.round(xp()/totalXP*100)),modulo:a===-1?7:a+1,xp:xp(),tarefas:Object.values(S.done).filter(Boolean).length,updated_at:new Date().toISOString()});
   $('sync').textContent=error?'Sem conexão. Seu progresso será salvo ao reconectar.':'Progresso salvo na nuvem.';if(error)setTimeout(pushRemote,8000)},700)}
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}pushRemote()};
 const id=(m,t)=>m+'-'+t,pad=n=>String(n).padStart(2,'0'),$=s=>document.getElementById(s);
@@ -402,7 +429,7 @@ const totalXP=MODS.reduce((a,m)=>a+m.tasks.reduce((b,t)=>b+t.x,0),0);
 const modPct=i=>MODS[i].tasks.filter((t,j)=>S.done[id(i,j)]).length/MODS[i].tasks.length;
 const modDone=i=>MODS[i].tasks.every((t,j)=>t.e||S.done[id(i,j)]);
 const unlocked=i=>i===0||modDone(i-1);
-const xp=()=>{let x=0;MODS.forEach((m,i)=>m.tasks.forEach((t,j)=>{if(S.done[id(i,j)])x+=t.x}));return x};
+const xp=()=>{let x=S.bonus?Object.keys(S.bonus).length*5:0;MODS.forEach((m,i)=>m.tasks.forEach((t,j)=>{if(S.done[id(i,j)])x+=t.x}));return x};
 const level=x=>{let l=0;LEVELS.forEach((v,i)=>{if(x>=v[1])l=i});return l};
 function streak(){const ds=new Set(S.days);let n=0;const d=new Date();if(!ds.has(d.toDateString()))d.setDate(d.getDate()-1);while(ds.has(d.toDateString())){n++;d.setDate(d.getDate()-1)}return n}
 function earned(){const e=new Set();if(Object.values(S.done).some(Boolean))e.add('first');for(let i=0;i<5;i++)if(modDone(i))e.add('m'+i);if(streak()>=5)e.add('streak');if(MODS.every((m,i)=>modDone(i)))e.add('grad');return e}
@@ -430,7 +457,7 @@ function renderMods(){
   document.querySelectorAll('.mr svg').forEach(s=>s.classList.add('chev'));
 }
 function renderStats(){
-  const x=xp(),l=level(x),pct=Math.round(x/totalXP*100),e=earned(),a=activeIdx();
+  const x=xp(),l=level(x),pct=Math.min(100,Math.round(x/totalXP*100)),e=earned(),a=activeIdx();
   $('pct').textContent=pct+'%';$('left').textContent=pct>=100?'concluído':'faltam '+(100-pct)+'%';
   $('ringFg').style.strokeDashoffset=326.73*(1-pct/100);
   $('xpChip').textContent=x;$('lvN').textContent=l+1;$('lvName').textContent=LEVELS[l][0];
@@ -547,13 +574,50 @@ async function sendEnt(e){e.preventDefault();const tx=$('eTx').value.trim(),lk=$
   EC.files=[];EC.keep=data.arquivos||[];await corrigir(data);}
 async function corrigir(e){if(!EC)return;toast(svg(I.check,2.6),'Entrega enviada');renderMods();openMod(EC.i);renderEnt()}
 $('eX').onclick=closeEnt;addEventListener('keydown',e=>{if(e.key==='Escape'&&EC)closeEnt()});
+/* ---- widgets interativos das aulas ---- */
+const brl=n=>'R$ '+Math.round(n).toLocaleString('pt-BR');
+function widgetHTML(w){
+ if(w==='cplq')return `<div class="wg" id="wg"><div class="wk">Calculadora</div><h5>Custo por lead qualificado</h5>
+  <div class="rw"><span>Verba da campanha (R$)</span><input type="number" id="w1" value="3000"></div>
+  <div class="rw"><span>CPL (R$)</span><input type="number" id="w2" value="25"></div>
+  <div class="rw"><span>% de leads qualificados</span><input type="number" id="w3" value="10"></div>
+  <div class="out"><div><b id="o1">–</b><small>leads</small></div><div><b id="o2">–</b><small>qualificados</small></div><div><b id="o3">–</b><small>custo por qualificado</small></div></div>
+  <p class="verdict" id="ov"></p></div>`;
+ if(w==='funil')return `<div class="wg" id="wg"><div class="wk">Simulador</div><h5>Funil de trás para frente</h5>
+  <div class="rw"><span>Vendas que você quer</span><input type="number" id="w1" value="1" min="1"></div>
+  <div class="rw"><span>Proposta → venda (%)</span><input type="number" id="w2" value="25"></div>
+  <div class="rw"><span>Visita → proposta (%)</span><input type="number" id="w3" value="33"></div>
+  <div class="rw"><span>Qualificado → visita (%)</span><input type="number" id="w4" value="20"></div>
+  <div class="rw"><span>Lead → qualificado (%)</span><input type="number" id="w5" value="10"></div>
+  <div class="rw"><span>Verba disponível (R$)</span><input type="number" id="w6" value="6000"></div>
+  <div class="bars" id="ob"></div><div class="out"><div><b id="o1">–</b><small>CPL máximo</small></div><div><b id="o2">–</b><small>custo por visita</small></div></div><p class="verdict" id="ov"></p></div>`;
+ if(w==='score')return `<div class="wg" id="wg"><div class="wk">Simulador</div><h5>Pontue este lead</h5><p style="font-size:14px;color:var(--t2);margin:0 0 6px">Marque o que você sabe sobre o lead. Acima de 60 pontos, ele vai para o corretor hoje.</p>
+  <div class="ck">${[['Faixa de investimento compatível',30],['Prazo de compra até 6 meses',25],['Respondeu em menos de 24h',15],['Pediu visita',30],['Já tem imóvel para dar na troca ou crédito aprovado',15],['Só baixou material, sem resposta',-20]].map(([t,p],i)=>`<label><input type="checkbox" data-p="${p}">${t} <span style="margin-left:auto;color:var(--t3)">${p>0?'+':''}${p}</span></label>`).join('')}</div>
+  <div class="out"><div><b id="o1">0</b><small>pontos</small></div><div><b id="o2">Frio</b><small>temperatura</small></div></div><p class="verdict" id="ov"></p></div>`;
+ if(w==='lpcheck')return `<div class="wg" id="wg"><div class="wk">Checklist interativo</div><h5>Sua landing page passa?</h5>
+  <div class="ck">${['Título com benefício concreto, não só o nome do prédio','Primeira dobra mostra imagem forte + botão','Uma única ação principal (sem menu, sem links de saída)','Ficha técnica em até 5 linhas','Mapa com 3 pontos de interesse a pé','Prova social (depoimento, construtora, prêmio)','Formulário com 3 a 5 campos e pergunta de faixa de investimento','Botão de WhatsApp fixo no celular','Carrega em menos de 3 segundos no 4G','Página de obrigado com próximo passo'].map(t=>`<label><input type="checkbox">${t}</label>`).join('')}</div>
+  <div class="out"><div><b id="o1">0/10</b><small>itens</small></div></div><p class="verdict" id="ov"></p></div>`;
+ return ''}
+function widgetInit(w){const g=$('wg');if(!g)return;const v=id=>+(($(id)||{}).value||0);
+ const run={cplq(){const l=v('w1')/Math.max(v('w2'),.01),q=l*v('w3')/100;$('o1').textContent=Math.round(l);$('o2').textContent=Math.round(q);$('o3').textContent=q?brl(v('w1')/q):'–';$('ov').textContent=q<1?'Com esses números você não terá nenhum lead qualificado. Revise segmentação e formulário.':(v('w1')/q>600?'Custo por qualificado alto para alto padrão. Melhore a mensagem por persona antes de aumentar a verba.':'Bom patamar. Agora o desafio é transformar qualificados em visitas.')},
+  funil(){const s=v('w1'),p=s/(v('w2')/100),vi=p/(v('w3')/100),q=vi/(v('w4')/100),l=q/(v('w5')/100);const st=[['Leads',l],['Qualificados',q],['Visitas',vi],['Propostas',p],['Vendas',s]];
+   $('ob').innerHTML=st.map(([n,x],i)=>`<div style="width:${100-i*17}%">${Math.ceil(x)} ${n}</div>`).join('');$('o1').textContent=l?brl(v('w6')/l):'–';$('o2').textContent=vi?brl(v('w6')/vi):'–';
+   $('ov').textContent=v('w6')/l<8?'CPL máximo muito baixo para alto padrão: aumente a verba ou melhore as taxas de conversão (qualificação e atendimento).':'A conta fecha. Use esse CPL máximo como teto ao otimizar campanhas.'},
+  score(){let t=0;g.querySelectorAll('input:checked').forEach(c=>t+= +c.dataset.p);$('o1').textContent=t;const tp=t>=60?'Quente':t>=30?'Morno':'Frio';$('o2').textContent=tp;$('o2').style.color=t>=60?'#f08bbb':t>=30?'#ffb287':'#8fb0ff';$('ov').textContent=t>=60?'Passe para o corretor hoje, com o histórico do lead.':t>=30?'Nutra com conteúdo de consideração e tente agendar visita.':'Entra na sequência de nutrição. Não ocupe o corretor ainda.'},
+  lpcheck(){const n=g.querySelectorAll('input:checked').length;$('o1').textContent=n+'/10';$('ov').textContent=n===10?'Página pronta para receber tráfego.':n>=7?'Quase lá. Os itens que faltam costumam custar caro em conversão.':'Ainda não suba verba para essa página.'}}[w];
+ if(!run)return;g.addEventListener('input',run);g.addEventListener('change',run);run()}
+function desafioHTML(d,k){return `<div class="dz" data-k="${k}"><div class="wk">Desafio · +5 XP de bônus</div><p class="q">${d.q}</p>${d.o.map((o,i)=>`<button class="op" data-i="${i}">${o}</button>`).join('')}<div class="why">${d.why}</div></div>`}
+document.addEventListener('click',e=>{const b=e.target.closest('.dz button.op');if(!b||!AU)return;const z=b.closest('.dz');if(z.classList.contains('done'))return;const d=AU.a.caps[+z.dataset.k].d,i=+b.dataset.i;
+ z.querySelectorAll('button.op').forEach((x,j)=>{if(j===d.c)x.classList.add('ok')});if(i!==d.c)b.classList.add('no');z.classList.add('done');
+ if(i===d.c){const key='bonus-'+AU.a.t+'-'+z.dataset.k;if(!S.bonus)S.bonus={};if(!S.bonus[key]){S.bonus[key]=1;save();toast('+5','Bônus de desafio')}}});
+
 boot();
 
 let AU=null;
 function openAula(row){const i=+row.dataset.m,j=+row.dataset.t,t=MODS[i].tasks[j],a=window.AULAS&&AULAS[t.a];if(!a)return;AU={row,i,j,a,p:0,ans:{}};$('aK').textContent='Módulo '+pad(i+1)+' · Aula W3W · '+a.min+' min';$('aT').textContent=a.t;renderAula();$('aula').classList.add('show');$('aula').scrollTop=0;document.body.style.overflow='hidden'}
 function closeAula(){$('aula').classList.remove('show');document.body.style.overflow='';AU=null}
 function renderAula(){const a=AU.a,n=a.caps.length,qz=AU.p===n;$('aP').style.width=((AU.p+1)/(n+1)*100)+'%';$('aN').textContent=(AU.p+1)+'/'+(n+1);
-  if(!qz){$('aB').innerHTML='<h3>'+a.caps[AU.p].h+'</h3>'+(a.caps[AU.p].f||'')+a.caps[AU.p].b;$('aNext').textContent='Próximo';$('aNext').disabled=false}
+  if(!qz){const cp=a.caps[AU.p];$('aB').innerHTML='<h3>'+cp.h+'</h3>'+(cp.f||'')+cp.b+(cp.w?widgetHTML(cp.w):'')+(cp.d?desafioHTML(cp.d,AU.p):'');if(cp.w)widgetInit(cp.w);$('aNext').textContent='Próximo';$('aNext').disabled=false}
   else{$('aB').innerHTML='<h3>Quiz</h3><p>Acerte todas para concluir a aula e ganhar o XP.</p>'+a.quiz.map((q,k)=>'<div class="qz" data-k="'+k+'"><p>'+q.q+'</p>'+q.o.map((o,m)=>'<button data-o="'+m+'" class="'+(AU.ans[k]===m?(m===q.c?'ok':'no'):'')+'">'+o+'</button>').join('')+'</div>').join('');
     const ok=a.quiz.every((q,k)=>AU.ans[k]===q.c),done=S.done[id(AU.i,AU.j)];$('aNext').textContent=done?'Aula concluída':'Concluir aula · +'+MODS[AU.i].tasks[AU.j].x+' XP';$('aNext').disabled=!ok||done}
   $('aPrev').disabled=AU.p===0}

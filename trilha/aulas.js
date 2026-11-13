@@ -28,7 +28,7 @@ window.AULAS = {
 personas: {
   t:'Personas, jornada do comprador e segmentação', min:55,
   caps:[
-   {h:'1. Por que persona decide o seu custo por lead',b:`
+   {h:'1. Por que persona decide o seu custo por lead',w:'cplq',b:`
 <p>No alto padrão, o erro mais caro do tráfego não é técnico: é falar com a pessoa errada. Um anúncio de cobertura de R$ 6 milhões que atrai curiosos gera lead barato e venda zero. O mesmo anúncio, escrito para o comprador certo, gera menos leads, mas leads que visitam.</p>
 <table>
 <tr><td>Campanha genérica ("apartamento de luxo em Moema")</td><td>CPL R$ 18 · 3% qualificados</td></tr>
@@ -74,7 +74,7 @@ personas: {
 <tr><td>Frase</td><td>"A gente quer parar de mudar. Esse tem que ser o apartamento dos próximos 15 anos."</td></tr>
 </table>
 <p class="tip">Faça no máximo 3 personas por empreendimento. Mais que isso, você não consegue produzir criativo bom para todas.</p>`},
-   {h:'4. A jornada: fases, sinais e métricas',f:FIGS.jornada,b:`
+   {h:'4. A jornada: fases, sinais e métricas',f:FIGS.jornada,d:{q:'Um lead respondeu ao anúncio de guia do bairro, salvou 3 posts e nunca perguntou preço. O corretor quer ligar oferecendo visita. O que você recomenda?',o:['Ligar já: lead é lead','Colocar em remarketing com conteúdo de consideração (tour, planta) e esperar um sinal de interesse','Descartar o lead'],c:1,why:'Ele está em <b>descoberta</b>. Oferecer visita agora queima o contato. O remarketing com conteúdo de consideração faz ele avançar e mostrar um sinal claro, como pedir a planta ou a tabela.'},b:`
 <p>No alto padrão, a jornada leva de <b>3 a 12 meses</b>. Seu trabalho é estar presente em cada fase com o conteúdo certo e saber <b>em que fase cada lead está</b>.</p>
 <table>
 <tr><td><b>Descoberta</b> · sinal: consome conteúdo de bairro, salva posts, não pede preço</td><td>KPI: alcance, ThruPlay, seguidores</td></tr>
@@ -88,7 +88,7 @@ personas: {
 <li>Medir a campanha de descoberta por CPL: ela não foi feita para gerar lead, e sim para encher o público de remarketing.</li>
 </ul>
 <p class="tip">Estrutura recomendada: 20–30% da verba em descoberta (vídeo e conteúdo), 60–70% em captação (cadastro e WhatsApp), 10% em remarketing para quem já engajou.</p>`},
-   {h:'5. Matriz de mensagens: persona × fase',f:FIGS.matriz,b:`
+   {h:'5. Matriz de mensagens: persona × fase',f:FIGS.matriz,d:{q:'Qual destes ganchos é o melhor para a persona Família na fase de consideração?',o:['"O empreendimento mais exclusivo de Moema"','"3 suítes, playground coberto e 3 vagas: baixe a planta"','"Condição especial até sexta"'],c:1,why:'Na consideração, a família compara plantas e itens concretos. "Exclusivo" não diz nada, e urgência de preço é mensagem de decisão.'},b:`
 <p>Cruzando 3 personas com 3 fases, você tem 9 mensagens. Elas viram o seu plano de criativos.</p>
 <table>
 <tr><td><b>Investidor · Descoberta</b></td><td>"Moema valorizou acima da média de SP nos últimos 5 anos. Veja por quê."</td></tr>
@@ -130,101 +130,190 @@ personas: {
   ]},
 
 inbound: {
-  t:'Fundamentos de Inbound para imóveis', min:20,
+  t:'Inbound para imóveis de alto padrão', min:50,
   caps:[
-   {h:'1. Atrair, engajar, encantar',f:FIGS.ciclo,b:`
-<p>Inbound é fazer o cliente vir até você porque você foi útil antes de pedir algo. São três movimentos que viram um ciclo:</p>
+   {h:'1. O comprador chega sozinho — se você estiver lá',f:FIGS.ciclo,b:`
+<p>Inbound é a lógica de ser encontrado em vez de interromper. No alto padrão isso pesa ainda mais: o comprador pesquisa por meses, compara com calma e só fala com quem já ganhou a confiança dele antes do primeiro contato.</p>
+<p>O ciclo tem três movimentos que se alimentam:</p>
 <ul>
-<li><b>Atrair</b> — conteúdo e anúncios que respondem às dúvidas reais do comprador.</li>
-<li><b>Engajar</b> — oferecer algo de valor em troca do contato (book, tabela, visita privativa) e responder rápido.</li>
-<li><b>Encantar</b> — atendimento impecável antes, durante e depois da venda. Cliente encantado indica, e a indicação alimenta o próximo ciclo.</li>
+<li><b>Atrair</b>: conteúdo e anúncios que respondem perguntas reais (quanto vale o m² aqui? como é morar nesse bairro? vale a pena comprar na planta?).</li>
+<li><b>Engajar</b>: trocar valor por contato (book, tabela, visita privativa) e responder rápido, com contexto.</li>
+<li><b>Encantar</b>: atendimento acima do esperado antes, durante e depois da venda. Quem foi encantado indica, e a indicação é o lead mais barato e mais quente que existe.</li>
 </ul>
-<p>No alto padrão, a <b>indicação</b> é o canal mais barato que existe. O tráfego pago acelera o ciclo; não substitui o encantamento.</p>`},
-   {h:'2. Funil de trás para frente',f:FIGS.funil,b:`
-<p>Comece pela meta de vendas e volte etapa por etapa. Um exemplo com taxas de referência (ajuste com os seus números):</p>
+<p class="tip">Tráfego pago acelera o ciclo, mas não substitui nenhuma das etapas. Anúncio bom para uma operação lenta só gera reclamação mais rápido.</p>`},
+   {h:'2. O funil de trás para frente',f:FIGS.funil,w:'funil',b:`
+<p>Todo planejamento começa pela meta de vendas, não pela verba. Volte etapa por etapa usando as taxas reais da operação; enquanto não tiver as suas, use referências do mercado e ajuste em 30 dias.</p>
+<p>Brinque com o simulador abaixo: mude as taxas e veja como uma melhora no atendimento (qualificado → visita) reduz a verba necessária mais do que qualquer ajuste de anúncio.</p>`,
+    d:{q:'Seu funil precisa de 600 leads para 1 venda. Qual destas ações costuma reduzir mais o custo da venda?',o:['Trocar a cor do botão do anúncio','Responder leads em até 5 minutos e qualificar por telefone','Dobrar a verba'],c:1,why:'A velocidade e a qualidade do atendimento mexem nas taxas do meio do funil (qualificado → visita), que costumam ser as mais baixas. Dobrar verba sem mexer nisso só dobra o custo.'}},
+   {h:'3. Conteúdo que atrai o comprador certo',b:`
+<p>Um bom plano de conteúdo para alto padrão gira em 4 pilares, cada um ligado a uma fase da jornada:</p>
 <table>
-<tr><td>1 venda</td><td>← 4 propostas</td></tr>
-<tr><td>4 propostas</td><td>← 12 visitas</td></tr>
-<tr><td>12 visitas</td><td>← 60 leads qualificados</td></tr>
-<tr><td>60 qualificados</td><td>← ~600 leads totais</td></tr>
+<tr><td><b>Bairro e estilo de vida</b></td><td>Descoberta. Guias, rotas a pé, restaurantes, escolas, parques.</td></tr>
+<tr><td><b>Mercado e investimento</b></td><td>Descoberta e consideração. Valorização, m², rentabilidade de locação, financiamento.</td></tr>
+<tr><td><b>Produto</b></td><td>Consideração. Tour, planta comentada, acabamentos, comparativos.</td></tr>
+<tr><td><b>Bastidores e prova</b></td><td>Decisão. Curadoria W3W, depoimentos, entregas, a equipe.</td></tr>
 </table>
-<p>Se a verba do mês é R$ 6.000 e você precisa de 600 leads, o <b>custo por lead máximo</b> é R$ 10. Acima disso a conta não fecha — ou você melhora a qualificação.</p>`},
-   {h:'3. Metas SMART',f:FIGS.smart,b:`
-<p>"Gerar mais leads" não é meta. Meta boa é:</p>
-<ul><li><b>S</b>pecífica · <b>M</b>ensurável · <b>A</b>lcançável · <b>R</b>elevante · com <b>T</b>empo definido.</li></ul>
-<p><i>Exemplo:</i> "Gerar 60 leads qualificados para o Síntese Moema até 15 de dezembro, com custo por lead qualificado abaixo de R$ 100."</p>`}
+<h4>Um conteúdo, dez peças</h4>
+<p>Produza um conteúdo-pilar por mês (ex.: "Guia completo para morar em Moema") e desdobre: 1 reel, 2 carrosséis, 4 stories, 1 e-mail, 1 post no Google Meu Negócio e 1 criativo de anúncio. Coerência e economia de produção.</p>
+<p class="tip">Teste de qualidade: o conteúdo seria útil mesmo para quem não comprar com a W3W? Se sim, ele gera confiança. Se é só propaganda disfarçada, o público percebe.</p>`},
+   {h:'4. Ofertas de engajamento: o que trocar pelo contato',b:`
+<p>Ninguém deixa telefone em troca de "saiba mais". A oferta precisa ter valor claro e combinar com a fase do lead:</p>
+<table>
+<tr><td>Guia do bairro em PDF</td><td>Topo · gera muito lead, pouco qualificado</td></tr>
+<tr><td>Book digital + plantas</td><td>Meio · o padrão do mercado</td></tr>
+<tr><td>Tabela de valores e condições</td><td>Meio/fundo · filtra por intenção</td></tr>
+<tr><td>Simulação de investimento personalizada</td><td>Fundo · ótima para investidor</td></tr>
+<tr><td>Visita privativa / tour por vídeo ao vivo</td><td>Fundo · menos leads, muito mais quentes</td></tr>
+</table>
+<p>Rode pelo menos duas ofertas em paralelo: uma de meio de funil, para volume e remarketing, e uma de fundo, para leads prontos.</p>`,
+    d:{q:'Para um investidor, qual oferta tende a gerar o lead mais qualificado?',o:['E-book "10 dicas para comprar imóvel"','Simulação de rentabilidade da unidade, enviada por um consultor','Sorteio de um vale-jantar'],c:1,why:'A simulação exige que ele informe dados reais e mostra intenção concreta. O e-book genérico e o sorteio atraem quem não compra.'}},
+   {h:'5. Encantar: o pós-venda que vira canal de aquisição',b:`
+<p>Na W3W, cada cliente encantado deve gerar, em média, pelo menos uma indicação. Isso só acontece com método:</p>
+<ol>
+<li><b>Entrega memorável</b>: chave entregue com um kit de boas-vindas e o guia do bairro.</li>
+<li><b>Contato aos 30, 90 e 365 dias</b>: como está a adaptação? precisa de indicação de arquiteto ou mudança?</li>
+<li><b>Pedido de indicação na hora certa</b>: depois de um elogio espontâneo, não no fechamento.</li>
+<li><b>Depoimento em vídeo</b>: vira prova social nos anúncios de decisão.</li>
+</ol>
+<p class="tip">Para o tráfego, o cliente encantado ainda vale mais uma coisa: a lista de compradores vira a semente do público semelhante (lookalike) mais valioso da conta.</p>`},
+   {h:'6. Metas SMART e o painel do inbound',f:FIGS.smart,b:`
+<p>"Gerar mais leads" não é meta. Meta boa é específica, mensurável, alcançável, relevante e com prazo:</p>
+<p class="tip">"Gerar 60 leads qualificados para o Síntese Moema até 15/12, com custo por lead qualificado abaixo de R$ 150 e pelo menos 8 visitas."</p>
+<h4>Os 6 números do painel semanal</h4>
+<table>
+<tr><td>Investimento</td><td>quanto foi gasto</td></tr>
+<tr><td>Leads e CPL</td><td>volume e custo</td></tr>
+<tr><td>% qualificados</td><td>a saúde da mensagem e do formulário</td></tr>
+<tr><td>Tempo de primeira resposta</td><td>a saúde do atendimento</td></tr>
+<tr><td>Visitas e custo por visita</td><td>o que a diretoria quer ver</td></tr>
+<tr><td>Indicações recebidas</td><td>a saúde do encantamento</td></tr>
+</table>`}
   ],
   quiz:[
-   {q:'Qual movimento do inbound gera indicações?',o:['Atrair','Engajar','Encantar'],c:2},
-   {q:'Verba de R$ 6.000 e meta de 600 leads: qual o CPL máximo?',o:['R$ 6','R$ 10','R$ 60'],c:1},
-   {q:'Qual destas é uma meta SMART?',o:['Vender mais este ano','Aumentar o engajamento','60 leads qualificados até 15/12 com CPL qualificado < R$ 100'],c:2}
+   {q:'Qual movimento do inbound gera o lead mais barato a longo prazo?',o:['Atrair','Engajar','Encantar (indicação)'],c:2},
+   {q:'Verba de R$ 6.000 e o funil pede 600 leads. Qual o CPL máximo?',o:['R$ 6','R$ 10','R$ 60'],c:1},
+   {q:'Que oferta combina com um lead em consideração?',o:['Guia do bairro','Book com plantas e tabela','Pesquisa de satisfação'],c:1},
+   {q:'Qual é o melhor momento para pedir indicação?',o:['Na assinatura do contrato','Depois de um elogio espontâneo do cliente','Nunca: é invasivo'],c:1},
+   {q:'Qual destas é uma meta SMART?',o:['Vender mais neste ano','Aumentar o engajamento no Instagram','60 leads qualificados até 15/12 com custo por qualificado abaixo de R$ 150'],c:2},
+   {q:'Um conteúdo-pilar mensal serve principalmente para…',o:['Substituir os anúncios','Gerar várias peças coerentes com menos produção','Ranquear no Google em uma semana'],c:1}
   ]},
 
 landing: {
-  t:'Formulários e landing pages que convertem', min:20,
+  t:'Landing pages e formulários que convertem', min:50,
   caps:[
-   {h:'1. Anatomia de uma landing page de imóvel',f:FIGS.landing,b:`
-<p><b>Uma página, uma oferta, um botão.</b> Tudo que não ajuda a converter sai.</p>
+   {h:'1. A página é onde o dinheiro do anúncio vira (ou não) lead',b:`
+<p>Você pode ter o melhor anúncio do mercado: se a página decepciona, o clique pago vai embora. Uma landing page de imóvel tem um único trabalho, que é fazer a pessoa certa dar o próximo passo.</p>
+<table>
+<tr><td>Taxa de conversão de LP fraca</td><td>3–5%</td></tr>
+<tr><td>LP de imóvel bem feita</td><td>10–20%</td></tr>
+</table>
+<p>Com R$ 3.000 e CPC de R$ 2, você tem 1.500 visitas. A 4% são 60 leads; a 15%, são 225 leads, <b>com a mesma verba</b>. Otimizar a página costuma render mais que otimizar o anúncio. <i>(Faixas de referência; meça as suas.)</i></p>`},
+   {h:'2. Anatomia: os 8 blocos de uma LP de imóvel',f:FIGS.landing,b:`
 <ol>
-<li>Título com benefício ("3 suítes a 400 m do Parque Ibirapuera"), não só o nome do prédio.</li>
-<li>Galeria com as 6 melhores imagens: fachada, living, vista, suíte, lazer, planta.</li>
-<li>Ficha técnica curta: metragem, suítes, vagas, entrega.</li>
-<li>Mapa e 3 pontos de interesse a pé.</li>
-<li>Prova: depoimento, construtora, prêmios.</li>
-<li>Formulário curto + botão de WhatsApp fixo no celular.</li>
-</ol>`},
-   {h:'2. Ofertas e formulários',f:FIGS.form,b:`
-<p>Ninguém deixa telefone de graça. Ofereça troca de valor: <b>book digital, tabela de valores, vídeo exclusivo, visita privativa</b>.</p>
-<p>O formulário é o filtro. Para alto padrão, 3 a 5 campos:</p>
-<ul><li>Nome e WhatsApp</li><li>Faixa de investimento (ex.: até 3 mi / 3–5 mi / acima de 5 mi)</li><li>Prazo para comprar</li><li>Aceite LGPD</li></ul>
-<p>Menos campos = mais leads. Mais campos = leads melhores. No alto padrão, prefira qualidade.</p>
-<p class="tip">A página de obrigado é a etapa mais esquecida: mostre o próximo passo ("um consultor fala com você em até 5 minutos") e ofereça agendar a visita ali mesmo.</p>`},
-   {h:'3. Teste A/B',f:FIGS.ab,b:`
-<p>Mude <b>uma coisa por vez</b>: título, imagem principal, número de campos ou texto do botão. Escreva a hipótese antes ("título com preço converte mais") e espere volume suficiente — pelo menos algumas dezenas de conversões por versão — antes de declarar vencedor.</p>`}
+<li><b>Título com benefício</b>: "3 suítes a 400 m do Ibirapuera", não "Residencial Aurora".</li>
+<li><b>Imagem de impacto</b> na primeira dobra, com o botão visível sem rolar.</li>
+<li><b>Galeria curada</b>: 6 a 8 imagens (fachada, living, vista, suíte, lazer, planta).</li>
+<li><b>Ficha técnica</b> em até 5 linhas: metragens, suítes, vagas, entrega.</li>
+<li><b>Localização</b>: mapa e 3 pontos de interesse a pé, com tempo.</li>
+<li><b>Prova</b>: construtora, entregas anteriores, depoimentos, prêmios.</li>
+<li><b>Formulário</b> curto e honesto sobre o que acontece depois.</li>
+<li><b>WhatsApp fixo</b> no celular, para quem não quer formulário.</li>
+</ol>
+<p class="tip">Regra da coerência: a página precisa continuar a promessa do anúncio. Se o anúncio falou de "vista para o parque", a primeira imagem da página é a vista.</p>`},
+   {h:'3. Faça o teste: sua página passa?',w:'lpcheck',b:`
+<p>Abra uma landing page real (sua ou de um concorrente) e marque item por item. É o mesmo checklist que um gestor de tráfego sênior usa antes de liberar verba.</p>`},
+   {h:'4. Formulário: o filtro mais barato que existe',f:FIGS.form,b:`
+<p>Cada campo a mais reduz o volume e aumenta a qualidade. No alto padrão, vale perder volume para ganhar qualidade:</p>
+<ul>
+<li><b>Nome e WhatsApp</b> (obrigatórios)</li>
+<li><b>Faixa de investimento</b>: até R$ 3 mi / R$ 3–5 mi / acima de R$ 5 mi</li>
+<li><b>Prazo</b>: até 3 meses / 3–12 meses / só pesquisando</li>
+<li><b>Forma de pagamento</b>: à vista / financiamento / permuta</li>
+<li><b>Aceite LGPD</b>, prevendo contato e uso para públicos de anúncio</li>
+</ul>
+<p>No formulário instantâneo da Meta, use o tipo <b>"maior intenção"</b>, que adiciona uma tela de revisão antes do envio: menos leads acidentais.</p>
+<p class="tip">"Só pesquisando" não é lead ruim, é lead de nutrição. O formulário serve para mandar cada um para o fluxo certo, não para descartar.</p>`,
+    d:{q:'Seu formulário gera 200 leads por mês, mas só 4% são qualificados. O que testar primeiro?',o:['Tirar campos para gerar ainda mais leads','Adicionar faixa de investimento e prazo, e trocar para o formulário de maior intenção','Mudar a cor do botão'],c:1,why:'O problema é qualidade, não volume. As perguntas de qualificação e o formulário de maior intenção reduzem os leads acidentais e permitem priorizar quem está pronto.'}},
+   {h:'5. Rastreamento: sem medir, é palpite',b:`
+<p>Uma página sem rastreamento não deixa o algoritmo aprender. O mínimo profissional:</p>
+<ul>
+<li><b>Pixel da Meta + API de Conversões</b>: registra o lead mesmo com bloqueadores e restrições do iOS.</li>
+<li><b>Tag do Google e GA4</b> com o evento de conversão "generate_lead".</li>
+<li><b>UTMs padronizadas</b> em todos os links: <code>utm_source=meta&amp;utm_medium=paid&amp;utm_campaign=sintese_familia_consideracao</code>.</li>
+<li><b>Página de obrigado com URL própria</b>: facilita medir a conversão em qualquer ferramenta.</li>
+</ul>
+<p class="tip">Nome de campanha é documentação: empreendimento_persona_fase. Daqui a 3 meses, você vai agradecer.</p>`},
+   {h:'6. Teste A/B: melhorar com método',f:FIGS.ab,b:`
+<p>O teste A/B compara duas versões mudando <b>uma variável por vez</b>. Ordem de impacto típica para testar:</p>
+<ol><li>Oferta (book vs. visita privativa)</li><li>Título</li><li>Imagem principal</li><li>Número de campos</li><li>Texto do botão</li></ol>
+<p>Escreva a hipótese antes: "título com a distância do parque converte mais que título com o nome do prédio, porque a família valoriza lazer". Espere volume suficiente (algumas dezenas de conversões por versão) antes de decidir.</p>`,
+    d:{q:'A versão B teve 3 leads e a A teve 1, depois de 2 dias. O que fazer?',o:['Declarar B vencedora e pausar A','Continuar o teste até ter volume suficiente','Criar a versão C imediatamente'],c:1,why:'Com tão poucas conversões, a diferença pode ser puro acaso. Decisões com amostra pequena custam caro.'}}
   ],
   quiz:[
-   {q:'Qual campo mais ajuda a filtrar curiosos?',o:['E-mail','Faixa de investimento','Cidade'],c:1},
-   {q:'Num teste A/B você deve mudar…',o:['Tudo de uma vez','Uma variável por vez','Só a cor'],c:1},
-   {q:'O que a página de obrigado deve ter?',o:['Nada, só agradecer','O próximo passo e opção de agendar visita','Outros imóveis aleatórios'],c:1}
+   {q:'Com 1.500 visitas, quantos leads a mais uma LP de 15% gera em relação a uma de 4%?',o:['105','165','225'],c:1},
+   {q:'A primeira imagem da página deve…',o:['Ser sempre a fachada','Continuar a promessa do anúncio','Ser o logo da construtora'],c:1},
+   {q:'Para que serve o formulário de maior intenção da Meta?',o:['Gerar mais leads','Adicionar uma tela de revisão que reduz os leads acidentais','Pular o aceite LGPD'],c:1},
+   {q:'O que a API de Conversões resolve?',o:['Cria anúncios sozinha','Registra conversões mesmo com bloqueadores e restrições do iOS','Substitui o CRM'],c:1},
+   {q:'Qual variável costuma ter mais impacto num teste A/B?',o:['Cor do botão','A oferta','A fonte do texto'],c:1},
+   {q:'Um lead que marca "só pesquisando" deve…',o:['Ser descartado','Entrar no fluxo de nutrição','Ir direto para o corretor'],c:1}
   ]},
 
 crm: {
-  t:'Gestão de contatos e CRM', min:20,
+  t:'CRM, qualificação e follow-up', min:50,
   caps:[
-   {h:'1. Lead não é cliente',f:FIGS.temp,b:`
-<p>Classifique todo contato em três temperaturas:</p>
-<ul>
-<li><b>Frio</b> — baixou material, não respondeu.</li>
-<li><b>Morno</b> — respondeu, tem interesse, faltam dados.</li>
-<li><b>Quente</b> — orçamento, prazo e decisor confirmados.</li>
-</ul>
-<h4>Lead scoring simples</h4>
+   {h:'1. Onde as campanhas boas morrem',b:`
+<p>A maior parte das vendas perdidas no digital não se perde no anúncio. Ela se perde entre o lead chegar e alguém falar com ele. Estudos de mercado mostram de forma consistente que a chance de contato cai muito depois dos primeiros minutos.</p>
 <table>
-<tr><td>Faixa de investimento compatível</td><td>+30</td></tr>
-<tr><td>Prazo até 6 meses</td><td>+25</td></tr>
-<tr><td>Respondeu em menos de 24h</td><td>+15</td></tr>
-<tr><td>Pediu visita</td><td>+30</td></tr>
+<tr><td>Resposta em até 5 minutos</td><td>contato e qualificação muito mais prováveis</td></tr>
+<tr><td>Resposta depois de 1 hora</td><td>o lead já falou com outra imobiliária</td></tr>
+<tr><td>Resposta no dia seguinte</td><td>"não lembro de ter pedido nada"</td></tr>
 </table>
-<p>Acima de 60 pontos, passa para o corretor no mesmo dia.</p>`},
-   {h:'2. Pipeline',f:FIGS.pipeline,b:`
-<p>Etapas que todo lead percorre — e todo lead precisa estar em uma delas:</p>
-<p><b>Novo → Contato feito → Qualificado → Visita agendada → Proposta → Venda / Perdido</b></p>
-<p>Ao marcar "Perdido", registre o motivo (preço, localização, desistiu, comprou outro). Em 2 meses esses motivos dizem mais sobre a campanha do que qualquer métrica do Gerenciador.</p>
-<p class="tip">Planilha funciona no começo. Quando passar de ~50 leads ativos, migre para um CRM gratuito.</p>`},
-   {h:'3. Nutrição e follow-up',f:FIGS.followup,b:`
-<p>Responda em até <b>5 minutos</b>. Depois, uma sequência de 5 toques em 14 dias:</p>
+<p class="tip">Para o gestor de tráfego, o CRM não é "coisa do comercial". É a única forma de saber quais campanhas geram visita e venda, e não só lead.</p>`},
+   {h:'2. Temperatura e lead scoring',f:FIGS.temp,w:'score',b:`
+<p>Nem todo lead merece o corretor hoje. A temperatura organiza a prioridade e o lead scoring transforma a temperatura em número, para ninguém decidir no achismo. Teste a régua da W3W no simulador:</p>`,
+    d:{q:'Lead com faixa compatível, prazo de 2 meses e que pediu visita, mas respondeu só depois de 3 dias. Qual a prioridade?',o:['Frio: demorou para responder','Quente: passa para o corretor hoje','Descartar'],c:1,why:'Faixa compatível (+30), prazo curto (+25) e pedido de visita (+30) somam 85 pontos. A demora pesa menos que os sinais de intenção.'}},
+   {h:'3. O pipeline e os motivos de perda',f:FIGS.pipeline,b:`
+<p>Todo lead está em exatamente uma etapa. Sem isso, não existe previsão de vendas:</p>
+<p><b>Novo → Contato feito → Qualificado → Visita agendada → Visita feita → Proposta → Venda / Perdido</b></p>
+<h4>Motivos de perda (padronize a lista)</h4>
+<ul><li>Fora da faixa de preço</li><li>Localização</li><li>Comprou com outro</li><li>Desistiu / adiou</li><li>Nunca respondeu</li><li>Lead inválido</li></ul>
+<p>Depois de 60 dias, os motivos dizem onde ajustar: "fora da faixa" demais pede mudança de mensagem ou de formulário; "nunca respondeu" demais pede mais velocidade; "localização" pede ajustar a geografia da campanha.</p>`},
+   {h:'4. Primeiro contato: o roteiro de 5 minutos',b:`
+<p>O primeiro contato decide se o lead vira conversa ou silêncio. Estrutura que funciona no WhatsApp:</p>
 <ol>
-<li>Dia 0 — boas-vindas + material pedido.</li>
-<li>Dia 2 — conteúdo do bairro.</li>
-<li>Dia 5 — 2 ou 3 imóveis semelhantes.</li>
-<li>Dia 9 — depoimento de cliente.</li>
-<li>Dia 14 — convite para visita privativa.</li>
+<li><b>Contexto</b>: "Oi, Helena! Aqui é a Adriana, da W3W. Você pediu a planta do Síntese Moema agora há pouco."</li>
+<li><b>Entrega imediata</b>: mande o que foi pedido logo de cara, sem pedir nada antes.</li>
+<li><b>Uma pergunta aberta</b>: "O que fez vocês começarem a procurar agora?"</li>
+<li><b>Qualificação conversada</b>: prazo, faixa e quem decide, ao longo da conversa e não como interrogatório.</li>
+<li><b>Próximo passo com data</b>: "Tenho horários no sábado de manhã para uma visita privativa. 10h ou 11h funciona?"</li>
 </ol>
-<p>Personalize pela persona e pela fase. A mesma mensagem para todos é spam bem-educado.</p>`}
+<p class="tip">Ofereça duas opções de horário em vez de "quando você pode?". Fica mais fácil dizer sim.</p>`,
+    d:{q:'Qual a melhor primeira mensagem para um lead que pediu o book?',o:['"Olá! Qual sua renda mensal?"','"Oi, Helena! Aqui é a Adriana, da W3W. Segue o book do Síntese que você pediu. O que fez vocês começarem a procurar agora?"','"Bom dia, podemos agendar uma visita?"'],c:1,why:'Contexto, entrega imediata e uma pergunta aberta geram conversa. Pedir renda logo de cara afasta, e pedir visita sem entregar o que foi pedido parece pressão.'}},
+   {h:'5. Nutrição: 5 toques em 14 dias',f:FIGS.followup,b:`
+<p>A maioria dos leads de alto padrão não compra no primeiro mês. A sequência mantém a W3W presente sem ser chata:</p>
+<table>
+<tr><td>Dia 0</td><td>Boas-vindas + material pedido</td></tr>
+<tr><td>Dia 2</td><td>Conteúdo do bairro ligado à persona (escolas para a família, valorização para o investidor)</td></tr>
+<tr><td>Dia 5</td><td>2 ou 3 imóveis semelhantes da curadoria</td></tr>
+<tr><td>Dia 9</td><td>Depoimento de cliente parecido com ele</td></tr>
+<tr><td>Dia 14</td><td>Convite para visita privativa com data</td></tr>
+</table>
+<p>Quem não responder entra numa nutrição mensal leve: novidades do mercado e oportunidades da curadoria.</p>`},
+   {h:'6. Fechando o ciclo com o algoritmo',b:`
+<p>Aqui o CRM vira arma de tráfego. Quando você devolve para a Meta e para o Google a informação de <b>quais leads viraram visita e venda</b>, o algoritmo passa a procurar mais gente parecida com eles, e não só gente que preenche formulário.</p>
+<ul>
+<li><b>Meta</b>: conversões offline / API de Conversões para CRM, marcando o evento "Visita" ou "Lead qualificado".</li>
+<li><b>Google</b>: importação de conversões offline com o GCLID guardado no lead.</li>
+<li><b>Público semelhante</b>: lista de quem visitou e comprou, atualizada todo mês.</li>
+</ul>
+<p class="tip">Contas que otimizam para "lead qualificado" em vez de "lead" costumam ver o CPL subir e o custo por visita cair. É exatamente o que você quer.</p>`}
   ],
   quiz:[
    {q:'Tempo ideal de primeira resposta a um lead:',o:['Até 5 minutos','Até 24 horas','Até 3 dias'],c:0},
-   {q:'Por que registrar o motivo de perda?',o:['Burocracia','Para ajustar campanha e oferta','Para descartar o lead'],c:1},
-   {q:'Um lead com orçamento, prazo e decisor confirmados é…',o:['Frio','Morno','Quente'],c:2}
+   {q:'Muitos leads perdidos por "fora da faixa de preço" indicam que você deve…',o:['Ligar mais vezes','Ajustar a mensagem do anúncio e as perguntas do formulário','Baixar o preço do imóvel'],c:1},
+   {q:'Qual é a melhor forma de propor uma visita?',o:['"Quando você pode?"','"Sábado às 10h ou às 11h funciona?"','"Me avisa quando quiser"'],c:1},
+   {q:'Por que devolver conversões offline para a Meta?',o:['Para o algoritmo buscar pessoas parecidas com quem visita e compra','Porque é obrigatório pela LGPD','Para baixar o CPM'],c:0},
+   {q:'Um lead que não respondeu à sequência de 14 dias deve…',o:['Ser apagado do CRM','Entrar na nutrição mensal leve','Receber ligações diárias'],c:1},
+   {q:'No lead scoring da W3W, quantos pontos fazem o lead ir para o corretor no mesmo dia?',o:['Acima de 30','Acima de 60','Acima de 90'],c:1}
   ]}
 };
