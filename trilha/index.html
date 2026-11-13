@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0a0a0c">
+<title>Curso Tráfego Imóveis by W3W · Trilha da Adriana</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0c;--s1:#121215;--s2:#18181c;--s3:#222228;
+  --hair:rgba(255,255,255,.07);--hair2:rgba(255,255,255,.12);
+  --t1:#f4f4f6;--t2:#9b9ba6;--t3:#62626c;
+  --a1:#7c5cff;--a2:#e85d9c;--a3:#ff9a62;
+  --g:linear-gradient(135deg,var(--a1),var(--a2) 60%,var(--a3));
+  --ok:#3ddc97;
+  --ease:cubic-bezier(.22,1,.36,1);--spring:cubic-bezier(.34,1.4,.64,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Inter,-apple-system,system-ui,sans-serif;font-feature-settings:"ss01","cv11";background:var(--bg);color:var(--t1);-webkit-font-smoothing:antialiased;line-height:1.5;font-size:15px}
+::selection{background:var(--a1);color:#fff}
+:focus-visible{outline:2px solid var(--a1);outline-offset:3px;border-radius:12px}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;-webkit-tap-highlight-color:transparent;text-align:left}
+a{color:inherit;text-decoration:none}
+.num{font-variant-numeric:tabular-nums}
+.wrap{max-width:720px;margin:0 auto;padding:0 20px}
+
+/* header */
+header{position:sticky;top:0;z-index:20;padding-top:env(safe-area-inset-top);background:rgba(10,10,12,.78);backdrop-filter:saturate(1.6) blur(20px);-webkit-backdrop-filter:saturate(1.6) blur(20px)}
+header .wrap{height:56px;display:flex;align-items:center;justify-content:space-between}
+.mark{font-size:13px;font-weight:600;letter-spacing:.01em;color:var(--t2)}
+.mark b{color:var(--t1);font-weight:600}
+.xpc{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--t2)}
+.xpc i{width:6px;height:6px;border-radius:50%;background:var(--g)}
+.xpc b{color:var(--t1)}
+header .rule{height:1px;background:var(--hair)}
+
+/* hero */
+.hero{padding:44px 0 36px}
+.greet{font-size:15px;color:var(--t2)}
+.hero h1{font-size:clamp(34px,7vw,48px);line-height:1.04;font-weight:700;letter-spacing:-.035em;margin-top:6px}
+.hero h1 span{color:var(--t3)}
+
+.focus{margin-top:28px;background:var(--s1);border:1px solid var(--hair);border-radius:24px;padding:24px;display:grid;grid-template-columns:auto 1fr;gap:24px;align-items:center;position:relative;overflow:hidden}
+.focus:before{content:"";position:absolute;width:320px;height:320px;left:-140px;top:-160px;background:radial-gradient(closest-side,rgba(124,92,255,.22),transparent);pointer-events:none}
+.ring{position:relative;width:112px;height:112px}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:8}
+.ring .bg{stroke:var(--s3)}
+.ring .fg{stroke:url(#rg);stroke-linecap:round;transition:stroke-dashoffset 1.4s var(--ease)}
+.ring .c{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.ring .pct{font-size:28px;font-weight:700;letter-spacing:-.04em;line-height:1}
+.ring .sub{font-size:11px;color:var(--t3);margin-top:3px;font-weight:500}
+.fk{font-size:12px;font-weight:600;color:var(--t3);letter-spacing:.04em;text-transform:uppercase}
+.ft{font-size:19px;font-weight:600;letter-spacing:-.02em;line-height:1.25;margin-top:4px}
+.fn{font-size:13.5px;color:var(--t2);margin-top:6px}
+.cta{margin-top:16px;height:44px;padding:0 18px 0 16px;border-radius:99px;background:var(--t1);color:#0a0a0c;font-weight:600;font-size:14.5px;display:inline-flex;align-items:center;gap:8px;transition:transform .3s var(--spring),opacity .2s}
+.cta:hover{opacity:.92}.cta:active{transform:scale(.96)}
+.cta svg{width:16px;height:16px}
+
+.meta{display:grid;grid-template-columns:repeat(3,1fr);margin-top:12px;border:1px solid var(--hair);border-radius:20px;overflow:hidden}
+.meta>div{padding:16px 18px}
+.meta>div+div{border-left:1px solid var(--hair)}
+.meta .k{font-size:12px;color:var(--t3);font-weight:500}
+.meta .v{font-size:17px;font-weight:600;letter-spacing:-.02em;margin-top:2px}
+.lvbar{height:3px;background:var(--s3);border-radius:9px;margin-top:10px;overflow:hidden}
+.lvbar i{display:block;height:100%;background:var(--g);width:0;transition:width 1s var(--ease)}
+
+/* sections */
+section.s{padding:28px 0}
+.sh{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:16px}
+.sh h2{font-size:22px;font-weight:700;letter-spacing:-.025em}
+.sh span{font-size:13px;color:var(--t3)}
+
+/* modules */
+.mods{display:grid;gap:10px}
+.mod{background:var(--s1);border:1px solid var(--hair);border-radius:24px;overflow:hidden;transition:border-color .3s,box-shadow .4s var(--ease),transform .4s var(--spring)}
+.mod.cur{border-color:var(--hair2);box-shadow:0 24px 48px -28px rgba(124,92,255,.45)}
+.mod.open{border-color:var(--hair2)}
+.mod.locked{background:transparent}
+.cover{height:92px;position:relative;overflow:hidden}
+.cover:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,var(--s1))}
+.cover .n{position:absolute;right:18px;bottom:-14px;font-size:84px;font-weight:700;letter-spacing:-.06em;line-height:1;color:rgba(255,255,255,.14);z-index:1}
+.mod.locked .cover,.mod.done .cover{display:none}
+.mh{width:100%;display:grid;grid-template-columns:52px 1fr auto;gap:16px;align-items:center;padding:18px 20px;transition:background .2s}
+.mh:hover{background:rgba(255,255,255,.02)}
+.th{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;position:relative;background:var(--s3);color:var(--t3)}
+.th svg{width:22px;height:22px}
+.mod.cur .th{background:rgba(255,255,255,.14);backdrop-filter:blur(12px);color:#fff;margin-top:-58px;position:relative;z-index:2;border:1px solid rgba(255,255,255,.18)}
+.mod.done .th{background:var(--s3);color:var(--ok)}
+.mod.locked .mh{cursor:default}
+.mt{min-width:0}
+.mt .k{font-size:12px;color:var(--t3);font-weight:500}
+.mt h3{font-size:16px;font-weight:600;letter-spacing:-.015em;margin-top:1px;line-height:1.3}
+.mod.locked h3{color:var(--t3)}
+.mt .bar{height:3px;background:var(--s3);border-radius:9px;margin-top:10px;overflow:hidden;max-width:280px}
+.mt .bar i{display:block;height:100%;background:var(--g);border-radius:9px;transition:width .8s var(--ease)}
+.mod.done .mt .bar i{background:var(--ok)}
+.mr{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--t3);font-weight:500}
+.mr .p{color:var(--t2)}
+.chev{width:18px;height:18px;transition:transform .4s var(--ease);color:var(--t3)}
+.mod.open .chev{transform:rotate(90deg)}
+.badge-s{font-size:11px;font-weight:600;padding:3px 8px;border-radius:99px;background:rgba(232,93,156,.12);color:#f08bbb}
+
+.mb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s var(--ease)}
+.mod.open .mb{grid-template-rows:1fr}
+.mb>div{overflow:hidden}
+.mi{padding:0 20px 22px 88px}
+.learn{font-size:14px;color:var(--t2);max-width:60ch}
+.learn b{color:var(--t1);font-weight:500}
+.gl{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--t3);letter-spacing:.04em;text-transform:uppercase;margin:22px 0 4px}
+.task{display:grid;grid-template-columns:24px 1fr auto;gap:14px;align-items:start;padding:13px 0;border-bottom:1px solid var(--hair);cursor:pointer}
+.task:last-child{border-bottom:0}
+.cb{width:22px;height:22px;border-radius:50%;border:1.5px solid #3a3a42;display:grid;place-items:center;margin-top:1px;transition:all .35s var(--spring)}
+.cb svg{width:12px;height:12px;color:#fff;opacity:0;transform:scale(.4);transition:all .35s var(--spring)}
+.task:hover .cb{border-color:#55555f}
+.task.on .cb{background:var(--g);border-color:transparent}
+.task.on .cb svg{opacity:1;transform:none}
+.tt{font-size:15px;font-weight:500;line-height:1.35;transition:color .3s}
+.task.on .tt{color:var(--t3)}
+.td{font-size:13px;color:var(--t3);margin-top:3px;line-height:1.45}
+.td a{color:var(--t2);font-weight:500;border-bottom:1px solid var(--hair2);transition:color .2s,border-color .2s}
+.td a:hover{color:var(--t1);border-color:var(--t2)}
+.ex{font-size:10.5px;font-weight:600;color:var(--t3);border:1px solid var(--hair2);padding:1px 6px;border-radius:99px;margin-left:6px;vertical-align:1px;letter-spacing:.02em}
+.xp{font-size:12px;font-weight:600;color:var(--t3);white-space:nowrap;margin-top:2px}
+.task.on .xp{color:var(--ok)}
+.note{margin-top:18px;font-size:13px;color:var(--t3)}
+.lockline{padding:0 20px 18px 88px;font-size:13px;color:var(--t3);display:none}
+
+/* lab */
+.lab{margin-top:12px;border:1px solid var(--hair);border-radius:24px;padding:22px 20px;display:grid;grid-template-columns:52px 1fr auto;gap:16px;align-items:center}
+.lab .th{background:var(--s3)}
+.lab.on .th{background:var(--g);color:#fff}
+.lab h3{font-size:16px;font-weight:600;letter-spacing:-.015em}
+.lab p{font-size:13px;color:var(--t3);margin-top:2px}
+.lab .st{font-size:12px;font-weight:600;color:var(--t3)}
+.lab.on .st{color:var(--ok)}
+
+/* badges */
+.bd{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--hair);border:1px solid var(--hair);border-radius:24px;overflow:hidden}
+.b{background:var(--bg);padding:20px 10px 18px;text-align:center}
+.b .ic{width:44px;height:44px;border-radius:50%;margin:0 auto 10px;display:grid;place-items:center;border:1px solid var(--hair2);color:#45454e}
+.b .ic svg{width:19px;height:19px}
+.b b{display:block;font-size:12.5px;font-weight:600;color:var(--t3);line-height:1.25}
+.b span{font-size:11.5px;color:#4a4a53}
+.b.on .ic{background:var(--g);border-color:transparent;color:#fff}
+.b.on b{color:var(--t1)}.b.on span{color:var(--t3)}
+.b.pop .ic{animation:pop .7s var(--spring)}
+@keyframes pop{from{transform:scale(.3)}to{transform:none}}
+
+footer{padding:36px 0 calc(48px + env(safe-area-inset-bottom));display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;font-size:12.5px;color:var(--t3);border-top:1px solid var(--hair);margin-top:20px}
+footer button{color:var(--t3);transition:color .2s}footer button:hover{color:var(--t1)}
+
+/* toast + sheet */
+.toast{position:fixed;left:50%;top:calc(10px + env(safe-area-inset-top));transform:translate(-50%,-150%);z-index:60;display:flex;align-items:center;gap:10px;height:40px;padding:0 16px 0 8px;border-radius:99px;background:rgba(34,34,40,.92);backdrop-filter:blur(20px);border:1px solid var(--hair2);font-size:13.5px;font-weight:600;transition:transform .5s var(--spring);white-space:nowrap}
+.toast.show{transform:translate(-50%,0)}
+.toast .ti{height:24px;min-width:24px;padding:0 7px;border-radius:99px;background:var(--g);display:grid;place-items:center;font-size:11.5px;font-weight:700}
+.toast .ti svg{width:13px;height:13px}
+.cel{position:fixed;inset:0;z-index:70;display:flex;align-items:flex-end;justify-content:center;background:rgba(0,0,0,.6);backdrop-filter:blur(8px);opacity:0;pointer-events:none;transition:opacity .4s}
+.cel.show{opacity:1;pointer-events:auto}
+.sheet{width:min(420px,100%);margin:0 10px calc(10px + env(safe-area-inset-bottom));background:var(--s1);border:1px solid var(--hair2);border-radius:32px;padding:36px 24px 20px;text-align:center;transform:translateY(105%);transition:transform .6s var(--spring)}
+.cel.show .sheet{transform:none}
+.medal{width:84px;height:84px;border-radius:50%;margin:0 auto 22px;background:var(--g);display:grid;place-items:center;box-shadow:0 20px 50px -16px rgba(232,93,156,.7)}
+.medal svg{width:36px;height:36px;color:#fff}
+.sheet .k{font-size:12px;font-weight:600;color:var(--t3);letter-spacing:.04em;text-transform:uppercase}
+.sheet h3{font-size:26px;font-weight:700;letter-spacing:-.03em;margin-top:6px;line-height:1.1}
+.sheet p{font-size:14.5px;color:var(--t2);margin:10px auto 26px;max-width:32ch}
+.sheet button{width:100%;height:52px;border-radius:99px;background:var(--t1);color:#0a0a0c;font-weight:600;font-size:15.5px;text-align:center;transition:transform .3s var(--spring)}
+.sheet button:active{transform:scale(.97)}
+canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:80}
+
+@media (max-width:560px){
+  .hero{padding:32px 0 28px}
+  .focus{grid-template-columns:1fr;padding:22px;gap:18px}
+  .ring{width:96px;height:96px}.ring .pct{font-size:24px}
+  .focus .top{display:flex;align-items:center;gap:18px}
+  .mh{grid-template-columns:44px 1fr auto;gap:14px;padding:16px}
+  .th{width:44px;height:44px;border-radius:12px}.th svg{width:19px;height:19px}
+  .mr .p{display:none}
+  .mi{padding:0 16px 20px 16px}
+  .lab{grid-template-columns:44px 1fr;padding:18px 16px}.lab .st{grid-column:2}
+  .bd{grid-template-columns:repeat(2,1fr)}
+  .meta{grid-template-columns:1fr 1fr}.meta>div:first-child{grid-column:span 2;border-bottom:1px solid var(--hair)}.meta>div:nth-child(2){border-left:0}.meta .v{font-size:15.5px}.meta>div{padding:14px 16px}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+.gate{position:fixed;inset:0;z-index:90;background:var(--bg);display:none;place-items:center;padding:24px}
+.gate.show{display:grid}
+.gate .card{width:min(380px,100%)}
+.gate .logo{width:52px;height:52px;border-radius:16px;background:var(--g);margin-bottom:24px}
+.gate h2{font-size:28px;font-weight:700;letter-spacing:-.03em;line-height:1.1}
+.gate p{color:var(--t2);margin:10px 0 26px;font-size:15px}
+.gate label{display:block;font-size:12.5px;color:var(--t3);font-weight:500;margin:0 0 6px 4px}
+.gate input{width:100%;height:50px;border-radius:14px;background:var(--s1);border:1px solid var(--hair2);color:var(--t1);font:inherit;font-size:16px;padding:0 16px;margin-bottom:14px;outline:none;transition:border-color .2s}
+.gate input:focus{border-color:var(--a1)}
+.gate button{width:100%;height:52px;border-radius:99px;background:var(--t1);color:#0a0a0c;font-weight:600;font-size:15.5px;text-align:center;margin-top:6px}
+.gate button:disabled{opacity:.5}
+.gate .msg{font-size:13.5px;color:var(--t2);margin-top:16px;min-height:20px;text-align:center}
+.gate .msg.err{color:#ff8a8a}
+.sync{font-size:12px;color:var(--t3)}
+</style>
+<script src="config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<header><div class="wrap"><div class="mark"><b>Curso Tráfego Imóveis</b> · by W3W</div><div class="xpc"><i></i><b class="num" id="xpChip">0</b> XP</div></div><div class="rule"></div></header>
+
+<main class="wrap">
+  <section class="hero">
+    <div class="greet" id="hello">Bom dia, Adriana</div>
+    <h1>Sua formação em<br>tráfego <span>de alto padrão.</span></h1>
+
+    <div class="focus">
+      <div class="ring">
+        <svg viewBox="0 0 120 120"><defs><linearGradient id="rg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#7c5cff"/><stop offset=".6" stop-color="#e85d9c"/><stop offset="1" stop-color="#ff9a62"/></linearGradient></defs>
+        <circle class="bg" cx="60" cy="60" r="52"/><circle class="fg" id="ringFg" cx="60" cy="60" r="52" stroke-dasharray="326.73" stroke-dashoffset="326.73"/></svg>
+        <div class="c"><div class="pct num" id="pct">0%</div><div class="sub" id="left">faltam 100%</div></div>
+      </div>
+      <div>
+        <div class="fk" id="fk">Comece por aqui</div>
+        <div class="ft" id="ft">Módulo 01 · Mercado imobiliário</div>
+        <div class="fn" id="fn"></div>
+        <button class="cta" id="cta"><span id="ctaT">Começar</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+
+    <div class="meta">
+      <div><div class="k">Nível <span class="num" id="lvN">1</span></div><div class="v" id="lvName">Observadora</div><div class="lvbar"><i id="xpFill"></i></div></div>
+      <div><div class="k">Módulos</div><div class="v num" id="sMods">0 de 6</div></div>
+      <div><div class="k">Sequência</div><div class="v num" id="streak">0 dias</div></div>
+    </div>
+  </section>
+
+  <section class="s" id="trilha">
+    <div class="sh"><h2>Trilha</h2><span>12 semanas · 96h</span></div>
+    <div class="mods" id="mods"></div>
+    <div class="lab" id="lab">
+      <div class="th"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v6L4.5 18.5A2 2 0 0 0 6.2 21.5h11.6a2 2 0 0 0 1.7-3L14 9V3"/><path d="M7.5 15h9"/></svg></div>
+      <div><h3>Laboratório final</h3><p>4 semanas de campanhas reais supervisionadas.</p></div>
+      <div class="st" id="labSt">Após o Módulo 06</div>
+    </div>
+  </section>
+
+  <section class="s">
+    <div class="sh"><h2>Conquistas</h2><span class="num" id="sBadges">0 de 8</span></div>
+    <div class="bd" id="badges"></div>
+  </section>
+
+  <footer><span><span class="sync" id="sync"></span> Cursos, exercício e entrega liberam o próximo módulo. Extras valem XP.</span><span><button id="logout" style="display:none;margin-right:16px">Sair</button><button id="reset">Reiniciar</button></span></footer>
+</main>
+
+<div class="gate" id="gate"><form class="card" id="gform"><div class="logo"></div><h2>Entre na sua trilha</h2><p>Use seu e-mail. Enviamos um link de acesso, sem senha.</p>
+<label for="gn">Seu nome</label><input id="gn" autocomplete="given-name" required maxlength="30" placeholder="Como quer ser chamada">
+<label for="ge">E-mail</label><input id="ge" type="email" autocomplete="email" required placeholder="voce@email.com">
+<button id="gb">Receber link de acesso</button><div class="msg" id="gm"></div></form></div>
+<div class="toast" id="toast"></div>
+<div class="cel" id="cel" role="dialog" aria-modal="true" aria-labelledby="celT"><div class="sheet"><div class="medal" id="celIc"></div><div class="k" id="celK"></div><h3 id="celT"></h3><p id="celP"></p><button id="celBtn"></button></div></div>
+<canvas id="cf"></canvas>
+
+<script>
+const q=s=>encodeURIComponent(s);
+const L={lano:'https://www.google.com/search?q='+q('Lano Academy curso gratuito'),hub:'https://academy.hubspot.com/courses',meta:'https://www.facebook.com/business/learn',skill:'https://skillshop.withgoogle.com/',ga:'https://skillshop.withgoogle.com/',looker:'https://lookerstudio.google.com/'};
+const I={map:'<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',layout:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/>',chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',check:'<path d="m5 12 5 5L20 7"/>',flame:'<path d="M12 3c1 3 4 4.5 4 8.5A4 4 0 0 1 8 11.5c0-1.4.6-2.4 1.3-3.2.2 1.4 1 2.2 1.7 2.2C11 7.5 11 5 12 3z"/>',crown:'<path d="M3 8l4 4 5-7 5 7 4-4-2 11H5z"/>',play:'<path d="M8 5.5v13l10.5-6.5z"/>',up:'<path d="M12 19V5M5 12l7-7 7 7"/>',chev:'<path d="m9 6 6 6-6 6"/>'};
+const svg=(p,sw=1.8)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const COV=['radial-gradient(80% 140% at 0% 0%,#5b8cff,transparent 60%),radial-gradient(70% 140% at 100% 100%,#7c5cff,transparent 60%),#1a1838','radial-gradient(80% 140% at 100% 0%,#e85d9c,transparent 60%),radial-gradient(70% 140% at 0% 100%,#7c5cff,transparent 60%),#24142e','radial-gradient(80% 140% at 0% 0%,#ff9a62,transparent 60%),radial-gradient(70% 140% at 100% 100%,#e85d9c,transparent 60%),#2a1418','radial-gradient(80% 140% at 100% 0%,#3ddc97,transparent 55%),radial-gradient(70% 140% at 0% 100%,#5b8cff,transparent 60%),#0f2228','radial-gradient(80% 140% at 0% 0%,#7c5cff,transparent 60%),radial-gradient(70% 140% at 100% 100%,#ff9a62,transparent 60%),#221432','radial-gradient(80% 140% at 100% 0%,#5b8cff,transparent 55%),radial-gradient(70% 140% at 0% 100%,#e85d9c,transparent 60%),#16182e'];
+const MODS = [
+ {t:'Mercado imobiliário e estratégia',w:'Semanas 1 e 2',ic:'map',h:16,
+  learn:'Mercado de <b>alto padrão</b>, perfil e comportamento do comprador, intenção de compra, segmentação e jornada.',
+  tasks:[
+   {g:'c',t:'Fundamentos do Marketing Digital Imobiliário',d:'Lano Academy · 5h',u:L.lano,x:40},
+   {g:'c',t:'Buyer Personas, Jornada do Comprador e Segmentação',d:'HubSpot Academy · procure as três aulas no catálogo',u:L.hub,x:30},
+   {g:'p',t:'Mapear como o alto padrão é anunciado',d:'Salve 10 anúncios de imóveis acima de R$ 3 mi em portais e sites de imobiliárias boutique: fotos, texto, preço, chamada.',x:25,e:1},
+   {g:'p',t:'Exercício: 5 empreendimentos, 3 perfis de comprador',d:'Analise cinco empreendimentos de alto padrão e crie três perfis de compradores.',x:60},
+   {g:'p',t:'Entrega: diagnóstico de mercado e mapa de compradores',d:'Envie para revisão antes de abrir o Módulo 02.',x:50,k:1}
+  ]},
+ {t:'Estratégia de aquisição e planejamento',w:'Semanas 3 e 4',ic:'target',h:16,
+  learn:'Funil de aquisição, posicionamento do imóvel, copywriting, argumentos de venda, canais, distribuição de verba e planejamento de mídia.',
+  tasks:[
+   {g:'c',t:'Ads para Marketing Imobiliário',d:'Lano Academy · 6h',u:L.lano,x:45},
+   {g:'c',t:'Fundamentos de Inbound Marketing',d:'HubSpot Academy',u:L.hub,x:30},
+   {g:'p',t:'Fazer a conta de trás para frente',d:'Parta de 1 venda e calcule quantas visitas, leads qualificados e leads totais você precisa, e qual o custo por lead máximo que a verba aguenta.',x:30,e:1},
+   {g:'p',t:'Exercício: estratégia para um imóvel de R$ 5 milhões',d:'Público, mensagem, canais, verba e metas.',x:60},
+   {g:'p',t:'Entrega: plano estratégico de mídia e aquisição',d:'Envie para revisão antes de abrir o Módulo 03.',x:50,k:1}
+  ]},
+ {t:'Gestão de tráfego pago',w:'Semanas 5 e 6',ic:'bolt',h:16,
+  learn:'Operação das plataformas, configuração de campanhas, públicos, orçamento, anúncios, segmentação e otimização.',
+  tasks:[
+   {g:'c',t:'Formação em Tráfego Pago para Corretores',d:'Lano Academy · 9h · Meta Ads, Google Ads, Pixel, captação e métricas',u:L.lano,x:60},
+   {g:'c',t:'Geração de Leads com a Meta',d:'Meta Blueprint',u:L.meta,x:35},
+   {g:'c',t:'Pesquisa do Google Ads + certificação',d:'Google Skillshop · a certificação é gratuita',u:L.skill,x:50},
+   {g:'p',t:'Montar a estrutura das contas',d:'Gerenciador de Negócios, conta de anúncios, Pixel e conta Google Ads configurados do jeito certo.',x:30,e:1},
+   {g:'p',t:'Rodar uma campanha-teste com verba pequena',d:'Com supervisão. Errar com R$ 20 por dia ensina mais do que qualquer aula.',x:40,e:1},
+   {g:'p',t:'Exercício: 3 campanhas Meta + 3 campanhas Google',d:'Para empreendimentos de regiões diferentes.',x:70},
+   {g:'p',t:'Entrega: campanhas estruturadas e plano de mídia',d:'Envie para revisão antes de abrir o Módulo 04.',x:50,k:1}
+  ]},
+ {t:'Criativos, landing pages e conversão',w:'Semanas 7 e 8',ic:'layout',h:16,
+  learn:'Copywriting, anúncios, vídeos, criativos, páginas de captação, formulários, Pixel, UTMs e Analytics.',
+  tasks:[
+   {g:'c',t:'Criativos e Gerenciador de Anúncios',d:'Meta Blueprint',u:L.meta,x:35},
+   {g:'c',t:'Formulários e Landing Pages',d:'HubSpot Academy',u:L.hub,x:30},
+   {g:'c',t:'Google Analytics 4',d:'Google Skillshop · trilha gratuita de GA4',u:L.ga,x:40},
+   {g:'p',t:'Formulário que filtra curiosos',d:'Inclua perguntas de faixa de investimento, prazo e forma de pagamento, e o aviso de privacidade (LGPD).',x:30,e:1},
+   {g:'p',t:'Ativar a API de Conversões da Meta',d:'Deixa o rastreamento confiável mesmo com bloqueadores e iOS.',x:30,e:1},
+   {g:'p',t:'Exercício: landing page + conjunto de anúncios',d:'Para um imóvel de alto padrão.',x:70},
+   {g:'p',t:'Entrega: página, formulários e plano de rastreamento',d:'Envie para revisão antes de abrir o Módulo 05.',x:50,k:1}
+  ]},
+ {t:'CRM e qualificação de leads',w:'Semanas 9 e 10',ic:'users',h:16,prio:1,
+  learn:'CRM, pipeline comercial, lead scoring, qualificação, atendimento, follow-up e integração de dados. <b>É aqui que lead vira venda.</b>',
+  tasks:[
+   {g:'c',t:'Gestão de contatos e CRM',d:'HubSpot Academy',u:L.hub,x:35},
+   {g:'c',t:'Melhorar a qualidade dos leads com CRM',d:'Meta Blueprint · 20 min',u:L.meta,x:20},
+   {g:'p',t:'Roteiro de primeiro contato no WhatsApp',d:'Responder em até 5 minutos, com 3 perguntas de qualificação e a passagem para o corretor.',x:35,e:1},
+   {g:'p',t:'Devolver os leads bons para a Meta',d:'Marque no CRM quem virou visita e envie de volta (conversão offline). O algoritmo passa a buscar mais gente assim.',x:35,e:1},
+   {g:'p',t:'Exercício: sistema de qualificação de compradores',d:'Por perfil, faixa de investimento declarada, intenção e prazo de aquisição.',x:70},
+   {g:'p',t:'Entrega: CRM, pipeline e metodologia de qualificação',d:'Envie para revisão antes de abrir o Módulo 06.',x:50,k:1}
+  ]},
+ {t:'Performance e otimização',w:'Semanas 11 e 12',ic:'chart',h:16,
+  learn:'Indicadores, análise de campanhas, custo por lead qualificado, conversão, visitas, oportunidades e otimização.',
+  tasks:[
+   {g:'c',t:'Análise de resultados e otimização de campanhas',d:'Meta Blueprint',u:L.meta,x:35},
+   {g:'c',t:'Google Ads: mensuração',d:'Google Skillshop',u:L.skill,x:35},
+   {g:'c',t:'GA4: relatórios e análise de dados',d:'Google Skillshop',u:L.ga,x:30},
+   {g:'p',t:'Montar o painel no Looker Studio',d:'Gratuito. Junte Meta, Google e CRM: custo por lead qualificado, visitas e propostas.',u:L.looker,x:35,e:1},
+   {g:'p',t:'Exercício: campanha real supervisionada',d:'Ative, acompanhe por 2 semanas e analise.',x:80},
+   {g:'p',t:'Entrega: dashboard de performance e plano de otimização',d:'A última entrega antes do laboratório.',x:60,k:1}
+  ]}
+];
+const LEVELS=[['Observadora',0],['Analista de mercado',150],['Estrategista',350],['Gestora de tráfego',650],['Especialista em conversão',950],['Caçadora de compradores',1250],['Head de Performance',1600]];
+const BADGES=[
+ {id:'first',n:'Primeiro passo',d:'1ª tarefa feita',ic:'play'},
+ {id:'m0',n:'Leitora de mercado',d:'Módulo 01',ic:'map'},
+ {id:'m1',n:'Estrategista',d:'Módulo 02',ic:'target'},
+ {id:'m2',n:'Mão na massa',d:'Módulo 03',ic:'bolt'},
+ {id:'m3',n:'Conversora',d:'Módulo 04',ic:'layout'},
+ {id:'m4',n:'Filtro fino',d:'Módulo 05',ic:'users'},
+ {id:'streak',n:'Constância',d:'5 dias seguidos',ic:'flame'},
+ {id:'grad',n:'Formada',d:'Os 6 módulos',ic:'crown'}
+];
+
+
+let NOME='Adriana';try{const n=new URLSearchParams(location.search).get('nome');if(n)NOME=n.trim().slice(0,30).replace(/[<>&"]/g,'')}catch(e){}
+const KEY=NOME==='Adriana'?'hrep-adriana-v1':'hrep-'+NOME.toLowerCase().normalize('NFD').replace(/[^a-z0-9]/g,'');
+document.title='Curso Tráfego Imóveis by W3W · Trilha de '+NOME;
+let S={done:{},days:[],open:null};
+try{const r=localStorage.getItem(KEY);if(r)S=Object.assign(S,JSON.parse(r));}catch(e){}
+const CFG=window.HERP_CONFIG||{};const sb=(CFG.SUPABASE_URL&&CFG.SUPABASE_ANON_KEY&&window.supabase)?window.supabase.createClient(CFG.SUPABASE_URL,CFG.SUPABASE_ANON_KEY):null;
+let USER=null,syncT;
+function pushRemote(){if(!sb||!USER)return;clearTimeout(syncT);$('sync').textContent='Salvando…';syncT=setTimeout(async()=>{const a=activeIdx();
+  const {error}=await sb.from('progress').upsert({user_id:USER.id,email:USER.email,nome:NOME,state:S,pct:Math.round(xp()/totalXP*100),modulo:a===-1?7:a+1,xp:xp(),tarefas:Object.values(S.done).filter(Boolean).length,updated_at:new Date().toISOString()});
+  $('sync').textContent=error?'Sem conexão. Seu progresso será salvo ao reconectar.':'Progresso salvo na nuvem.';if(error)setTimeout(pushRemote,8000)},700)}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}pushRemote()};
+const id=(m,t)=>m+'-'+t,pad=n=>String(n).padStart(2,'0'),$=s=>document.getElementById(s);
+const totalXP=MODS.reduce((a,m)=>a+m.tasks.reduce((b,t)=>b+t.x,0),0);
+const modPct=i=>MODS[i].tasks.filter((t,j)=>S.done[id(i,j)]).length/MODS[i].tasks.length;
+const modDone=i=>MODS[i].tasks.every((t,j)=>t.e||S.done[id(i,j)]);
+const unlocked=i=>i===0||modDone(i-1);
+const xp=()=>{let x=0;MODS.forEach((m,i)=>m.tasks.forEach((t,j)=>{if(S.done[id(i,j)])x+=t.x}));return x};
+const level=x=>{let l=0;LEVELS.forEach((v,i)=>{if(x>=v[1])l=i});return l};
+function streak(){const ds=new Set(S.days);let n=0;const d=new Date();if(!ds.has(d.toDateString()))d.setDate(d.getDate()-1);while(ds.has(d.toDateString())){n++;d.setDate(d.getDate()-1)}return n}
+function earned(){const e=new Set();if(Object.values(S.done).some(Boolean))e.add('first');for(let i=0;i<5;i++)if(modDone(i))e.add('m'+i);if(streak()>=5)e.add('streak');if(MODS.every((m,i)=>modDone(i)))e.add('grad');return e}
+const activeIdx=()=>{for(let i=0;i<MODS.length;i++)if(!modDone(i))return i;return -1};
+let open=Math.max(0,activeIdx());
+
+function taskHTML(i,t,j){const on=S.done[id(i,j)];
+  return `<div class="task${on?' on':''}" role="checkbox" tabindex="0" aria-checked="${!!on}" data-m="${i}" data-t="${j}"><span class="cb">${svg(I.check,3)}</span><div><div class="tt">${t.t}${t.e?'<span class="ex">Extra</span>':''}</div><div class="td">${t.d}${t.u?` · <a href="${t.u}" target="_blank" rel="noopener">Abrir</a>`:''}</div></div><span class="xp num">${on?'✓ ':'+'}${t.x} XP</span></div>`}
+function grp(i,g,label){const m=MODS[i],ts=m.tasks.map((t,j)=>({t,j})).filter(o=>o.t.g===g),n=ts.filter(o=>S.done[id(i,o.j)]).length;
+  return `<div class="gl"><span>${label}</span><span class="num" data-c="${g}">${n}/${ts.length}</span></div>${ts.map(o=>taskHTML(i,o.t,o.j)).join('')}`}
+function renderMods(){
+  const a=activeIdx();
+  $('mods').innerHTML=MODS.map((m,i)=>{const d=modDone(i),u=unlocked(i),p=Math.round(modPct(i)*100),cur=i===a;
+    const cls=d?'done':(!u?'locked':(cur?'cur':''));
+    const icon=d?svg(I.check,2.4):(!u?svg(I.lock):svg(I[m.ic]));
+    const right=!u?'':`<span class="p num">${p}%</span>${svg(I.chev,2)}`;
+    return `<div class="mod ${cls}${open===i&&u?' open':''}" data-i="${i}">${cur?`<div class="cover" style="background:${COV[i]}"><span class="n">${pad(i+1)}</span></div>`:''}
+      <button class="mh" ${u?`aria-expanded="${open===i}"`:'aria-disabled="true"'} data-h="${i}">
+        <div class="th">${icon}</div>
+        <div class="mt"><div class="k">Módulo ${pad(i+1)} · ${m.w}${m.prio&&!d?' · <span class="badge-s">Prioridade</span>':''}</div><h3>${m.t}</h3>${u?`<div class="bar"><i style="width:${p}%"></i></div>`:''}</div>
+        <div class="mr">${right}</div>
+      </button>
+      ${u?`<div class="mb"><div><div class="mi"><p class="learn">${m.learn}</p>${grp(i,'c','Cursos')}${grp(i,'p','Prática')}${d?'':'<p class="note">Conclua cursos, exercício e entrega para liberar o próximo módulo.</p>'}</div></div></div>`:''}
+    </div>`}).join('');
+  document.querySelectorAll('.mr svg').forEach(s=>s.classList.add('chev'));
+}
+function renderStats(){
+  const x=xp(),l=level(x),pct=Math.round(x/totalXP*100),e=earned(),a=activeIdx();
+  $('pct').textContent=pct+'%';$('left').textContent=pct>=100?'concluído':'faltam '+(100-pct)+'%';
+  $('ringFg').style.strokeDashoffset=326.73*(1-pct/100);
+  $('xpChip').textContent=x;$('lvN').textContent=l+1;$('lvName').textContent=LEVELS[l][0];
+  const nx=LEVELS[l+1];$('xpFill').style.width=(nx?(x-LEVELS[l][1])/(nx[1]-LEVELS[l][1])*100:100)+'%';
+  $('sMods').textContent=MODS.filter((m,i)=>modDone(i)).length+' de 6';
+  const st=streak();$('streak').textContent=st+(st===1?' dia':' dias');
+  $('sBadges').textContent=e.size+' de '+BADGES.length;
+  $('badges').innerHTML=BADGES.map(b=>`<div class="b${e.has(b.id)?' on':''}" data-b="${b.id}"><div class="ic">${svg(I[b.ic])}</div><b>${b.n}</b><span>${b.d}</span></div>`).join('');
+  const all=a===-1;$('lab').classList.toggle('on',all);$('labSt').textContent=all?'Liberado':'Após o Módulo 06';
+  if(all){$('fk').textContent='Formação concluída';$('ft').textContent='Laboratório final liberado';$('fn').textContent='4 semanas de campanhas reais.';$('ctaT').textContent='Ver laboratório';return}
+  const m=MODS[a],started=m.tasks.some((t,k)=>S.done[id(a,k)]),j=m.tasks.findIndex((t,k)=>!S.done[id(a,k)]&&!t.e);
+  $('fk').textContent=started?'Continue de onde parou':(a?'Novo módulo liberado':'Comece por aqui');
+  $('ft').textContent='Módulo '+pad(a+1)+' · '+m.t;
+  $('fn').textContent=j>=0?'Próxima: '+m.tasks[j].t:'';
+  $('ctaT').textContent=started?'Continuar':'Começar';
+}
+let tt;function toast(icon,h){$('toast').innerHTML=`<span class="ti">${icon}</span><span>${h}</span>`;$('toast').classList.add('show');clearTimeout(tt);tt=setTimeout(()=>$('toast').classList.remove('show'),2000)}
+function confetti(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;const c=$('cf'),x=c.getContext('2d'),dp=devicePixelRatio||1;c.width=innerWidth*dp;c.height=innerHeight*dp;x.setTransform(dp,0,0,dp,0,0);
+  const cols=['#7c5cff','#e85d9c','#ff9a62','#ffffff'];const P=Array.from({length:110},()=>({x:innerWidth/2+(Math.random()-.5)*80,y:innerHeight*.66,vx:(Math.random()-.5)*13,vy:Math.random()*-15-5,r:Math.random()*5+3,c:cols[Math.random()*4|0],a:Math.random()*6,s:(Math.random()-.5)*.3}));
+  let f=0;(function t(){x.clearRect(0,0,innerWidth,innerHeight);P.forEach(p=>{p.vy+=.4;p.vx*=.985;p.x+=p.vx;p.y+=p.vy;p.a+=p.s;x.save();x.translate(p.x,p.y);x.rotate(p.a);x.fillStyle=p.c;x.fillRect(-p.r/2,-p.r/4,p.r,p.r/2);x.restore()});if(++f<150)requestAnimationFrame(t);else x.clearRect(0,0,innerWidth,innerHeight)})()}
+function celebrate(i){const last=i===MODS.length-1;
+  $('celIc').innerHTML=svg(I[last?'crown':MODS[i].ic],1.8);$('celK').textContent=last?'Formação concluída':'Módulo '+pad(i+1)+' concluído';
+  $('celT').textContent=last?'Parabéns, '+NOME+'.':MODS[i].t;
+  $('celP').textContent=last?'Os 6 módulos estão feitos. O laboratório com campanhas reais está liberado.':`Medalha desbloqueada. "${MODS[i+1].t}" já está liberado.`;
+  $('celBtn').textContent=last?'Ver laboratório':'Abrir Módulo '+pad(i+2);
+  $('cel').classList.add('show');setTimeout(()=>$('celBtn').focus(),300);confetti();
+  $('celBtn').onclick=()=>{$('cel').classList.remove('show');if(last){$('lab').scrollIntoView({behavior:'smooth',block:'center'});return}openMod(i+1,true)}}
+$('cel').onclick=e=>{if(e.target.id==='cel')$('cel').classList.remove('show')};
+addEventListener('keydown',e=>{if(e.key==='Escape')$('cel').classList.remove('show')});
+function openMod(i,scroll){open=i;document.querySelectorAll('.mod').forEach(m=>{const o=+m.dataset.i===i&&unlocked(+m.dataset.i);m.classList.toggle('open',o);const h=m.querySelector('.mh');if(unlocked(+m.dataset.i))h.setAttribute('aria-expanded',o)});
+  if(scroll)setTimeout(()=>{const el=document.querySelector(`.mod[data-i="${i}"]`);const y=el.getBoundingClientRect().top+scrollY-72;scrollTo({top:y,behavior:'smooth'})},80)}
+function toggle(row){const i=+row.dataset.m,j=+row.dataset.t,k=id(i,j),before=modDone(i),lv0=level(xp()),b0=earned();
+  S.done[k]=!S.done[k];if(S.done[k]){const d=new Date().toDateString();if(!S.days.includes(d))S.days.push(d)}save();
+  row.classList.toggle('on',!!S.done[k]);row.setAttribute('aria-checked',!!S.done[k]);row.querySelector('.xp').textContent=(S.done[k]?'✓ ':'+')+MODS[i].tasks[j].x+' XP';
+  if(S.done[k]){navigator.vibrate&&navigator.vibrate(10);const lv=level(xp());lv>lv0?toast(svg(I.up,2.6),'Novo nível · '+LEVELS[lv][0]):toast('+'+MODS[i].tasks[j].x,'XP ganho')}
+  renderStats();earned().forEach(b=>{if(!b0.has(b)){const el=document.querySelector(`.b[data-b="${b}"]`);el&&el.classList.add('pop')}});
+  const mod=row.closest('.mod'),p=Math.round(modPct(i)*100);mod.querySelector('.bar i').style.width=p+'%';mod.querySelector('.mr .p').textContent=p+'%';
+  ['c','p'].forEach(g=>{const ts=MODS[i].tasks.map((t,jj)=>({t,jj})).filter(o=>o.t.g===g);mod.querySelector(`[data-c="${g}"]`).textContent=ts.filter(o=>S.done[id(i,o.jj)]).length+'/'+ts.length});
+  if(modDone(i)!==before){renderMods();if(modDone(i))setTimeout(()=>celebrate(i),420)}}
+$('mods').addEventListener('click',e=>{if(e.target.closest('a'))return;const r=e.target.closest('.task');if(r){toggle(r);return}
+  const h=e.target.closest('.mh');if(!h)return;const i=+h.dataset.h;if(!unlocked(i)){toast(svg(I.lock,2.4),'Conclua o Módulo '+pad(i)+' primeiro');return}openMod(open===i?-1:i)});
+$('mods').addEventListener('keydown',e=>{const r=e.target.closest('.task');if(r&&(e.key===' '||e.key==='Enter')){e.preventDefault();toggle(r)}});
+$('cta').onclick=()=>{const a=activeIdx();if(a===-1){$('lab').scrollIntoView({behavior:'smooth',block:'center'});return}openMod(a,true)};
+let armed=false;$('reset').onclick=()=>{const b=$('reset');if(!armed){armed=true;b.textContent='Toque de novo para apagar';setTimeout(()=>{armed=false;b.textContent='Reiniciar'},3000);return}
+  armed=false;b.textContent='Reiniciar';S={done:{},days:[],open:null};save();open=0;renderMods();renderStats();toast(svg(I.check,2.6),'Progresso reiniciado')};
+const hr=new Date().getHours();$('hello').textContent=(hr<12?'Bom dia':hr<18?'Boa tarde':'Boa noite')+', '+NOME;
+async function boot(){
+  if(sb){const {data:{session}}=await sb.auth.getSession();
+    if(!session){$('gate').classList.add('show');$('gform').onsubmit=async e=>{e.preventDefault();const em=$('ge').value.trim(),nm=$('gn').value.trim();$('gb').disabled=true;$('gm').className='msg';$('gm').textContent='Enviando…';
+        const {error}=await sb.auth.signInWithOtp({email:em,options:{emailRedirectTo:location.origin+location.pathname,data:{nome:nm}}});
+        $('gb').disabled=false;if(error){$('gm').className='msg err';$('gm').textContent='Não foi possível enviar. Confira o e-mail e tente de novo.'}else{$('gm').textContent='Pronto. Abra o link que enviamos para '+em+'.'}};return}
+    USER=session.user;NOME=(USER.user_metadata&&USER.user_metadata.nome)||USER.email.split('@')[0];
+    const {data}=await sb.from('progress').select('state').eq('user_id',USER.id).maybeSingle();
+    if(data&&data.state&&data.state.done)S=Object.assign({done:{},days:[]},data.state);
+    $('logout').style.display='';$('logout').onclick=async()=>{await sb.auth.signOut();location.reload()};
+    pushRemote();
+  }
+  document.title='Curso Tráfego Imóveis by W3W · Trilha de '+NOME;
+  $('hello').textContent=(hr<12?'Bom dia':hr<18?'Boa tarde':'Boa noite')+', '+NOME;
+  open=Math.max(0,activeIdx());renderMods();requestAnimationFrame(renderStats);
+}
+boot();
+</script>
+</body>
+</html>
