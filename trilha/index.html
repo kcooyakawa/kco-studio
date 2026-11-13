@@ -334,7 +334,7 @@ canvas#cf{position:fixed;inset:0;pointer-events:none;z-index:80}
 
 <script>
 const q=s=>encodeURIComponent(s);
-const L={lano:'https://lano.com.br/academy',hub:'https://academy.hubspot.com/courses',meta:'https://www.facebook.com/business/learn',skill:'https://skillshop.withgoogle.com/',ga:'https://skillshop.withgoogle.com/',looker:'https://lookerstudio.google.com/'};
+const L={lano:'https://lano.com.br/academy',lano1:'https://lano.com.br/course/introducao-ao-marketing-digital-imobiliario-para-corretores/',lano2:'https://lano.com.br/course/ads-para-marketing-imobiliario/',lano3:'https://lano.com.br/course/formacao-em-trafego-pago-para-corretores/',lano5:'https://lano.com.br/course/whatsapp-para-marketing-imobiliario/',hub:'https://academy.hubspot.com/courses',meta:'https://www.facebook.com/business/learn',skill:'https://skillshop.withgoogle.com/',ga:'https://skillshop.withgoogle.com/',looker:'https://lookerstudio.google.com/'};
 const I={map:'<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2-6-2z"/><path d="M9 4v14M15 6v14"/>',target:'<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>',bolt:'<path d="M13 2 4 14h7l-1 8 9-12h-7z"/>',layout:'<rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 20V9"/>',users:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6 6 0 0 1 3.5 6"/>',chart:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',lock:'<rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/>',check:'<path d="m5 12 5 5L20 7"/>',flame:'<path d="M12 3c1 3 4 4.5 4 8.5A4 4 0 0 1 8 11.5c0-1.4.6-2.4 1.3-3.2.2 1.4 1 2.2 1.7 2.2C11 7.5 11 5 12 3z"/>',crown:'<path d="M3 8l4 4 5-7 5 7 4-4-2 11H5z"/>',play:'<path d="M8 5.5v13l10.5-6.5z"/>',up:'<path d="M12 19V5M5 12l7-7 7 7"/>',chev:'<path d="m9 6 6 6-6 6"/>'};
 const svg=(p,sw=1.8)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${sw}" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 const COV=['radial-gradient(80% 140% at 0% 0%,#5b8cff,transparent 60%),radial-gradient(70% 140% at 100% 100%,#7c5cff,transparent 60%),#1a1838','radial-gradient(80% 140% at 100% 0%,#e85d9c,transparent 60%),radial-gradient(70% 140% at 0% 100%,#7c5cff,transparent 60%),#24142e','radial-gradient(80% 140% at 0% 0%,#ff9a62,transparent 60%),radial-gradient(70% 140% at 100% 100%,#e85d9c,transparent 60%),#2a1418','radial-gradient(80% 140% at 100% 0%,#3ddc97,transparent 55%),radial-gradient(70% 140% at 0% 100%,#5b8cff,transparent 60%),#0f2228','radial-gradient(80% 140% at 0% 0%,#7c5cff,transparent 60%),radial-gradient(70% 140% at 100% 100%,#ff9a62,transparent 60%),#221432','radial-gradient(80% 140% at 100% 0%,#5b8cff,transparent 55%),radial-gradient(70% 140% at 0% 100%,#e85d9c,transparent 60%),#16182e'];
@@ -342,7 +342,7 @@ const MODS = [
  {t:'Mercado imobiliário e estratégia',w:'Semanas 1 e 2',ic:'map',h:16,
   learn:'Mercado de <b>alto padrão</b>, perfil e comportamento do comprador, intenção de compra, segmentação e jornada.',
   tasks:[
-   {g:'c',t:'Fundamentos do Marketing Digital Imobiliário',d:'Lano Academy · 5h',u:L.lano,x:40},
+   {g:'c',t:'Fundamentos do Marketing Digital Imobiliário',d:'Lano Academy · 5h',u:L.lano1,x:40},
    {g:'c',t:'Personas, jornada do comprador e segmentação',d:'Aula W3W · 55 min · 6 capítulos, simulador e desafios',a:'personas',x:30},
    {g:'p',t:'Mapear como o alto padrão é anunciado',d:'Salve 10 anúncios de imóveis acima de R$ 3 mi em portais e sites de imobiliárias boutique: fotos, texto, preço, chamada.',x:25,e:1},
    {g:'p',t:'Exercício: 5 empreendimentos, 3 perfis de comprador',d:'Analise cinco empreendimentos de alto padrão e crie três perfis de compradores.',x:60},
@@ -351,7 +351,7 @@ const MODS = [
  {t:'Estratégia de aquisição e planejamento',w:'Semanas 3 e 4',ic:'target',h:16,
   learn:'Funil de aquisição, posicionamento do imóvel, copywriting, argumentos de venda, canais, distribuição de verba e planejamento de mídia.',
   tasks:[
-   {g:'c',t:'Ads para Marketing Imobiliário',d:'Lano Academy · 6h',u:L.lano,x:45},
+   {g:'c',t:'Ads para Marketing Imobiliário',d:'Lano Academy · 6h',u:L.lano2,x:45},
    {g:'c',t:'Fundamentos de Inbound para imóveis',d:'Aula W3W · 50 min · 6 capítulos, simulador e desafios',a:'inbound',x:30},
    {g:'p',t:'Fazer a conta de trás para frente',d:'Parta de 1 venda e calcule quantas visitas, leads qualificados e leads totais você precisa, e qual o custo por lead máximo que a verba aguenta.',x:30,e:1},
    {g:'p',t:'Exercício: estratégia para um imóvel de R$ 5 milhões',d:'Público, mensagem, canais, verba e metas.',x:60},
@@ -360,7 +360,7 @@ const MODS = [
  {t:'Gestão de tráfego pago',w:'Semanas 5 e 6',ic:'bolt',h:16,
   learn:'Operação das plataformas, configuração de campanhas, públicos, orçamento, anúncios, segmentação e otimização.',
   tasks:[
-   {g:'c',t:'Formação em Tráfego Pago para Corretores',d:'Lano Academy · 9h · feito para corretores, mas a parte técnica (Meta Ads, Google Ads, Pixel, métricas) é a mesma que o gestor de tráfego usa',u:L.lano,x:60},
+   {g:'c',t:'Formação em Tráfego Pago para Corretores',d:'Lano Academy · 9h · feito para corretores, mas a parte técnica (Meta Ads, Google Ads, Pixel, métricas) é a mesma que o gestor de tráfego usa',u:L.lano3,x:60},
    {g:'c',t:'Geração de Leads com a Meta',d:'Meta Blueprint',u:L.meta,x:35},
    {g:'c',t:'Pesquisa do Google Ads + certificação',d:'Google Skillshop · a certificação é gratuita',u:L.skill,x:50},
    {g:'p',t:'Montar a estrutura das contas',d:'Gerenciador de Negócios, conta de anúncios, Pixel e conta Google Ads configurados do jeito certo.',x:30,e:1},
@@ -383,6 +383,7 @@ const MODS = [
   learn:'CRM, pipeline comercial, lead scoring, qualificação, atendimento, follow-up e integração de dados. <b>É aqui que lead vira venda.</b>',
   tasks:[
    {g:'c',t:'Gestão de contatos e CRM',d:'Aula W3W · 50 min · 6 capítulos, simulador e desafios',a:'crm',x:35},
+   {g:'c',t:'WhatsApp para Marketing Imobiliário',d:'Lano Academy · 5h',u:L.lano5,x:40},
    {g:'c',t:'Melhorar a qualidade dos leads com CRM',d:'Meta Blueprint · 20 min',u:L.meta,x:20},
    {g:'p',t:'Roteiro de primeiro contato no WhatsApp',d:'Escreva o roteiro que você vai entregar ao seu cliente: resposta em até 5 minutos, 3 perguntas de qualificação e a passagem para o corretor dele.',x:35,e:1},
    {g:'p',t:'Devolver os leads bons para a Meta',d:'Combine com o cliente a marcação no CRM de quem virou visita e configure o envio de volta para a Meta (conversão offline). O algoritmo passa a buscar mais gente assim.',x:35,e:1},
