@@ -20,7 +20,7 @@ url = str(pedido.get("u", "")).strip()
 fmt = pedido.get("f", "mp3")
 ini, fim = pedido.get("s", ""), pedido.get("e", "")
 
-if not re.match(r"^https?://[^\s'\"`$;|&<>]+$", url):
+if not re.match(r"^https?://[^\s'\"`<>]+$", url):
     print("Link inválido.")
     sys.exit(1)
 

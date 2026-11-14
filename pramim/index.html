@@ -154,7 +154,7 @@ body{padding-top:env(safe-area-inset-top)}
    <input id="url" type="url" inputmode="url" placeholder="Cole o link do vídeo" autocomplete="off" spellcheck="false">
    <button class="txt" id="paste">Colar</button>
    <button class="circ" id="trimBtn" title="Cortar trecho"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></button>
-   <button class="circ" id="go" disabled title="Baixar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6.5 10.5 12 16l5.5-5.5"/><path d="M6 20.5h12"/></svg></button>
+   <button class="circ" id="go" title="Baixar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6.5 10.5 12 16l5.5-5.5"/><path d="M6 20.5h12"/></svg></button>
   </div>
   <div class="status" id="st"></div>
   <div class="sites" id="sites"></div>
@@ -187,10 +187,10 @@ body{padding-top:env(safe-area-inset-top)}
 const $=s=>document.querySelector(s);
 const SITES=[["YouTube",/youtu\.?be/],["Instagram",/instagram/],["Facebook",/facebook|fb\.watch/],["TikTok",/tiktok/],["Vimeo",/vimeo/],["X",/(^|\/\/|\.)(x|twitter)\.com/],["SoundCloud",/soundcloud/],["Twitch",/twitch/]];
 $('#sites').innerHTML=SITES.map(s=>`<span data-s="${s[0]}">${s[0]}</span>`).join('')+'<span data-s="other">+1000</span>';
-const ok=u=>/^https?:\/\/[^\s'"`$;|&<>]+$/.test(u);
+const ok=u=>/^https?:\/\/[^\s'"`<>]+$/.test(u);
 function detect(){const v=$('#url').value.trim();let hit=null;for(const[s,r] of SITES)if(r.test(v)){hit=s;break}
  document.querySelectorAll('#sites span').forEach(e=>e.classList.toggle('on',e.dataset.s===hit||(!hit&&ok(v)&&e.dataset.s==='other')));
- $('#go').disabled=!ok(v)}
+ $('#go').style.opacity=ok(v)?1:.55}
 function slide(){const l=document.querySelector('.seg label:has(input:checked)');if(!l)return;$('#sl').style.left=l.offsetLeft+'px';$('#sl').style.width=l.offsetWidth+'px'}
 document.querySelectorAll('.seg input').forEach(i=>i.addEventListener('change',slide));addEventListener('resize',slide);
 $('#url').addEventListener('input',detect);
@@ -203,7 +203,7 @@ const NAMES={mp3:'MP3',wav:'WAV',mp4max:'4K','1080':'1080p'};
 function hist(){let h=[];try{h=JSON.parse(localStorage.getItem('pramim')||'[]')}catch(e){}return h}
 function saveH(h){try{localStorage.setItem('pramim',JSON.stringify(h.slice(0,8)))}catch(e){}}
 function renderH(){const h=hist();$('#histS').style.display=h.length?'block':'none';$('#hist').innerHTML=h.map(x=>`<div class="hi"><span class="f">${NAMES[x.f]||''}</span><span class="u">${x.u.replace(/[<>&"]/g,'')}</span><span class="cap">${x.st==='ok'?'✓':x.st==='err'?'!':'···'}</span></div>`).join('')}
-function go(){const u=$('#url').value.trim();if(!ok(u))return toast('Cole um link válido');
+function go(){const u=$('#url').value.trim().split(/\s+/).find(x=>/^https?:/.test(x))||'';if(!ok(u))return toast('Cole um link válido (começando com https://)');toast('Abrindo o atalho pramim…');
  const f=document.querySelector('input[name=f]:checked').value;
  const p={u,f};const s=$('#s').value.trim(),e=$('#e').value.trim();if(s)p.s=s;if(e)p.e=e;
  const b64=btoa(unescape(encodeURIComponent(JSON.stringify(p)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
