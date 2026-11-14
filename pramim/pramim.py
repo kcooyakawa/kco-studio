@@ -27,10 +27,20 @@ if not re.match(r"^https?://[^\s'\"`<>]+$", url):
     print("Link inválido.")
     sys.exit(1)
 
+# Só o vídeo do link: remove playlist/mix do YouTube
+from urllib.parse import urlparse, parse_qs, urlencode
+pu = urlparse(url)
+if "youtu" in pu.netloc:
+    q = parse_qs(pu.query)
+    if "v" in q:
+        url = "https://www.youtube.com/watch?" + urlencode({"v": q["v"][0]})
+    elif "youtu.be" in pu.netloc:
+        url = "https://youtu.be" + pu.path
+
 pasta = os.path.expanduser("~/Documents/pramim")
 os.makedirs(pasta, exist_ok=True)
 
-opts = {"outtmpl": os.path.join(pasta, "%(title).80s.%(ext)s"), "noplaylist": True}
+opts = {"outtmpl": os.path.join(pasta, "%(title).80s.%(ext)s"), "noplaylist": True, "playlist_items": "1"}
 if fmt in ("mp3", "wav"):
     pp = {"key": "FFmpegExtractAudio", "preferredcodec": fmt}
     if fmt == "mp3":
