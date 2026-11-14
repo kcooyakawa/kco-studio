@@ -1,0 +1,221 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>pra/mim</title>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="pra/mim">
+<meta name="theme-color" content="#04070d"><link rel="apple-touch-icon" href="icon-180.png"><link rel="icon" href="icon-180.png"><link rel="manifest" href="manifest.webmanifest">
+<meta name="robots" content="noindex">
+<style>
+:root{--blue:#2f6bff;--blue2:#5b8cff;--sky:#9cc4ff;--aqua:#9ff0ff;--ink:#f2f6fc;--ink2:#a9b6cc;--mute:#66748c;--ok:#4ff0b0;--err:#ff6b7a}
+*{box-sizing:border-box;margin:0}
+html,body{min-height:100%;color:var(--ink);font-family:-apple-system,"SF Pro Display","SF Pro Text","Helvetica Neue",sans-serif;-webkit-font-smoothing:antialiased}
+body{background:#04070d;min-height:100vh;overflow-x:hidden}
+.bg{position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(120% 60% at 50% 115%,rgba(30,80,255,.55),rgba(20,50,160,.18) 45%,transparent 70%),radial-gradient(60% 40% at 50% -5%,rgba(90,140,255,.16),transparent 70%),linear-gradient(180deg,#070c16,#04070d 60%)}
+.cap{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);font-weight:500}
+.wrap{position:relative;z-index:1;max-width:980px;margin:0 auto;padding:16vh 28px 170px}
+nav{display:flex;justify-content:space-between;align-items:center;padding:10px 10px 10px 16px;border-radius:999px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.06);backdrop-filter:blur(20px);margin-bottom:96px}
+.brand{display:flex;align-items:center;gap:10px;font-size:15px;font-weight:500;letter-spacing:-.01em}
+.brand .mk{width:22px;height:22px}
+.live{display:flex;align-items:center;gap:8px;padding:8px 14px;border-radius:999px;background:rgba(255,255,255,.05);font-size:12px;color:var(--ink2)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 10px var(--ok)}
+.hero{text-align:center}
+.hmk{width:120px;height:120px;margin:0 auto 26px;display:block;filter:drop-shadow(0 10px 30px rgba(47,107,255,.75)) drop-shadow(0 0 60px rgba(47,107,255,.35));animation:bob 4s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(8px)}}
+h1{font-size:clamp(60px,9.5vw,112px);font-weight:200;letter-spacing:-.055em;line-height:.95;background:linear-gradient(180deg,#fff 30%,#a9c8ff 75%,#5b8cff);-webkit-background-clip:text;background-clip:text;color:transparent}
+h1 b{font-weight:600}
+h1{display:flex;align-items:center;justify-content:center;gap:.04em}
+h1 .ta{height:.92em;width:auto;margin:0 .06em;transform:translateY(.04em);filter:drop-shadow(0 8px 24px rgba(47,107,255,.7));animation:bob 3.6s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(.1em)}}
+.lead{margin-top:18px;font-size:17px;font-weight:300;color:var(--ink2);letter-spacing:.005em}
+/* CAPSULE INPUT */
+.pill{margin:52px auto 0;max-width:760px;display:flex;align-items:center;gap:10px;padding:9px;border-radius:999px;background:linear-gradient(180deg,rgba(40,62,98,.55),rgba(14,24,42,.6));box-shadow:inset 0 1px 0 rgba(255,255,255,.12),inset 0 -1px 0 rgba(0,0,0,.4),0 30px 80px -20px rgba(0,0,0,.8);backdrop-filter:blur(30px);transition:box-shadow .3s}
+.pill.focus{box-shadow:inset 0 1px 0 rgba(255,255,255,.14),0 0 0 1px rgba(91,140,255,.6),0 30px 90px -20px rgba(47,107,255,.6)}
+.circ{flex:none;width:52px;height:52px;border-radius:50%;display:grid;place-items:center;border:0;cursor:pointer;color:var(--ink);background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.14),rgba(255,255,255,.03) 70%);box-shadow:inset 0 1px 0 rgba(255,255,255,.18),0 6px 16px -6px rgba(0,0,0,.6);transition:.25s}
+.circ:hover{transform:scale(1.05)}
+#url{flex:1;min-width:0;font:inherit;font-size:18px;font-weight:300;border:0;outline:none;background:none;color:var(--ink);padding:0 6px}
+#url::placeholder{color:#5c6a84}
+.txt{font:inherit;font-size:13px;color:var(--ink2);background:rgba(255,255,255,.06);border:0;border-radius:999px;padding:0 18px;height:44px;cursor:pointer;box-shadow:inset 0 1px 0 rgba(255,255,255,.1)}
+.txt:hover{color:#fff}
+#go{width:60px;height:60px;background:radial-gradient(circle at 35% 25%,#6f9bff,#2f6bff 55%,#1d47c4);box-shadow:inset 0 1px 1px rgba(255,255,255,.45),0 10px 30px -6px rgba(47,107,255,.9)}
+#go:disabled{filter:saturate(.3) brightness(.6);cursor:default;transform:none}
+.sites{display:flex;justify-content:center;flex-wrap:wrap;gap:22px;margin-top:22px}
+.sites span{font-size:12px;color:#4d5a71;letter-spacing:.02em;display:flex;align-items:center;gap:7px;transition:.3s}
+.sites span:before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.6}
+.sites span.on{color:#fff}.sites span.on:before{background:var(--blue2);box-shadow:0 0 10px var(--blue2);opacity:1}
+/* SEGMENTED */
+.seg{position:relative;margin:34px auto 0;width:max-content;max-width:100%;display:flex;gap:4px;padding:6px;border-radius:999px;background:rgba(255,255,255,.04);box-shadow:inset 0 1px 0 rgba(255,255,255,.06),inset 0 0 0 1px rgba(255,255,255,.04)}
+.seg label{position:relative;z-index:1;display:flex;align-items:center;gap:10px;padding:8px 20px 8px 8px;border-radius:999px;cursor:pointer;color:var(--ink2);transition:color .3s}
+.seg input{position:absolute;opacity:0}
+.seg .ic{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.06);transition:.3s}
+.seg .l b{display:block;font-size:14px;font-weight:600;letter-spacing:-.01em}
+.seg .l small{display:block;font-size:10.5px;color:var(--mute);margin-top:1px}
+.seg label:has(input:checked){color:#fff}
+.seg label:has(input:checked) .ic{background:radial-gradient(circle at 35% 25%,#6f9bff,#2f6bff 60%);box-shadow:0 4px 14px -2px rgba(47,107,255,.9),inset 0 1px 0 rgba(255,255,255,.4)}
+.slider{position:absolute;z-index:0;top:6px;bottom:6px;border-radius:999px;background:linear-gradient(180deg,rgba(60,92,145,.7),rgba(28,46,78,.7));box-shadow:inset 0 1px 0 rgba(255,255,255,.15),0 8px 24px -8px rgba(0,0,0,.7);transition:all .45s cubic-bezier(.3,1.3,.5,1)}
+.trim{display:flex;justify-content:center;align-items:center;gap:10px;margin-top:20px;color:var(--mute);font-size:13px}
+.trim input{width:96px;font:inherit;font-size:14px;font-weight:300;font-variant-numeric:tabular-nums;text-align:center;height:40px;border-radius:999px;border:0;background:rgba(255,255,255,.05);box-shadow:inset 0 1px 0 rgba(255,255,255,.06);color:var(--ink);outline:none}
+.trim input:focus{box-shadow:0 0 0 1px var(--blue2)}
+.hide{display:none!important}
+/* WATCH TILES */
+.lh{display:flex;justify-content:space-between;align-items:center;margin:96px 6px 18px}
+.lh h2{font-size:22px;font-weight:300;letter-spacing:-.02em}
+.lh .a{display:flex;gap:8px}
+#jobs{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:22px}
+.bez{padding:10px;border-radius:52px;background:linear-gradient(180deg,#1a2234,#0b111c);box-shadow:inset 0 1px 0 rgba(255,255,255,.08),0 30px 60px -20px rgba(0,0,0,.9),0 0 0 1px rgba(255,255,255,.04);animation:in .6s cubic-bezier(.2,.9,.2,1)}
+@keyframes in{from{opacity:0;transform:translateY(16px) scale(.97)}}
+.tile{position:relative;overflow:hidden;border-radius:42px;aspect-ratio:1/1.08;padding:22px 22px 20px;display:flex;flex-direction:column;background:linear-gradient(180deg,#1d3a5c,#0f2038 70%,#0a1628)}
+.tile .ph{position:absolute;inset:0;background:center/cover;opacity:.28;filter:blur(18px) saturate(1.3);transform:scale(1.3)}
+.tile:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,20,36,.2),rgba(8,16,30,.85));pointer-events:none}
+.tile>*:not(.ph){position:relative;z-index:1}
+.th{display:flex;justify-content:space-between;align-items:flex-start}
+.hl{display:flex;gap:10px;align-items:center}
+.ico{width:40px;height:40px;border-radius:50%;display:grid;place-items:center;background:radial-gradient(circle at 35% 25%,rgba(255,255,255,.18),rgba(255,255,255,.04) 70%);box-shadow:inset 0 1px 0 rgba(255,255,255,.2)}
+.hv{font-size:15px;font-weight:400;margin-top:1px}
+.hr{text-align:right}.hr .hv{font-variant-numeric:tabular-nums}
+.ring{position:relative;flex:1;display:grid;place-items:center;margin:4px 0}
+.ring svg{width:150px;height:150px;transform:rotate(-90deg)}
+.ring .v{position:absolute;text-align:center}
+.ring .n{font-size:40px;font-weight:200;letter-spacing:-.03em;font-variant-numeric:tabular-nums;line-height:1}
+.ring .s{font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);margin-top:6px}
+.trk{stroke:rgba(255,255,255,.07)}
+.arc{transition:stroke-dashoffset .6s cubic-bezier(.2,.8,.2,1)}
+.spin svg{animation:sp 1.6s linear infinite}@keyframes sp{to{transform:rotate(270deg)}}
+.tb{display:flex;align-items:center;gap:12px}
+.tt{flex:1;min-width:0;font-size:13px;font-weight:400;color:var(--ink2);line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.act{width:46px;height:46px}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;border-radius:52px;background:rgba(255,255,255,.02);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.empty .mk{width:44px;height:44px;margin-bottom:14px;filter:drop-shadow(0 6px 16px rgba(47,107,255,.7))}
+.empty p{color:var(--mute);font-weight:300;font-size:15px}
+footer{position:fixed;z-index:2;left:0;right:0;bottom:0;padding:26px 32px 30px;display:flex;flex-direction:column;align-items:center;gap:12px;background:linear-gradient(transparent,rgba(4,7,13,.96) 55%)}
+.pw{display:flex;align-items:center;gap:16px}.pw .cap{font-size:11px;letter-spacing:.32em;color:var(--ink2)}.kco{height:40px;width:auto;color:#fff;opacity:.85;transition:.25s}.pw:hover .kco{opacity:1}
+.toast{position:fixed;z-index:3;left:50%;top:24px;transform:translate(-50%,-20px);opacity:0;transition:.4s cubic-bezier(.3,1.3,.5,1);background:rgba(28,40,62,.85);backdrop-filter:blur(20px);box-shadow:inset 0 1px 0 rgba(255,255,255,.12),0 20px 40px -10px rgba(0,0,0,.7);padding:12px 20px;border-radius:999px;font-size:14px}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.seg{flex-wrap:wrap;border-radius:28px;justify-content:center}.slider{display:none}.seg label:has(input:checked){background:rgba(60,92,145,.6)}}
+
+h1{font-size:clamp(76px,11vw,140px)!important;font-weight:300!important;letter-spacing:-.04em!important;gap:0!important;line-height:1!important}
+h1 .w{font-weight:300}
+h1 b{font-weight:700;letter-spacing:-.045em}
+h1 .sl{display:inline-block;width:.13em;height:.82em;margin:0 .07em 0 .05em;border-radius:.03em;transform:skewX(-22deg) translateY(.06em);background:linear-gradient(180deg,#7fd0ff 0%,#2f6bff 55%,#1b3fd6 100%);box-shadow:0 0 .25em rgba(47,107,255,.65),0 0 .8em rgba(47,107,255,.35)}
+.lead.tag{margin-top:26px;font-size:15px;font-weight:400;letter-spacing:.42em;text-transform:uppercase;color:#c9d6ea}
+.arc{position:fixed;z-index:0;pointer-events:none;right:-22vw;top:-30vh;width:75vw;height:75vw;border-radius:50%;border-top:1.5px solid rgba(120,160,255,.85);border-left:1px solid transparent;transform:rotate(-18deg);filter:drop-shadow(0 0 6px rgba(80,130,255,.9)) drop-shadow(0 0 30px rgba(47,107,255,.6));mask-image:linear-gradient(90deg,transparent 0%,#000 55%,#000 75%,transparent 100%)}
+.arc:after{content:"";position:absolute;right:18%;top:2%;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(70,110,255,.45),transparent 65%);filter:blur(30px)}
+
+/* v8 */
+h1{font-family:"Avenir Next","Avenir",-apple-system,sans-serif!important;font-size:clamp(80px,11.5vw,150px)!important;letter-spacing:-.035em!important;background:linear-gradient(180deg,#ffffff 35%,#b9cdf2 100%)!important;-webkit-background-clip:text!important;background-clip:text!important}
+h1 .w{font-weight:300}
+h1 b{font-weight:700;letter-spacing:-.04em}
+h1 .sl{width:.12em;height:.86em;margin:0 .09em 0 .04em;transform:skewX(-24deg) translateY(.08em);background:linear-gradient(180deg,#5fd2ff 0%,#2f7bff 50%,#1d3fe0 100%)}
+.arc{right:-38vw!important;top:-48vh!important;width:80vw!important;height:80vw!important}
+footer{position:relative!important;background:none!important;padding:72px 0 44px!important;gap:14px!important}
+footer:before{content:"";display:block;width:min(420px,70%);height:1px;margin-bottom:22px;background:linear-gradient(90deg,transparent,#5fd2ff 30%,#2f6bff 60%,transparent);box-shadow:0 0 12px rgba(47,107,255,.7)}
+.pw{gap:10px!important}.pw .cap{font-size:9.5px!important;letter-spacing:.3em!important}
+.kco{height:22px!important}
+.wrap{padding-bottom:20px!important}
+
+/* v9 */
+h1{font-size:clamp(96px,15vw,210px)!important;letter-spacing:-.045em!important;line-height:.95!important}
+h1 .w{font-weight:400!important;font-family:"Avenir Next","Avenir",sans-serif}
+h1 b{font-weight:800!important;font-family:"Avenir Next","Avenir",sans-serif;letter-spacing:-.05em!important}
+h1 .sl{width:.115em!important;height:.9em!important;margin:0 .1em 0 .05em!important;transform:skewX(-26deg) translateY(.12em)!important}
+
+/* v10 */
+h1.logo{background:none!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;display:block!important;line-height:0!important}
+h1.logo img{width:min(720px,86vw);height:auto}
+footer:before{margin-bottom:30px!important}
+.pw{gap:14px!important}.pw .cap{font-size:11px!important}
+.kco{height:40px!important}
+
+/* web/iOS */
+body{padding-top:env(safe-area-inset-top)}
+.wrap{padding-top:9vh!important}
+.status{max-width:760px;margin:22px auto 0;padding:14px 20px;border-radius:999px;text-align:center;font-size:14px;display:none}
+.status.ok{display:block;background:rgba(79,240,176,.12);color:#9ff5cf;box-shadow:inset 0 0 0 1px rgba(79,240,176,.3)}
+.status.err{display:block;background:rgba(255,107,122,.12);color:#ffb3bb;box-shadow:inset 0 0 0 1px rgba(255,107,122,.3)}
+.setup{max-width:760px;margin:70px auto 0;border-radius:32px;padding:26px 28px;background:rgba(255,255,255,.03);box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.setup summary{cursor:pointer;font-size:18px;font-weight:300;list-style:none;display:flex;justify-content:space-between}
+.setup summary::-webkit-details-marker{display:none}
+.setup ol{margin:20px 0 0;padding-left:22px;color:var(--ink2);line-height:1.6;font-size:15px}
+.setup li{margin-bottom:18px}.setup b{color:#fff}
+.code{display:flex;gap:8px;align-items:center;margin-top:8px}
+.code code{flex:1;min-width:0;overflow-x:auto;white-space:nowrap;font-family:"SF Mono",ui-monospace,monospace;font-size:12px;padding:12px 14px;border-radius:14px;background:rgba(0,0,0,.35);color:#cfe0ff}
+.hist{max-width:760px;margin:60px auto 0}
+.hist h2{font-size:22px;font-weight:300;margin:0 6px 14px}
+.hi{display:flex;align-items:center;gap:14px;padding:14px 18px;border-radius:24px;background:rgba(255,255,255,.03);margin-bottom:8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.hi .u{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;color:var(--ink2)}
+.hi .f{font-size:11px;letter-spacing:.06em;color:var(--sky);padding:4px 10px;border-radius:999px;background:rgba(47,107,255,.16)}
+@media(max-width:600px){.pill{gap:6px;padding:7px}.circ{width:44px;height:44px}#go{width:52px;height:52px}.txt{padding:0 12px;height:40px}.lead.tag{letter-spacing:.22em;font-size:12px}.seg label{padding:6px 14px 6px 6px}}
+</style></head><body>
+<div class="bg"></div><div class="arc"></div>
+<div class="wrap">
+ <section class="hero">
+  <h1 class="logo"><img src="logo.png" alt="pra/mim"></h1>
+  <p class="lead tag">Baixe vídeos, músicas e muito mais.</p>
+  <div class="pill" id="cmd">
+   <span class="circ" style="cursor:default"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/></svg></span>
+   <input id="url" type="url" inputmode="url" placeholder="Cole o link do vídeo" autocomplete="off" spellcheck="false">
+   <button class="txt" id="paste">Colar</button>
+   <button class="circ" id="trimBtn" title="Cortar trecho"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><path d="M20 4 8.1 15.9M14.5 14.5 20 20M8.1 8.1 12 12"/></svg></button>
+   <button class="circ" id="go" disabled title="Baixar"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v12M6.5 10.5 12 16l5.5-5.5"/><path d="M6 20.5h12"/></svg></button>
+  </div>
+  <div class="status" id="st"></div>
+  <div class="sites" id="sites"></div>
+  <div class="trim hide" id="trimF">Trecho <input id="s" placeholder="0:00:00"> até <input id="e" placeholder="0:05:00"></div>
+  <div class="seg" id="seg"><span class="slider" id="sl"></span>
+   <label><input type="radio" name="f" value="mp3" checked><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span><span class="l"><b>MP3</b><small>320 kbps</small></span></label>
+   <label><input type="radio" name="f" value="wav"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h1M7 8v8M11 4v16M15 7v10M19 10v4"/></svg></span><span class="l"><b>WAV</b><small>Sem perdas</small></span></label>
+   <label><input type="radio" name="f" value="mp4max"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M8 9.5v3h2.5M10.5 9.5v5M14 9.5v5M17 9.5l-3 2.5 3 2.5"/></svg></span><span class="l"><b>4K</b><small>MP4 máximo</small></span></label>
+   <label><input type="radio" name="f" value="1080"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="M10 9l5 3-5 3z" fill="currentColor"/></svg></span><span class="l"><b>1080p</b><small>MP4 universal</small></span></label>
+  </div>
+ </section>
+ <section class="hist" id="histS" style="display:none"><h2>Recentes</h2><div id="hist"></div></section>
+ <details class="setup" id="setup"><summary><span>Configurar no iPhone / iPad</span><span>＋</span></summary>
+  <ol>
+   <li>Instale o app <b>a-Shell</b> (grátis) na App Store.</li>
+   <li>Abra o a-Shell, cole este comando e toque em enviar. Faz isso <b>uma vez só</b>:
+    <div class="code"><code id="c1">pip install -U yt-dlp && curl -L -o ~/Documents/pramim.py https://kcooyakawa.github.io/kco-studio/pramim/pramim.py</code><button class="txt" data-copy="c1">Copiar</button></div></li>
+   <li>No app <b>Atalhos</b>, crie um atalho chamado exatamente <b>pramim</b> com uma única ação do a-Shell: <b>Execute Command</b>. No campo do comando, escreva:
+    <div class="code"><code id="c2">python ~/Documents/pramim.py</code><button class="txt" data-copy="c2">Copiar</button></div>
+    e, logo depois do texto (com um espaço), toque e insira a variável <b>Entrada do Atalho</b>. Ative "Open a-Shell" para downloads longos.</li>
+   <li>(Opcional) Nos detalhes do atalho, ative <b>Mostrar na Folha de Compartilhamento</b> e escolha <b>URLs</b>. Assim dá para baixar direto do Instagram/YouTube em Compartilhar › pramim.</li>
+   <li>Aqui no Safari, toque em Compartilhar › <b>Adicionar à Tela de Início</b>. Pronto: o pra/mim vira um app.</li>
+  </ol>
+  <p class="cap" style="margin-top:6px">Arquivos ficam em Arquivos › No meu iPhone › a-Shell › pramim</p>
+ </details>
+</div>
+<footer><span class="pw"><span class="cap">powered by</span><svg class="kco" viewBox="295 200 745 392" aria-label="KCO Studio"><g fill="currentColor"><path d="M465.47,346.58l112.5,101.6h-66.79l-92.84-83.37h-53.52v83.37h-44.76v-241.81h44.76v122.92h53.52l70.34-63.24h66.31l-89.52,80.53Z"/><path d="M678.62,411.95c18.47,0,34.26-3.19,47.37-9.590,13.1-6.4,22.03-15.12,26.76-26.17h44.52c-4.42,24.48-16.93,42.55-37.54,54.24-20.6,11.69-47.64,17.52-81.11,17.52-37.74,0-67.26-7.38-88.58-22.14-21.32-14.76-31.97-37.62-31.97-68.57s10.66-54.08,31.97-68.92c21.31-14.84,50.84-22.26,88.58-22.26,33.78,0,61.020,5.92,81.71,17.76,20.68,11.84,33.08,30.24,37.18,55.18h-44.76c-4.42-11.52-13.19-20.6-26.29-27.23-13.11-6.63-29.05-9.95-47.84-9.95-23.84,0-42.43,4.74-55.77,14.21-13.35,9.47-20.010,23.21-20.010,41.21s6.67,31.42,20.010,40.74c13.34,9.32,31.93,13.97,55.77,13.97Z"/><path d="M925.64,266.06c24.63,0,45.71,3.04,63.24,9.12,17.52,6.08,31.42,16.02,41.68,29.84,10.26,13.820,15.39,31.22,15.39,52.22,0,30.95-10.66,53.8-31.97,68.57-21.31,14.76-50.77,22.14-88.34,22.14s-67.22-7.38-88.46-22.14c-21.24-14.76-31.85-37.62-31.85-68.57s10.62-54.08,31.85-68.92c21.23-14.84,50.72-22.26,88.46-22.26ZM869.98,398.09c13.26,9.24,31.81,13.85,55.66,13.85s42.39-4.65,55.66-13.97c13.26-9.31,19.89-22.89,19.89-40.74s-6.67-31.74-20.010-41.21c-13.35-9.47-31.85-14.21-55.54-14.21s-42.39,4.74-55.66,14.21c-13.26,9.47-19.89,23.21-19.89,41.21s6.63,31.62,19.89,40.86Z"/><g transform="translate(0,22)" stroke="currentColor" stroke-width="3.6" stroke-linejoin="round"><path d="M331.11,547.86c3.97,4.62,10.44,8.96,19.22,8.96,12.66,0,16.26-7.02,16.26-12.29,0-8.68-8.31-11.08-16.91-13.39-9.7-2.68-20.040-5.45-20.040-16.82,0-10.07,9.05-16.44,20.23-16.44,9.15,0,16.07,3.23,20.88,8.68l-3.51,3.88c-4.44-5.36-10.72-7.76-17.65-7.760-8.22,0-14.41,4.71-14.41,11.36,0,7.3,7.67,9.42,16.07,11.73,9.88,2.77,20.88,5.91,20.88,18.47,0,7.85-5.27,17.37-21.89,17.37-10.16,0-17.83-4.06-22.54-9.79l3.42-3.97Z"/><path d="M477.77,503.71h-20.14v-4.8h45.63v4.8h-20.14v56.81h-5.36v-56.81Z"/><path d="M591.73,498.9h5.36v37.87c0,12.47,6.56,20.05,18.66,20.05s18.66-7.57,18.66-20.05v-37.87h5.36v37.97c0,15.24-8.13,24.75-24.02,24.75s-24.02-9.61-24.02-24.75v-37.97Z"/><path d="M732.67,498.9h19.68c19.12,0,31.13,13.95,31.13,30.85s-12.01,30.76-31.13,30.76h-19.68v-61.61ZM752.34,555.71c16.26,0,25.59-11.55,25.590-25.95s-9.24-26.05-25.59-26.05h-14.41v52h14.41Z"/><path d="M874.15,498.9h5.27v61.61h-5.27v-61.61Z"/><path d="M999.94,497.89c18.01,0,29.93,13.86,29.930,31.87s-11.92,31.86-29.93,31.86-29.93-13.86-29.93-31.86,11.82-31.870,29.93-31.870ZM999.94,502.69c-14.97,0-24.39,11.46-24.39,27.07s9.42,27.06,24.39,27.06,24.39-11.55,24.39-27.06-9.61-27.07-24.39-27.07Z"/></g></g></svg></span><span class="cap" style="font-size:10px;opacity:.7">O download roda no seu aparelho, via a-Shell</span></footer>
+<div class="toast" id="toast"></div>
+<script>
+const $=s=>document.querySelector(s);
+const SITES=[["YouTube",/youtu\.?be/],["Instagram",/instagram/],["Facebook",/facebook|fb\.watch/],["TikTok",/tiktok/],["Vimeo",/vimeo/],["X",/(^|\/\/|\.)(x|twitter)\.com/],["SoundCloud",/soundcloud/],["Twitch",/twitch/]];
+$('#sites').innerHTML=SITES.map(s=>`<span data-s="${s[0]}">${s[0]}</span>`).join('')+'<span data-s="other">+1000</span>';
+const ok=u=>/^https?:\/\/[^\s'"`$;|&<>]+$/.test(u);
+function detect(){const v=$('#url').value.trim();let hit=null;for(const[s,r] of SITES)if(r.test(v)){hit=s;break}
+ document.querySelectorAll('#sites span').forEach(e=>e.classList.toggle('on',e.dataset.s===hit||(!hit&&ok(v)&&e.dataset.s==='other')));
+ $('#go').disabled=!ok(v)}
+function slide(){const l=document.querySelector('.seg label:has(input:checked)');if(!l)return;$('#sl').style.left=l.offsetLeft+'px';$('#sl').style.width=l.offsetWidth+'px'}
+document.querySelectorAll('.seg input').forEach(i=>i.addEventListener('change',slide));addEventListener('resize',slide);
+$('#url').addEventListener('input',detect);
+$('#url').addEventListener('focus',()=>$('#cmd').classList.add('focus'));$('#url').addEventListener('blur',()=>$('#cmd').classList.remove('focus'));
+$('#paste').onclick=async()=>{try{$('#url').value=(await navigator.clipboard.readText()).trim();detect()}catch(e){toast('Toque no campo e cole')}$('#url').focus()};
+$('#trimBtn').onclick=()=>{$('#trimF').classList.toggle('hide')};
+document.querySelectorAll('[data-copy]').forEach(b=>b.onclick=async()=>{try{await navigator.clipboard.writeText($('#'+b.dataset.copy).textContent);toast('Copiado')}catch(e){toast('Selecione e copie manualmente')}});
+function toast(t){const e=$('#toast');e.textContent=t;e.classList.add('show');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('show'),2200)}
+const NAMES={mp3:'MP3',wav:'WAV',mp4max:'4K','1080':'1080p'};
+function hist(){let h=[];try{h=JSON.parse(localStorage.getItem('pramim')||'[]')}catch(e){}return h}
+function saveH(h){try{localStorage.setItem('pramim',JSON.stringify(h.slice(0,8)))}catch(e){}}
+function renderH(){const h=hist();$('#histS').style.display=h.length?'block':'none';$('#hist').innerHTML=h.map(x=>`<div class="hi"><span class="f">${NAMES[x.f]||''}</span><span class="u">${x.u.replace(/[<>&"]/g,'')}</span><span class="cap">${x.st==='ok'?'✓':x.st==='err'?'!':'···'}</span></div>`).join('')}
+function go(){const u=$('#url').value.trim();if(!ok(u))return toast('Cole um link válido');
+ const f=document.querySelector('input[name=f]:checked').value;
+ const p={u,f};const s=$('#s').value.trim(),e=$('#e').value.trim();if(s)p.s=s;if(e)p.e=e;
+ const b64=btoa(unescape(encodeURIComponent(JSON.stringify(p)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+ const h=hist();h.unshift({u,f,st:'run'});saveH(h);renderH();
+ const back=location.origin+location.pathname;
+ location.href='shortcuts://x-callback-url/run-shortcut?name=pramim&input=text&text='+encodeURIComponent(b64)+'&x-success='+encodeURIComponent(back+'?status=ok')+'&x-error='+encodeURIComponent(back+'?status=err')+'&x-cancel='+encodeURIComponent(back+'?status=cancel');
+ $('#url').value='';detect()}
+$('#go').onclick=go;$('#url').onkeydown=e=>{if(e.key==='Enter')go()};
+const q=new URLSearchParams(location.search).get('status');
+if(q){const h=hist();if(h[0]&&h[0].st==='run'){h[0].st=q==='ok'?'ok':'err';saveH(h)}
+ const st=$('#st');if(q==='ok'){st.className='status ok';st.textContent='✓ Pronto! Está em Arquivos › a-Shell › pramim'}else if(q==='err'){st.className='status err';st.textContent='Algo deu errado. Abra o a-Shell para ver a mensagem.'}
+ history.replaceState(null,'',location.pathname)}
+if(!window.navigator.standalone&&!hist().length)$('#setup').open=true;
+renderH();detect();setTimeout(slide,50);document.fonts&&document.fonts.ready.then(slide);
+</script></body></html>
