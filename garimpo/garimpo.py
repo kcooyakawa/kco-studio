@@ -75,6 +75,8 @@ def fonte_caixa():
     r = requests.get(url, headers=UA, timeout=90)
     r.raise_for_status()
     txt = r.content.decode("latin-1")
+    if "captcha" in txt[:2000].lower():
+        raise RuntimeError("bloqueada por captcha (Radware) fora do navegador")
     linhas = txt.splitlines()
     ini = next(i for i, x in enumerate(linhas) if "UF" in x and ";" in x)
     rd = csv.reader(io.StringIO("\n".join(linhas[ini:])), delimiter=";")
@@ -108,53 +110,92 @@ def fonte_caixa():
     return out
 
 
-def _cards_genericos(fonte, base, html):
-    """Extração genérica: JSON-LD + cartões com link de imóvel e preço."""
-    soup = BeautifulSoup(html, "html.parser")
-    out = []
-    for s in soup.find_all("script", type="application/ld+json"):
-        try:
-            data = json.loads(s.string or "")
-        except Exception:
-            continue
-        for it in data if isinstance(data, list) else [data]:
-            if isinstance(it, dict) and it.get("url") and it.get("name"):
-                preco = (it.get("offers") or {}).get("price") if isinstance(it.get("offers"), dict) else None
-                out.append(dict(titulo=it["name"], link=it["url"], lance_min=num(str(preco or ""))))
-    for a in soup.find_all("a", href=True):
-        h = a["href"]
-        if not re.search(r"imovel|lote|leilao", h, re.I):
-            continue
-        card = a.find_parent(["div", "article", "li"]) or a
-        t = card.get_text(" ", strip=True)
-        m = re.findall(r"R\$\s*([\d.]+,\d{2})", t)
-        if not m or len(t) < 30:
-            continue
-        link = h if h.startswith("http") else base.rstrip("/") + "/" + h.lstrip("/")
-        out.append(dict(titulo=t[:300], link=link, lance_min=min(num(x) for x in m)))
-    vistos, res = set(), []
-    for o in out:
-        if o["link"] in vistos:
-            continue
-        vistos.add(o["link"])
-        cod = re.sub(r"[^a-z0-9]+", "-", o["link"].lower().split("//")[-1])[-60:].strip("-")
-        o.update(id=f"{fonte.lower()}-{cod}", fonte=fonte, tipo=o["titulo"], descricao=o["titulo"], uf="SP")
-        res.append(o)
-    return res
+def _slug_id(fonte, link):
+    m = re.search(r"(\d{4,})(?:\D*$|\?)", link.split("?")[0])
+    return f"{fonte.lower()}-{m.group(1) if m else re.sub(r'[^a-z0-9]+', '-', link.lower())[-50:]}"
 
 
 def fonte_zuk():
-    base = "https://www.portalzuk.com.br"
-    r = requests.get(f"{base}/leilao-de-imoveis/u/todos-imoveis/sp", headers=UA, timeout=60)
-    r.raise_for_status()
-    return _cards_genericos("Zuk", base, r.text)
+    base = "https://www.portalzuk.com.br/leilao-de-imoveis/u/todos-imoveis/sp"
+    out, vistos = [], set()
+    for pag in range(1, 21):
+        r = requests.get(base if pag == 1 else f"{base}?page={pag}", headers=UA, timeout=60)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, "html.parser")
+        novos = 0
+        for c in soup.select("div.card-property"):
+            a = c.select_one(".card-property-image-wrapper a[href]")
+            if not a or a["href"] in vistos:
+                continue
+            vistos.add(a["href"]); novos += 1
+            tipo = (c.select_one(".card-property-price-lote") or a).get_text(" ", strip=True)
+            end = c.select_one(".card-property-address")
+            end_txt = end.get_text(" ", strip=True) if end else ""
+            area = None
+            for lab in c.select(".card-property-info-label"):
+                m = re.search(r"([\d.,]+)\s*m", lab.get_text())
+                if m and "terreno" not in lab.get_text():
+                    area = num(m.group(1))
+            precos, pct, data = [], None, None
+            for li in c.select("li.card-property-price"):
+                v = li.select_one(".card-property-price-value")
+                if not v:
+                    continue
+                if v.find(style=re.compile("line-through")):
+                    continue  # praça já passada
+                vv = num(re.search(r"R\$\s*([\d.,]+)", v.get_text(" ")).group(1)) if re.search(r"R\$\s*([\d.,]+)", v.get_text(" ")) else None
+                pp = li.select_one(".card-property-price-percent")
+                if pp:
+                    pct = num(pp.get_text())
+                d = li.select_one(".card-property-price-data")
+                if vv:
+                    precos.append(vv); data = d.get_text(" ", strip=True) if d else data
+            news = c.select_one(".card-property-news")
+            out.append(dict(
+                id=_slug_id("Zuk", a["href"]), fonte="Zuk", uf="SP", tipo=tipo,
+                titulo=(a.get("title") or "").strip(), descricao=f"{tipo} {a.get('title') or ''} {news.get_text(strip=True) if news else ''}",
+                cidade=end_txt.split("/")[0].strip() if "/" in end_txt else None,
+                bairro=(end.select_one("span").get_text(" ", strip=True).split(" - ", 1)[-1] if end and end.select_one("span") else None),
+                endereco=end_txt, area=area, lance_min=min(precos) if precos else None,
+                desconto=pct, data_leilao=data, link=a["href"]))
+        if novos == 0:
+            break
+    return out
 
 
 def fonte_mega():
-    base = "https://www.megaleiloes.com.br"
-    r = requests.get(f"{base}/imoveis/apartamentos/sp", headers=UA, timeout=60)
-    r.raise_for_status()
-    return _cards_genericos("Mega", base, r.text)
+    base = "https://www.megaleiloes.com.br/imoveis/apartamentos/sp"
+    out, vistos = [], set()
+    for pag in range(1, 31):
+        r = requests.get(base if pag == 1 else f"{base}?pagina={pag}", headers=UA, timeout=60)
+        r.raise_for_status()
+        soup = BeautifulSoup(r.text, "html.parser")
+        novos = 0
+        for c in soup.select("div[data-key] div.card"):
+            a = c.select_one("a.card-title[href]") or c.select_one("a.card-image[href]")
+            if not a:
+                continue
+            link = a["href"].split("?")[0]
+            if link in vistos:
+                continue
+            vistos.add(link); novos += 1
+            titulo = a.get_text(" ", strip=True) or link.rsplit("/", 1)[-1].replace("-", " ")
+            preco = c.select_one(".card-price")
+            pct = c.select_one(".card-down .value")
+            partes = link.split("/")
+            cidade = partes[6].replace("-", " ").title() if len(partes) > 6 else None
+            loc = c.select_one(".card-locality")
+            area = re.search(r"-(\d+)-m2", link)
+            out.append(dict(
+                id=_slug_id("Mega", link), fonte="Mega", uf="SP", tipo="Apartamento", titulo=titulo,
+                descricao=c.get_text(" ", strip=True)[:600], cidade=cidade,
+                bairro=loc.get_text(" ", strip=True) if loc else None,
+                area=num(area.group(1)) if area else None,
+                lance_min=num(preco.get_text()) if preco else None,
+                desconto=num(pct.get_text()) if pct else None, link=link))
+        if novos == 0:
+            break
+    return out
 
 
 FONTES = {"Caixa": fonte_caixa, "Zuk": fonte_zuk, "Mega": fonte_mega}
@@ -169,6 +210,10 @@ def gravar(lotes, rodada):
         return
     h = {"apikey": key, "Authorization": f"Bearer {key}", "Content-Type": "application/json",
          "Prefer": "resolution=merge-duplicates,return=minimal"}
+    cols = ["id", "fonte", "codigo", "uf", "cidade", "bairro", "endereco", "tipo", "titulo",
+            "descricao", "modalidade", "data_leilao", "lance_min", "avaliacao", "desconto", "area",
+            "dorm", "link", "rodada", "visto_em"]  # status fica com o Claude
+    lotes = [{c: l.get(c) for c in cols} for l in lotes]
     for i in range(0, len(lotes), 500):
         r = requests.post(f"{url}/rest/v1/garimpo_lotes?on_conflict=id", headers=h,
                           data=json.dumps(lotes[i:i + 500], default=str), timeout=60)
@@ -191,7 +236,7 @@ def main():
             lotes = fn()
         except Exception as e:
             print(f"!! {nome}: {type(e).__name__}: {e}")
-            rodada["fontes_fora"].append(f"{nome}: {type(e).__name__}")
+            rodada["fontes_fora"].append(f"{nome}: {e}"[:200])
             continue
         if not lotes:
             rodada["fontes_fora"].append(f"{nome}: nenhum lote extraído (layout mudou ou bloqueio)")
@@ -204,7 +249,7 @@ def main():
             rodada["triados"] += 1
             if st == "candidato":
                 cand += 1
-                l.update(status="candidato", motivo=None, rodada=HOJE, visto_em=agora)
+                l.update(rodada=HOJE, visto_em=agora)
                 gravaveis.append(l)
             else:
                 rodada["descartes"][motivo.split(":")[0]] = rodada["descartes"].get(motivo.split(":")[0], 0) + 1

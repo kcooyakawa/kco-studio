@@ -2,7 +2,7 @@
 create table if not exists garimpo_lotes (
   id text primary key,
   fonte text, codigo text, uf text, cidade text, bairro text, endereco text,
-  tipo text, titulo text, descricao text, modalidade text,
+  tipo text, titulo text, descricao text, modalidade text, data_leilao text,
   lance_min numeric, avaliacao numeric, desconto numeric, area numeric, dorm int,
   link text,
   status text default 'candidato',   -- candidato | analisado | aprovada | preselecionado | investigacao | descartada
