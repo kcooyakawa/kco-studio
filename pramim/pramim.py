@@ -11,6 +11,9 @@ except ImportError:
     sys.exit(1)
 
 arg = sys.argv[1].strip() if len(sys.argv) > 1 else ""
+FMTS = {"mp3": "mp3", "wav": "wav", "4k": "mp4max", "1080": "1080", "mp4": "1080"}
+if arg.lower() in FMTS and len(sys.argv) > 2:  # uso manual: pramim.py mp3 "link"
+    arg = base64.urlsafe_b64encode(json.dumps({"u": sys.argv[2], "f": FMTS[arg.lower()]}).encode()).decode()
 try:
     pedido = json.loads(base64.urlsafe_b64decode(arg + "=" * (-len(arg) % 4)).decode())
 except Exception:
