@@ -377,11 +377,13 @@ function font(){fi=(fi+1)%4;document.body.className=fi?'f'+(fi+1):'';toast('Font
 function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clearTimeout(t._);t._=setTimeout(()=>t.classList.remove('on'),1700)}
 function like(i){const b=$('h'+i);likes.has(i)?likes.delete(i):likes.add(i);b.classList.toggle('on',likes.has(i));b.setAttribute('aria-pressed',likes.has(i))}
 function shotTap(i){if(tapT){clearTimeout(tapT);tapT=0;if(!likes.has(i))like(i);const b=$('b'+i);b.classList.remove('go');void b.offsetWidth;b.classList.add('go')}else tapT=setTimeout(()=>{tapT=0;ficha(i)},250)}
+const PAIR={Yakissoba:{b:[0,1],d:'Tempurá de Legumes e Camarão'},Entradas:{b:[1,2]},Frango:{b:[1,2],d:'Batata Frita'},Teppan:{b:[1,3]},Lamen:{b:[0,4],d:'Hot Roll'},Okinawa:{b:[0,1]},Sobremesa:{b:[0,3]}};
 let q=1;
 function ficha(i){const d=D[i];cur2=i;q=1;$('fImg').src=d.img+'.webp';$('fImg').alt=d.name;$('fName').textContent=d.name;$('fAbout').textContent=d.a;$('fTag').textContent=d.tag||d.c;
   $('fFacts').innerHTML=`<div><dt class="lab">Porção</dt><dd>${d.por}</dd></div><div><dt class="lab">Seção</dt><dd>${d.c}</dd></div><div><dt class="lab">${d.n?'Número':'Preço'}</dt><dd>${d.n||R(d.p)}</dd></div>`;
   $('fIng').innerHTML=d.d.split(', ').map(x=>`<li>${x[0].toUpperCase()+x.slice(1)}</li>`).join('');
-  const bi=D.findIndex(x=>x.list);$('fPair').innerHTML=D[bi].items.slice(0,2).map((x,k)=>`<div class="pair"><span>${x[0]}</span><b>${R(x[1])}</b><button class="plus" aria-label="Adicionar ${x[0]}" onclick="addDrink(${bi},${k})">+</button></div>`).join('');
+  const bi=D.findIndex(x=>x.list),pr=PAIR[d.c]||{b:[0,1]},di=pr.d?D.findIndex(x=>x.name===pr.d):-1;
+  $('fPair').innerHTML=(di>=0&&di!==i?`<div class="pair"><span>${D[di].name}</span><b>${R(D[di].p)}</b><button class="plus" aria-label="Adicionar ${D[di].name}" onclick="add(${di})">+</button></div>`:'')+pr.b.map(k=>{const x=D[bi].items[k];return `<div class="pair"><span>${x[0]}</span><b>${R(x[1])}</b><button class="plus" aria-label="Adicionar ${x[0]}" onclick="addDrink(${bi},${k})">+</button></div>`}).join('');
   qty(0);$('fScroll').scrollTop=0;$('fImg').style.transform='';$('ficha').classList.add('on')}
 (()=>{const f=$('ficha'),sc=$('fScroll');let y0=null,dy=0,t0=0;
  f.addEventListener('touchstart',e=>{y0=sc.scrollTop<=0?e.touches[0].clientY:null;dy=0;t0=Date.now()},{passive:true});
