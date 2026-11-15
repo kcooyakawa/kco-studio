@@ -178,7 +178,7 @@ body{padding-top:env(safe-area-inset-top)}
    <li>Instale o app <b>a-Shell</b> (grátis) na App Store.</li>
    <li>Abra o a-Shell, cole os comandos abaixo, <b>um de cada vez</b> (só na primeira vez):
     <div class="code"><code id="c1">pip install -U yt-dlp</code><button class="txt" data-copy="c1">Copiar</button></div>Espere terminar e depois cole este:<div class="code"><code id="c3">curl -L -o ~/Documents/pramim.py https://kcooyakawa.github.io/kco-studio/pramim/pramim.py</code><button class="txt" data-copy="c3">Copiar</button></div></li>
-   <li>No app <b>Atalhos</b>, crie um atalho chamado exatamente <b>pramim</b> com uma única ação do a-Shell: <b>Execute Command</b>. No campo do comando, escreva:
+   <li>(Opcional, para baixar pelo menu Compartilhar) No app <b>Atalhos</b>, crie um atalho chamado exatamente <b>pramim</b> com uma única ação do a-Shell: <b>Execute Command</b>. No campo do comando, escreva:
     <div class="code"><code id="c2">python ~/Documents/pramim.py</code><button class="txt" data-copy="c2">Copiar</button></div>
     e, logo depois do texto (com um espaço), toque e insira a variável <b>Entrada do Atalho</b>. Ative "Open a-Shell" para downloads longos.</li>
    <li>(Opcional) Nos detalhes do atalho, ative <b>Mostrar na Folha de Compartilhamento</b> e escolha <b>URLs</b>. Assim dá para baixar direto do Instagram/YouTube em Compartilhar › pramim.</li>
@@ -209,13 +209,13 @@ const NAMES={mp3:'MP3',wav:'WAV',mp4max:'4K','1080':'1080p'};
 function hist(){let h=[];try{h=JSON.parse(localStorage.getItem('pramim')||'[]')}catch(e){}return h}
 function saveH(h){try{localStorage.setItem('pramim',JSON.stringify(h.slice(0,8)))}catch(e){}}
 function renderH(){const h=hist();$('#histS').style.display=h.length?'block':'none';$('#hist').innerHTML=h.map(x=>`<div class="hi"><span class="f">${NAMES[x.f]||''}</span><span class="u">${x.u.replace(/[<>&"]/g,'')}</span><span class="cap">${x.st==='ok'?'✓':x.st==='err'?'!':'···'}</span></div>`).join('')}
-function go(){const u=$('#url').value.trim().split(/\s+/).find(x=>/^https?:/.test(x))||'';if(!ok(u))return toast('Cole um link válido (começando com https://)');toast('Abrindo o atalho pramim…');
+function go(){const u=$('#url').value.trim().split(/\s+/).find(x=>/^https?:/.test(x))||'';if(!ok(u))return toast('Cole um link válido (começando com https://)');toast('Abrindo o a-Shell…');
  const f=document.querySelector('input[name=f]:checked').value;
  const p={u,f};if(document.querySelector('input[name=sc]:checked').value==='1')p.p=true;const s=$('#s').value.trim(),e=$('#e').value.trim();if(s)p.s=s;if(e)p.e=e;
  const b64=btoa(unescape(encodeURIComponent(JSON.stringify(p)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
  const h=hist();h.unshift({u,f,st:'run'});saveH(h);renderH();
- const back=location.origin+location.pathname;
- location.href='shortcuts://x-callback-url/run-shortcut?name=pramim&input=text&text='+encodeURIComponent(b64)+'&x-success='+encodeURIComponent(back+'?status=ok')+'&x-error='+encodeURIComponent(back+'?status=err')+'&x-cancel='+encodeURIComponent(back+'?status=cancel');
+ location.href='ashell:'+encodeURIComponent('python ~/Documents/pramim.py '+b64);
+ setTimeout(()=>{const st=$('#st');st.className='status ok';st.textContent='Baixando no a-Shell… quando aparecer ✓ Pronto, está em Arquivos › a-Shell › pramim'},800);
  $('#url').value='';detect()}
 $('#go').onclick=go;$('#url').onkeydown=e=>{if(e.key==='Enter')go()};
 const q=new URLSearchParams(location.search).get('status');
