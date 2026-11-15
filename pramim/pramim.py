@@ -81,9 +81,23 @@ if ini or fim:
     b = parse_duration(fim) or float("inf")
     opts.update(download_ranges=download_range_func(None, [(a, b)]), force_keyframes_at_cuts=True)
 
+from urllib.parse import quote
+VOLTA = "https://kcooyakawa.github.io/kco-studio/pramim/"
+def voltar(status, nome=""):
+    try:
+        import subprocess
+        subprocess.run(["open", VOLTA + "?status=" + status + ("&nome=" + quote(nome[:80]) if nome else "")])
+    except Exception:
+        pass
+
 print(f"pra/mim · baixando {fmt.upper()}" + (" · PLAYLIST INTEIRA" if playlist else "") + " …")
-with yt_dlp.YoutubeDL(opts) as ydl:
-    info = ydl.extract_info(url, download=True)
+try:
+    with yt_dlp.YoutubeDL(opts) as ydl:
+        info = ydl.extract_info(url, download=True)
+except Exception as e:
+    print("Erro:", e)
+    voltar("err")
+    sys.exit(1)
 
 # Vídeo em VP9/AV1 não abre no iPhone: converte para H.264
 if fmt in ("mp4max", "1080") and info and not playlist:
@@ -104,3 +118,4 @@ if fmt in ("mp4max", "1080") and info and not playlist:
     except Exception as e:
         print("Aviso na conversão:", e)
 print("✓ Pronto! Arquivos › a-Shell › pramim")
+voltar("ok", (info or {}).get("title") or "")

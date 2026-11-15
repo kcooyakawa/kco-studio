@@ -215,12 +215,12 @@ function go(){const u=$('#url').value.trim().split(/\s+/).find(x=>/^https?:/.tes
  const b64=btoa(unescape(encodeURIComponent(JSON.stringify(p)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
  const h=hist();h.unshift({u,f,st:'run'});saveH(h);renderH();
  location.href='ashell:'+encodeURIComponent('python ~/Documents/pramim.py '+b64);
- setTimeout(()=>{const st=$('#st');st.className='status ok';st.textContent='Baixando no a-Shell… quando aparecer ✓ Pronto, está em Arquivos › a-Shell › pramim'},800);
+ setTimeout(()=>{const st=$('#st');st.className='status ok';st.textContent='Baixando no a-Shell… quando terminar, você volta pra cá automaticamente.'},800);
  $('#url').value='';detect()}
 $('#go').onclick=go;$('#url').onkeydown=e=>{if(e.key==='Enter')go()};
 const q=new URLSearchParams(location.search).get('status');
 if(q){const h=hist();if(h[0]&&h[0].st==='run'){h[0].st=q==='ok'?'ok':'err';saveH(h)}
- const st=$('#st');if(q==='ok'){st.className='status ok';st.textContent='✓ Pronto! Está em Arquivos › a-Shell › pramim'}else if(q==='err'){st.className='status err';st.textContent='Algo deu errado. Abra o a-Shell para ver a mensagem.'}
+ const st=$('#st');if(q==='ok'){const nm=new URLSearchParams(location.search).get('nome');st.className='status ok';st.textContent='✓ Pronto! '+(nm?'“'+nm+'” ':'')+'está em Arquivos › a-Shell › pramim';try{navigator.vibrate&&navigator.vibrate(200)}catch(e){}}else if(q==='err'){st.className='status err';st.textContent='Algo deu errado. Abra o a-Shell para ver a mensagem.'}
  history.replaceState(null,'',location.pathname)}
 if(!window.navigator.standalone&&!hist().length)$('#setup').open=true;
 renderH();detect();setTimeout(slide,50);document.fonts&&document.fonts.ready.then(slide);
