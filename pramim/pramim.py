@@ -3,6 +3,23 @@
 #  <pedido> = base64 (vindo da página pra/mim) ou um link direto (vindo do menu Compartilhar)
 import base64, json, os, re, sys
 
+# Auto-atualização: busca a versão mais nova antes de rodar
+if not os.environ.get("PRAMIM_ATUALIZADO"):
+    try:
+        import urllib.request
+        novo = urllib.request.urlopen("https://kcooyakawa.github.io/kco-studio/pramim/pramim.py", timeout=6).read().decode()
+        atual = open(__file__, encoding="utf-8").read()
+        if "pra/mim" in novo and novo != atual:
+            open(__file__, "w", encoding="utf-8").write(novo)
+            print("pra/mim atualizado ✓")
+            os.environ["PRAMIM_ATUALIZADO"] = "1"
+            exec(compile(novo, __file__, "exec"))
+            sys.exit(0)
+    except SystemExit:
+        raise
+    except Exception:
+        pass
+
 try:
     import yt_dlp
     from yt_dlp.utils import download_range_func, parse_duration
