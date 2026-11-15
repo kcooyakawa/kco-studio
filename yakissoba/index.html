@@ -71,6 +71,7 @@ body.f4{--disp:'Shippori Mincho B1';--dw:800;--dt:none;--dl:-.01em;--dh:1.08;--d
 .feed::-webkit-scrollbar{display:none}
 .dish{position:relative;height:100%;scroll-snap-align:start;scroll-snap-stop:always;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:0 22px 92px}
 .bgw{position:absolute;inset:0;z-index:0;padding:0;display:block;width:100%}
+.bgw{background:#1c1512}
 .bg{position:absolute;inset:-9% 0;width:100%;height:118%;object-fit:cover;will-change:transform}
 .dish.mini .bg{filter:blur(40px) saturate(1.2) brightness(.42);inset:-20%;width:140%;height:140%}
 .small{position:absolute;z-index:1;left:50%;top:17cqh;width:min(66cqw,34cqh);aspect-ratio:1;object-fit:cover;border-radius:6px;transform:translateX(-50%);box-shadow:0 30px 50px -16px rgba(0,0,0,.9)}
@@ -341,7 +342,7 @@ feed.innerHTML=D.map((d,i)=>d.list?`<article class="dish" data-i="${i}">
   <div class="info"><h3>Bebidas</h3>
    <div class="drinks">${d.items.map((x,k)=>`<div class="drink"><span>${x[0]}</span><b>${R(x[1])}</b><button class="plus" aria-label="Adicionar ${x[0]}" onclick="addDrink(${i},${k})">+</button></div>`).join('')}</div>
   </div></article>`:`<article class="dish" data-i="${i}">
-  <button class="bgw" onclick="shotTap(${i})" aria-label="Abrir ficha de ${d.name}"><img class="bg" src="${d.img}.jpg" alt="${d.name}" loading="${i<2?'eager':'lazy'}"></button>
+  <button class="bgw" onclick="shotTap(${i})" aria-label="Abrir ficha de ${d.name}"><img class="bg" src="${d.img}.webp" alt="${d.name}" loading="${i<3?'eager':'lazy'}" decoding="async"></button>
   <span class="burst" id="b${i}">${heart}</span>
   <div class="info">
    ${d.tag?`<span class="tag">${d.tag}</span>`:''}
@@ -354,6 +355,7 @@ feed.innerHTML=D.map((d,i)=>d.list?`<article class="dish" data-i="${i}">
     <button class="add" onclick="add(${i})">Pedir</button>
    </div>
   </div></article>`).join('');
+(function pre(i){const d=D[i];if(!d)return;if(!d.img)return pre(i+1);const im=new Image();im.onload=im.onerror=()=>pre(i+1);im.src=d.img+'.webp'})(0);
 const els=[...feed.children].map(el=>({el,bg:el.querySelector('.bg'),info:el.querySelector('.info'),small:el.querySelector('.small')}));
 function para(){const H=feed.clientHeight,st=feed.scrollTop;els.forEach((o,i)=>{const off=(i*H-st)/H;if(Math.abs(off)>1.2)return;
   if(o.bg)o.bg.style.transform=`translate3d(0,${off*-13}%,0) scale(${1.06+Math.abs(off)*.08})`;
@@ -376,7 +378,7 @@ function toast(m){const t=$('toast');t.textContent=m;t.classList.add('on');clear
 function like(i){const b=$('h'+i);likes.has(i)?likes.delete(i):likes.add(i);b.classList.toggle('on',likes.has(i));b.setAttribute('aria-pressed',likes.has(i))}
 function shotTap(i){if(tapT){clearTimeout(tapT);tapT=0;if(!likes.has(i))like(i);const b=$('b'+i);b.classList.remove('go');void b.offsetWidth;b.classList.add('go')}else tapT=setTimeout(()=>{tapT=0;ficha(i)},250)}
 let q=1;
-function ficha(i){const d=D[i];cur2=i;q=1;$('fImg').src=d.img+'.jpg';$('fImg').alt=d.name;$('fName').textContent=d.name;$('fAbout').textContent=d.a;$('fTag').textContent=d.tag||d.c;
+function ficha(i){const d=D[i];cur2=i;q=1;$('fImg').src=d.img+'.webp';$('fImg').alt=d.name;$('fName').textContent=d.name;$('fAbout').textContent=d.a;$('fTag').textContent=d.tag||d.c;
   $('fFacts').innerHTML=`<div><dt class="lab">Porção</dt><dd>${d.por}</dd></div><div><dt class="lab">Seção</dt><dd>${d.c}</dd></div><div><dt class="lab">${d.n?'Número':'Preço'}</dt><dd>${d.n||R(d.p)}</dd></div>`;
   $('fIng').innerHTML=d.d.split(', ').map(x=>`<li>${x[0].toUpperCase()+x.slice(1)}</li>`).join('');
   const bi=D.findIndex(x=>x.list);$('fPair').innerHTML=D[bi].items.slice(0,2).map((x,k)=>`<div class="pair"><span>${x[0]}</span><b>${R(x[1])}</b><button class="plus" aria-label="Adicionar ${x[0]}" onclick="addDrink(${bi},${k})">+</button></div>`).join('');
