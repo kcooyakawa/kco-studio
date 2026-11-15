@@ -63,7 +63,8 @@ body.f4{--disp:'Shippori Mincho B1';--dw:800;--dt:none;--dl:-.01em;--dh:1.08;--d
 .chip.on{background:var(--red);border-color:var(--red);color:#fff}
 .chip:active{transform:scale(.94)}
 .pow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mut);text-align:center;margin:0}
-.pow b{color:var(--ink);font-weight:700}
+.pow{display:flex;align-items:center;justify-content:center;gap:10px}
+.pow img{height:26px;width:auto;display:block}
 .proto{position:absolute;top:0;left:0;right:0;z-index:31;text-align:center;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;padding:5px;color:var(--mut)}
 
 .feed{position:absolute;inset:0;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none;overscroll-behavior:contain}
@@ -234,7 +235,7 @@ body.f4{--disp:'Shippori Mincho B1';--dw:800;--dt:none;--dl:-.01em;--dh:1.08;--d
       <div class="tot"><span>Total</span><b id="total">R$ 0,00</b></div>
       <a class="cta" id="wa" target="_blank" rel="noopener">Enviar pelo WhatsApp</a>
       <p class="note" style="text-align:center">Abre a conversa do restaurante com o pedido já escrito.</p>
-      <p class="pow">Powered by <b>Kco Studio</b></p>
+      <p class="pow">Powered by <img src="img/kco-w.svg" alt="Kco Studio"></p>
     </section>
 
     <section id="ficha" aria-label="Ficha técnica do prato">
@@ -262,7 +263,7 @@ body.f4{--disp:'Shippori Mincho B1';--dw:800;--dt:none;--dl:-.01em;--dh:1.08;--d
       <span class="proto">Protótipo de apresentação</span>
       <div><h2>Encoste o celular<br><em>no cartão da mesa</em></h2><p>Sem aplicativo e sem QR Code. O cardápio abre sozinho.</p></div>
       <div class="card" id="card"><i class="ring"></i><i class="ring"></i><img src="img/logo.png" alt="Logo do Yakissoba Restaurante"><b>ENCOSTE AQUI</b><span>Mesa 12 · NFC</span></div>
-      <div style="width:100%;display:flex;flex-direction:column;gap:16px"><button class="cta" onclick="tap()">Simular toque no cartão</button><p class="pow">Powered by <b>Kco Studio</b></p></div>
+      <div style="width:100%;display:flex;flex-direction:column;gap:16px"><button class="cta" onclick="tap()">Simular toque no cartão</button><p class="pow">Powered by <img src="img/kco-w.svg" alt="Kco Studio"></p></div>
     </div>
   </div></div>
 </div>
@@ -272,7 +273,8 @@ body.f4{--disp:'Shippori Mincho B1';--dw:800;--dt:none;--dl:-.01em;--dh:1.08;--d
     <header class="dh">
       <img src="img/logo.png" alt="">
       <h2>Painel do cardápio<p>Yakissoba Restaurante · semana de terça a sábado</p></h2>
-      <span class="simflag">Dados simulados · Powered by Kco Studio</span>
+      <span class="simflag">Dados simulados</span>
+      <span class="pow" style="color:#6b635a">Powered by <img src="img/kco.svg" alt="Kco Studio"></span>
       <button onclick="closeDash()">Fechar painel</button>
     </header>
     <div class="kpis">
