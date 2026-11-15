@@ -143,6 +143,11 @@ body{padding-top:env(safe-area-inset-top)}
 .hi .u{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:13px;color:var(--ink2)}
 .hi .f{font-size:11px;letter-spacing:.06em;color:var(--sky);padding:4px 10px;border-radius:999px;background:rgba(47,107,255,.16)}
 @media(max-width:600px){.pill>.circ:first-child{display:none}#url{padding-left:12px;font-size:16px}.pill{gap:6px;padding:7px}.circ{width:44px;height:44px}#go{width:52px;height:52px}.txt{padding:0 12px;height:40px}.lead.tag{letter-spacing:.14em;font-size:11.5px}.seg label{padding:6px 14px 6px 6px}}
+.scope{display:flex;gap:4px;width:max-content;margin:26px auto 0;padding:4px;border-radius:999px;background:rgba(255,255,255,.04);box-shadow:inset 0 0 0 1px rgba(255,255,255,.05)}
+.scope label{cursor:pointer}.scope input{position:absolute;opacity:0}
+.scope span{display:block;padding:9px 18px;border-radius:999px;font-size:13px;color:var(--ink2);transition:.25s}
+.scope label:has(input:checked) span{background:linear-gradient(180deg,rgba(60,92,145,.7),rgba(28,46,78,.7));color:#fff;box-shadow:inset 0 1px 0 rgba(255,255,255,.15)}
+.seg{margin-top:14px!important}
 </style></head><body>
 <div class="bg"></div><div class="arc"></div>
 <div class="wrap">
@@ -159,6 +164,7 @@ body{padding-top:env(safe-area-inset-top)}
   <div class="status" id="st"></div>
   <div class="sites" id="sites"></div>
   <div class="trim hide" id="trimF">Trecho <input id="s" placeholder="0:00:00"> até <input id="e" placeholder="0:05:00"></div>
+  <div class="scope" id="scope"><label><input type="radio" name="sc" value="0" checked><span>Só este link</span></label><label><input type="radio" name="sc" value="1"><span>Playlist inteira</span></label></div>
   <div class="seg" id="seg"><span class="slider" id="sl"></span>
    <label><input type="radio" name="f" value="mp3" checked><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/></svg></span><span class="l"><b>MP3</b><small>320 kbps</small></span></label>
    <label><input type="radio" name="f" value="wav"><span class="ic"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h1M7 8v8M11 4v16M15 7v10M19 10v4"/></svg></span><span class="l"><b>WAV</b><small>Sem perdas</small></span></label>
@@ -205,7 +211,7 @@ function saveH(h){try{localStorage.setItem('pramim',JSON.stringify(h.slice(0,8))
 function renderH(){const h=hist();$('#histS').style.display=h.length?'block':'none';$('#hist').innerHTML=h.map(x=>`<div class="hi"><span class="f">${NAMES[x.f]||''}</span><span class="u">${x.u.replace(/[<>&"]/g,'')}</span><span class="cap">${x.st==='ok'?'✓':x.st==='err'?'!':'···'}</span></div>`).join('')}
 function go(){const u=$('#url').value.trim().split(/\s+/).find(x=>/^https?:/.test(x))||'';if(!ok(u))return toast('Cole um link válido (começando com https://)');toast('Abrindo o atalho pramim…');
  const f=document.querySelector('input[name=f]:checked').value;
- const p={u,f};const s=$('#s').value.trim(),e=$('#e').value.trim();if(s)p.s=s;if(e)p.e=e;
+ const p={u,f};if(document.querySelector('input[name=sc]:checked').value==='1')p.p=true;const s=$('#s').value.trim(),e=$('#e').value.trim();if(s)p.s=s;if(e)p.e=e;
  const b64=btoa(unescape(encodeURIComponent(JSON.stringify(p)))).replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
  const h=hist();h.unshift({u,f,st:'run'});saveH(h);renderH();
  const back=location.origin+location.pathname;

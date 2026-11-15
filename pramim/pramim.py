@@ -12,8 +12,10 @@ except ImportError:
 
 arg = sys.argv[1].strip() if len(sys.argv) > 1 else ""
 FMTS = {"mp3": "mp3", "wav": "wav", "4k": "mp4max", "1080": "1080", "mp4": "1080"}
-if arg.lower() in FMTS and len(sys.argv) > 2:  # uso manual: pramim.py mp3 "link"
-    arg = base64.urlsafe_b64encode(json.dumps({"u": sys.argv[2], "f": FMTS[arg.lower()]}).encode()).decode()
+if arg.lower() in FMTS and len(sys.argv) > 2:  # uso manual: pramim.py mp3 [playlist] "link"
+    pl = sys.argv[2].lower() == "playlist"
+    link = sys.argv[3] if pl and len(sys.argv) > 3 else sys.argv[2]
+    arg = base64.urlsafe_b64encode(json.dumps({"u": link, "f": FMTS[arg.lower()], "p": pl}).encode()).decode()
 try:
     pedido = json.loads(base64.urlsafe_b64decode(arg + "=" * (-len(arg) % 4)).decode())
 except Exception:
@@ -22,6 +24,7 @@ except Exception:
 url = str(pedido.get("u", "")).strip()
 fmt = pedido.get("f", "mp3")
 ini, fim = pedido.get("s", ""), pedido.get("e", "")
+playlist = bool(pedido.get("p"))
 
 if not re.match(r"^https?://[^\s'\"`<>]+$", url):
     print("Link inválido.")
@@ -30,7 +33,7 @@ if not re.match(r"^https?://[^\s'\"`<>]+$", url):
 # Só o vídeo do link: remove playlist/mix do YouTube
 from urllib.parse import urlparse, parse_qs, urlencode
 pu = urlparse(url)
-if "youtu" in pu.netloc:
+if "youtu" in pu.netloc and not playlist:
     q = parse_qs(pu.query)
     if "v" in q:
         url = "https://www.youtube.com/watch?" + urlencode({"v": q["v"][0]})
@@ -40,7 +43,11 @@ if "youtu" in pu.netloc:
 pasta = os.path.expanduser("~/Documents/pramim")
 os.makedirs(pasta, exist_ok=True)
 
-opts = {"outtmpl": os.path.join(pasta, "%(title).80s.%(ext)s"), "noplaylist": True, "playlist_items": "1"}
+if playlist:
+    opts = {"outtmpl": os.path.join(pasta, "%(playlist_title|Playlist).60s", "%(playlist_index|0)03d - %(title).80s.%(ext)s"),
+            "noplaylist": False, "ignoreerrors": True}
+else:
+    opts = {"outtmpl": os.path.join(pasta, "%(title).80s.%(ext)s"), "noplaylist": True, "playlist_items": "1"}
 if fmt in ("mp3", "wav"):
     pp = {"key": "FFmpegExtractAudio", "preferredcodec": fmt}
     if fmt == "mp3":
@@ -57,12 +64,12 @@ if ini or fim:
     b = parse_duration(fim) or float("inf")
     opts.update(download_ranges=download_range_func(None, [(a, b)]), force_keyframes_at_cuts=True)
 
-print(f"pra/mim · baixando {fmt.upper()} …")
+print(f"pra/mim · baixando {fmt.upper()}" + (" · PLAYLIST INTEIRA" if playlist else "") + " …")
 with yt_dlp.YoutubeDL(opts) as ydl:
     info = ydl.extract_info(url, download=True)
 
 # Vídeo em VP9/AV1 não abre no iPhone: converte para H.264
-if fmt in ("mp4max", "1080"):
+if fmt in ("mp4max", "1080") and info and not playlist:
     try:
         dl = (info.get("requested_downloads") or [{}])[0]
         path = dl.get("filepath") or dl.get("_filename")
