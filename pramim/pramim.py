@@ -20,6 +20,23 @@ if not os.environ.get("PRAMIM_ATUALIZADO"):
     except Exception:
         pass
 
+# Atualiza o yt-dlp a cada 3 dias (os sites mudam e quebram o download)
+def atualizar_ytdlp(forcar=False):
+    import time, subprocess
+    marca = os.path.expanduser("~/Documents/.pramim_ytdlp")
+    try:
+        velho = time.time() - os.path.getmtime(marca) > 3 * 86400
+    except OSError:
+        velho = True
+    if forcar or velho:
+        print("Atualizando o yt-dlp…")
+        try:
+            subprocess.run(["pip", "install", "-U", "-q", "yt-dlp"])
+            open(marca, "w").write(str(time.time()))
+        except Exception as e:
+            print("Não deu para atualizar:", e)
+atualizar_ytdlp()
+
 try:
     import yt_dlp
     from yt_dlp.utils import download_range_func, parse_duration
@@ -96,6 +113,11 @@ try:
         info = ydl.extract_info(url, download=True)
 except Exception as e:
     print("Erro:", e)
+    if "report this issue" in str(e) or "Unsupported URL" in str(e):
+        atualizar_ytdlp(forcar=True)
+        print("\nO yt-dlp foi atualizado. Tente baixar de novo.")
+        if "facebook" in url:
+            print("Se o Facebook continuar dando erro, esse vídeo provavelmente exige login ou é privado.")
     voltar("err")
     sys.exit(1)
 
